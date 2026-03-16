@@ -1,4 +1,4 @@
-package com.ticketreservation;
+package com.projectmanager;
 
 public class Main {
     public static void main(String[] args) {
