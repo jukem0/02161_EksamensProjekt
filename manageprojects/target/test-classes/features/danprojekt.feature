@@ -1,5 +1,5 @@
 Feature: opret projekt
-    Description: en medarbejder opretter et nyt projekt.
+    Beskrivelse: en medarbejder opretter et nyt projekt.
 
 Background: 
     Given følgende medarbejdere findes i systemet:
