@@ -1,5 +1,6 @@
 Feature: oprettelse af aktivitet
-    Beskrivelse: en medarbejder eller projektleder opretter en aktivitet
+#lavet af Guillermo
+Beskrivelse: en medarbejder eller projektleder opretter en aktivitet
 
 
     Background: 
