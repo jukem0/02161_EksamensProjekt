@@ -1,4 +1,5 @@
 Feature: Tider for aktiviteter
+#Lavet af Fabrizio
     Beskrivelse: Projektlederen bestemmer start- og sluttid for aktiviteter i projekter
 
     Background: 
@@ -19,3 +20,21 @@ Feature: Tider for aktiviteter
     When <medarbejder> bestemmer start- og sluttid til <aktivitetsnavn> som datoer <startdato>, <slutdato>
     And <startdato> er senere end <slutdato>
     Then handling fejler med fejlbesked: "Startdato kan ikke være efter slutdato"
+
+
+
+    Examples: 
+        |projektnavn       |
+        |"Website"         |
+        |"Skylager"        |
+        |"Kalender"        |
+        |"Q1rapport"       |
+        |"test"            |
+
+    Examples: 
+        |aktivitetsnavn    |
+        |"Design"          |
+        |"Analyse"         |
+        |"Programmering"   |
+        |"Mødeindkaldelse" |
+        |"Databehandling"  |

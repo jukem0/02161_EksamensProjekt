@@ -1,4 +1,5 @@
 Feature: Registrering af brugt tid
+#Lavet af Fabrizio
     Beskrivelse: Medarbejdere registrerer brugt tid på en aktivitet hvor dette rettes til nærmeste halve time
 
 
@@ -19,3 +20,13 @@ Feature: Registrering af brugt tid
     When en <medarbejder> indtaster deres tid brugt på et projekt som decimaltal eller heltal
     Men tiden indtastet er negativt
     Then handling fejler med fejlbesked: "Tiden kan ikke indtastes som negativt"
+
+
+
+    Examples: 
+|aktivitetsnavn    |
+|"Design"          |
+|"Analyse"         |
+|"Programmering"   |
+|"Mødeindkaldelse" |
+|"Databehandling"  |
