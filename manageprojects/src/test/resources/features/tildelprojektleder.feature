@@ -1,4 +1,5 @@
 Feature: tildeling af rollen projektleder
+#lavet af Guillermo
     Beskrivelse: en medarbejder tildeler rollen projektleder til en anden ledig medarbejder
 
     Background: 
