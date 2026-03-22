@@ -1,4 +1,5 @@
 Feature: Budgetteret tid for aktivitet
+#Lavet af Fabrizio
     Beskrivelse: Projektlederen kan under deres projekt bestemme den forventede antal arbejdstimer til aktiviteter
 
 
@@ -19,3 +20,21 @@ Feature: Budgetteret tid for aktivitet
     Given at <medarbejder> er projektleder under <projektnavn>
     When <medarbejder> bestemmer budgetteret tid, <budgetterettid>, til <aktivitetsnavn> som andet end decimal- eller heltal
     Then handling fejler med fejlbesked: "Budgetteret tid er ikke angivet som decimal- eller heltal"
+
+
+
+    Examples: 
+        |projektnavn       |
+        |"Website"         |
+        |"Skylager"        |
+        |"Kalender"        |
+        |"Q1rapport"       |
+        |"test"            |
+
+    Examples: 
+        |aktivitetsnavn    |
+        |"Design"          |
+        |"Analyse"         |
+        |"Programmering"   |
+        |"Mødeindkaldelse" |
+        |"Databehandling"  |
