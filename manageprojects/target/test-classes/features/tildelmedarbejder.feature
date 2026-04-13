@@ -1,4 +1,5 @@
 Feature: tildele medarbejder til en aktivitet
+#Lavet af Fabrizio
     Beskrivelse: medarbejdere i systemet kan tildeles aktiviteter under projekter
 
 
@@ -19,3 +20,12 @@ Feature: tildele medarbejder til en aktivitet
     When en anden medarbjeder udpeger <medarbjeder> til at lave aktivitet med <aktivitetsnavn>
     And <medarbejder> er allerede tildelt aktivitet
     Then handling fejler med fejlbesked: "Medarbejder er allerede tildelt denne aktivitet"
+
+
+    Examples: 
+|aktivitetsnavn    |
+|"Design"          |
+|"Analyse"         |
+|"Programmering"   |
+|"Mødeindkaldelse" |
+|"Databehandling"  |
