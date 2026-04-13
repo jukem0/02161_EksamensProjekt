@@ -12,7 +12,7 @@ Beskrivelse: en medarbejder eller projektleder opretter en aktivitet
 
     Scenario: opret aktivitet
     Given en <medarbejder> findes i systemet
-    And <projektnavn> har en projektleder eller en ledig medarbejder
+    And et projekt <projektnavn> har en projektleder eller en ledig medarbejder
     When projektleder eller <medarbejder> opretter aktivitet med navn <aktivitetsnavn>
     Then opret aktivitet med navn <aktivitetsnavn>
 
