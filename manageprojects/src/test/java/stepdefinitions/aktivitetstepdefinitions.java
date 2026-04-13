@@ -27,4 +27,21 @@ public class aktivitetstepdefinitions {
         // Implementation for verifying that the activity creation was successful
     }
 
+    @Given ("der findes et projekt med navn {String} i systemet")
+    public void getprojekt(String project) {
+        // Implementation for setting up the project in the system
+    }
+    @And("projektet har en projektleder eller en ledig medarbejder")
+    public void getprojektledighed(String projectManager, String availableEmployee) {
+        // Implementation for setting up the project with a project manager or an available employee
+    }
+    @And ("der findes allerede en aktivitet med navn {String} i projektet")
+    public void geteksisterendeAktivitet(String activityName) {
+        // Implementation for setting up an existing activity in the project
+    }
+    @Then("Oprettelse af aktivitet med navn {String} skal fejle")
+    public void opretAktivitetFailure(String activityName) {
+        // Implementation for verifying that the activity creation failed
+    }
 }
+
