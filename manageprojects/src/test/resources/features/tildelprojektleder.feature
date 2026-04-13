@@ -1,6 +1,6 @@
-Feature: tildeling af rollen projektleder
 #lavet af Guillermo
-    Beskrivelse: en medarbejder tildeler rollen projektleder til en anden ledig medarbejder
+Feature: tildeling af rollen projektleder
+    Description: en medarbejder tildeler rollen projektleder til en anden ledig medarbejder
 
     Background: 
     Given følgende medarbejdere findes i systemet:
@@ -20,7 +20,7 @@ Feature: tildeling af rollen projektleder
     Given et projekt med <projektnavn> eksisterer i systemet
     And en <medarbejder> er projektleder i et andet projekt med navn <projektnavn>
     When en anden medarbejder udpeger <medarbejder> som projektleder for det nuværende projekt
-    Then fejler handling med fejlbesked: "denne medarbejder er allerede projektleder i <projektnavn>
+    Then fejler handling med fejlbesked: "denne medarbejder er allerede projektleder i <projektnavn>"
 
 
     Examples: 

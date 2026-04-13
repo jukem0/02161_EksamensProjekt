@@ -22,4 +22,8 @@ public class Medarbejder {
     public String getName() {
         return initialer;
     }
+
+    public void setName(String name) {
+        this.initialer = name;
+    }
 }

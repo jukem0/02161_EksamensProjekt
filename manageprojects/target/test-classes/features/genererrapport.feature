@@ -1,6 +1,6 @@
-Feature: Generer rapport
 #lavet af Gustav
-Beskrivelse: En medarbejder eller projektleder genererer en rapport
+Feature: Generer rapport
+    Description: En medarbejder eller projektleder genererer en rapport
 
 Background:
     Given følgende medarbejdere findes i systemet:

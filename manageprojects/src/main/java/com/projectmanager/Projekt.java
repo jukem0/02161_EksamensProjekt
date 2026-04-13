@@ -20,4 +20,8 @@ public class Projekt {
 
     }
 
+    public void setProjektNr(String Nr) {
+        this.projektNr = "26"+Nr;
+    }
+
 }

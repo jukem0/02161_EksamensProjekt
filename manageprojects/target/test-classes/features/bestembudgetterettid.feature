@@ -1,6 +1,6 @@
-Feature: Budgetteret tid for aktivitet
 #Lavet af Fabrizio
-    Beskrivelse: Projektlederen kan under deres projekt bestemme den forventede antal arbejdstimer til aktiviteter
+Feature: Budgetteret tid for aktivitet
+    Description: Projektlederen kan under deres projekt bestemme den forventede antal arbejdstimer til aktiviteter
 
 
     Background: 

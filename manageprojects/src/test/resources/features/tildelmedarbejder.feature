@@ -1,6 +1,6 @@
-Feature: tildele medarbejder til en aktivitet
 #Lavet af Fabrizio
-    Beskrivelse: medarbejdere i systemet kan tildeles aktiviteter under projekter
+Feature: tildele medarbejder til en aktivitet
+    Description: medarbejdere i systemet kan tildeles aktiviteter under projekter
 
 
     Background: 

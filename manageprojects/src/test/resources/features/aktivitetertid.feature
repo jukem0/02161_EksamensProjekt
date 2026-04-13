@@ -1,6 +1,6 @@
-Feature: Tider for aktiviteter
 #Lavet af Fabrizio
-    Beskrivelse: Projektlederen bestemmer start- og sluttid for aktiviteter i projekter
+Feature: Tider for aktiviteter
+    Description: Projektlederen bestemmer start- og sluttid for aktiviteter i projekter
 
     Background: 
     Given følgende medarbejdere findes i systemet:
