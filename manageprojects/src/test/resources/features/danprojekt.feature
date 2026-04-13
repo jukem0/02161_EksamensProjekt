@@ -15,8 +15,6 @@ Scenario: Opret projekt
     And et projekt med navn <projektnavn> ikke findes i systemet
     Then opret projekt med navn <projektnavn> og unikt projektnummer
 
-
-
 Scenario: Projekt findes allerede
     Given en <medarbejder> findes i systemet
     When en <medarbejder> opretter et projekt med navn <projektnavn>
@@ -25,9 +23,7 @@ Scenario: Projekt findes allerede
 
 
 Examples: 
-|projektnavn        |
-|"Website"          |
-|"Skylager"         |
-|"Kalender"         |
-|"Q1rapport"        |
-|"test"             |
+|projektnavn        |medarbejder    |
+|"Website"          |"huba"         |
+|"Skylager"         |"ambe"         |
+|"Kalender"         |"joni"         |

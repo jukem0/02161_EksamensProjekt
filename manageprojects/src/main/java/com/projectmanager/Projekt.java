@@ -4,7 +4,8 @@ public class Projekt {
     private String projektNr, projektNavn;
     private int startUge;
 
-    public Projekt() {
+    public Projekt(String pnavn) {
+        this.projektNavn = pnavn;
     }
     
     public void tilføjAktivitet() {
