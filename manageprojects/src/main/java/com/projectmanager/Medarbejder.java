@@ -13,4 +13,8 @@ public class Medarbejder {
     public void seTimer() {
 
     }
+
+    public void blivProjektLeder() {
+        
+    }
 }
