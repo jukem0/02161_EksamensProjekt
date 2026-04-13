@@ -1,25 +1,30 @@
 package stepdefinitions;
-import io.cucumber.java.en.*;
-import static org.junit.jupiter.api.Assertions.*;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
-public class stepdefinitions {
+
+public class aktivitetstepdefinitions {
     
     int a, b, result;
 
-    @Given("I have numbers {int} and {int}")
-    public void i_have_numbers(int num1, int num2) {
-        a = num1;
-        b = num2;
+    @Given("en medarbejder {String} findes i systemet")
+    public void getmedarbejder(String employee) {
+        // Implementation for setting up the employee in the system
+    }
+    @And("et projekt {String} har en projektleder {String} eller en ledig medarbejder {String}")
+    public void getprojektledighed(String project, String projectManager, String availableEmployee) {
+        // Implementation for setting up the project with a project manager or an available employee
+    }
+    @When("projektleder eller medarbejder opretter en aktivitet med navn {String}")
+    public void opretAktivitet(String activityName) {
+        // Implementation for creating an activity with the given name
     }
 
-    @When("I add them")
-    public void i_add_them() {
-        result = a + b;
-    }
-
-    @Then("the result should be {int}")
-    public void the_result_should_be(int expected) {
-        assertEquals(expected, result);
+    @Then("Oprettelse af aktivitet med navn {String} skal lykkes")
+    public void opretAktivitetSuccess(String activityName) {
+        // Implementation for verifying that the activity creation was successful
     }
 
 }
