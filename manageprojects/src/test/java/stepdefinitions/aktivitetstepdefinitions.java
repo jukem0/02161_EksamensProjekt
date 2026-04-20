@@ -10,7 +10,7 @@ import io.cucumber.java.en.When;
 public class aktivitetstepdefinitions {
     
 
-    @Given("en medarbejder {Medarbejder} findes i systemet")
+    @Given("en {medarbejder} findes i systemet")
     public Object getmedarbejder(Object medarbejder) {
         // Implementation for setting up the employee in the system
         Medarbejder curmedarb = new Medarbejder(medarbejder);
