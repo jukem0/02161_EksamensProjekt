@@ -1,12 +1,15 @@
 package stepdefinitions;
 
-import io.cucumber.java.en.*;
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import com.projectmanager.Medarbejder;
 import com.projectmanager.Projekt;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class DanProjektSteps {
 
@@ -29,7 +32,7 @@ public class DanProjektSteps {
         projekter.add(testProjekt);
     }
 
-    @Then("opret projekt med navn {string} og unikt projektnummer {string}")
+    @Then("opret projekt med navn {string} og unikt projektnummer {String}")
     public void opret_projekt_og_tildel_projekt_nummer(String projektnavn, String UID) {
         testProjekt.setProjektNr(UID);
     }
@@ -61,7 +64,7 @@ public class DanProjektSteps {
         throw new io.cucumber.java.PendingException();
     }
 
-    @Then("opret projekt med navn [projektnavn] og unikt projektnummer")
+    @Then("opret projekt med navn [projektnavn] og unikt projektnummer {int}")
     public void opret_projekt_med_navn_projektnavn_og_unikt_projektnummer() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
