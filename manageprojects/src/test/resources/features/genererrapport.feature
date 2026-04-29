@@ -19,7 +19,7 @@ Background:
     Scenario: Genererer uge-rapport uden aktiviteter
     Given en <medarbejder> findes i systemet
     And en <medarbejder> er tilmeldt projekt <projektnavn>
-    When en <medarbejder> generer rapport
+    When en <medarbejder> genererer rapport
     And der ikke er nogle aktiviteter i projektet
     Then handling fejler med fejlbesked: "ingen aktiviteter i projekt"
 
