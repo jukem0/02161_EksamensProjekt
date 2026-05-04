@@ -16,10 +16,7 @@ public class AktivitetTidStepDef {
     boolean startFørSlut;
 
     @Given("en {medarbejder} findes i systemet")
-    public void en_medarbejder_findes_i_systemet(Medarbejder medarbejder){
-        if (medarbejder.exists()) {
-            return true;
-        }
+    public boolean getmedarbejder(String medarbejder) {
     }
 
     @Given("at {medarbejder} er projektleder under projekt {String/Projekt}")
