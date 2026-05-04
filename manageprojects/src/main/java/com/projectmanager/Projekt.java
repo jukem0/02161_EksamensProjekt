@@ -28,4 +28,8 @@ public class Projekt {
         return this.projektNavn;
     }
 
+    public String getProjektNr() {
+        return this.projektNr;
+    }
+
 }
