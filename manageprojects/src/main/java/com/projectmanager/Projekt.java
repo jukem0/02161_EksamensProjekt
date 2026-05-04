@@ -24,4 +24,8 @@ public class Projekt {
         this.projektNr = "26"+Nr;
     }
 
+    public String getProjektNavn() {
+        return this.projektNavn;
+    }
+
 }
