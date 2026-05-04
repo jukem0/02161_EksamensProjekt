@@ -1,8 +1,11 @@
 package com.projectmanager;
 
+import java.util.ArrayList;
+
 public class Projekt {
     private String projektNr, projektNavn;
     private int startUge;
+    private ArrayList<Aktivitet> aktiviteter = new ArrayList<Aktivitet>();
 
     public Projekt(String pnavn) {
         this.projektNavn = pnavn;
