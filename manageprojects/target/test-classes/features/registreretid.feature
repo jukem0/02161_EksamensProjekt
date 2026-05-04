@@ -10,16 +10,20 @@ Feature: Registrering af brugt tid
             |"ambe"       |
             |"joni"       |
 
-    Scenario: Medarbejder skriver deres brugte tid til aktivitet
+    Scenario Outline: Medarbejder skriver deres brugte tid til aktivitet
         Given en <medarbejder> findes i systemet
         When en <medarbejder> indtaster deres tid brugt på et projekt som decimaltal eller heltal
         Then Under <aktivitetsnavn> findes tiden brugt af <medarbejder> rundet op til nærmeste halve
 
-    Scenario: Medarbejder skriver en negativ tid ind
+    Scenario Outline: Medarbejder skriver en negativ tid ind
         Given en <medarbejder> findes i systemet
         When en <medarbejder> indtaster deres tid brugt på et projekt som decimaltal eller heltal
         And tiden indtastet er negativt
         Then handling fejler med fejlbesked: "Tiden kan ikke indtastes som negativt"
+
+    Examples:
+        | medarbejder | aktivitetsnavn |
+        | "huba"      | "Design"       |
 
 
 

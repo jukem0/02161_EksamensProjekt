@@ -71,12 +71,12 @@ public class aktivitetstepdefinitions {
         valgtProjekt = projekt.replace("\"", "");
     }
 
-    @And("projektet har en projektleder, eller en ledig medarbejder")
+    /*@And("projektet har en projektleder, eller en ledig medarbejder")
     public void projektetHarEnProjektlederEllerEnLedigMedarbejder() {
         if (systemMedarbejdere.isEmpty()) {
             throw new AssertionError("Ingen medarbejdere er tilgængelige til projektet " + valgtProjekt);
         }
-    }
+    }*/
 
     @And("der findes en aktivitet med navn {string}")
     public void geteksisterendeAktivitet(String aktivitetsnavn) {

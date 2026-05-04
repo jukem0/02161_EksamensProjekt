@@ -10,17 +10,21 @@ Feature: tildeling af rollen projektleder
         |"joni"       |
 
     
-    Scenario: tildel projektleder
+    Scenario Outline: tildel projektleder
     Given et projekt med navn <projektnavn> eksisterer i systemet
     And en <medarbejder> er ledig
     When en anden medarbjeder udpeger <medarbjeder> som projektleder for projektet
     Then er <medarbjeder> registreret som projektleder for <projektnavn>
 
-    Scenario: medarbejder er allerede projektleder i et andet projekt
+    Scenario Outline: medarbejder er allerede projektleder i et andet projekt
     Given et projekt med <projektnavn> eksisterer i systemet
     And en <medarbejder> er projektleder i et andet projekt med navn <projektnavn>
     When en anden medarbejder udpeger <medarbejder> som projektleder for det nuværende projekt
     Then fejler handling med fejlbesked: "denne medarbejder er allerede projektleder i <projektnavn>"
+
+    Examples:
+        | medarbejder | medarbjeder | projektnavn |
+        | "huba"      | "ambe"      | "Website"   |
 
 
     Examples: 

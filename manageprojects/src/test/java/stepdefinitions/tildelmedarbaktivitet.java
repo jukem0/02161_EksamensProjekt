@@ -1,6 +1,6 @@
 package stepdefinitions;
 
-
+im
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -17,11 +17,11 @@ public class tildelmedarbaktivitet {
             return false;
         }
     }
-    @When ("en medarbedjer {medarbejder} udpeger en anden medarbejder {medarbejder} til at lave aktivitet med navn {string}")
+    @When ("en medarbedjer {string} udpeger en anden medarbejder {string} til at lave aktivitet med navn {string}")
     public void tildelAktivitet(String aktivitetsnavn) {
         
     }
-    @Then ("tildel medarbejder {medarbejder} til aktivitet med navn {string} skal lykkes")
+    @Then ("tildel medarbejder {string} til aktivitet med navn {string} skal lykkes")
     public boolean tildelAktivitetSuccess(String aktivitetsnavn) {
         if (findAktivitet(aktivitetsnavn)) {
             System.out.println("Medarbejder er tildelt til aktivitet " + aktivitetsnavn);
@@ -32,7 +32,7 @@ public class tildelmedarbaktivitet {
         }
     }    
 
-    @And("medarbejder {medarbejder} allerede er tildelt aktivitet med navn {string}")
+    @And("medarbejder {string} allerede er tildelt aktivitet med navn {string}")
     public boolean medarbejderAlleredeTildelt(String aktivitetsnavn) {
         if (findAktivitet(aktivitetsnavn)) {
             System.out.println("Medarbejder er allerede tildelt aktivitet " + aktivitetsnavn);

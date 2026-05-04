@@ -1,5 +1,6 @@
 package stepdefinitions;
 
+
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -11,32 +12,33 @@ import com.projectmanager.Aktivitet;
 import com.projectmanager.Medarbejder;
 
 public class AktivitetTidStepDef {
-    
     Aktivitet aktivitet1;
     boolean startFørSlut;
 
-    @Given("en {medarbejder} findes i systemet")
-    public boolean getmedarbejder(String medarbejder) {
+    // @Given("en {string} findes i systemet")
+    // public boolean getmedarbejder(String medarbejder) {
+    //     // Implementation for checking if an employee exists in the system
+    //     return false;
+    // }
+
+    @Given("at {string} er projektleder under projekt {string}")
+    public void er_projektleder(String medarbejder){
+        // Implementation for checking if an employee is a project leader for a project
     }
 
-    @Given("at {medarbejder} er projektleder under projekt {String/Projekt}")
-    public void er_projektleder(Medarbejder medarbejder){
-        return medarbejder.getLeader()
-    }
-
-    @When("{medarbejder} bestemmer start- og sluttid til {String/Aktivitet} som datoer {LocalDate}, {LocalDate}")
-    public void bestem_start_og_slut(Medarbejder medarbejder, Aktivitet aktivitet, LocalDate startDate, LocalDate slutDate){
+    @When("{string} bestemmer start- og sluttid til {string} som datoer {LocalDate}, {LocalDate}")
+    public void bestem_start_og_slut(String medarbejder, Aktivitet aktivitet, LocalDate startDate, LocalDate slutDate){
         aktivitet1 = aktivitet;
     }
 
-    @When("{LocalTime} er senere end {LocalTime}")
+    @When("{LocalDate} er senere end {LocalDate}")
     public void start_efter_slut(LocalDate start, LocalDate slut){
         startFørSlut = !start.isAfter(slut);
     }
 
-    @Then("tildel {String/Aktivitet} datoerne, {LocalDate} og {LocalDate} som værende afgrænsede tid for færdiggørelse af projekt")
+    @Then("tildel {string} datoerne, {LocalDate} og {LocalDate} som værende afgrænsede tid for færdiggørelse af projekt")
 
-    @Then("handling feljer med fejlbesked: \"Startdato kan ikke være efter slutdato\"")
+    @Then("handling feljer med fejlbesked: 'Startdato kan ikke være efter slutdato'")
     public void fejler(){
         if (startFørSlut) {
             System.out.println("Startdato kan ikke være efter slutdato");

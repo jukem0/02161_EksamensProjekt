@@ -10,18 +10,22 @@ Background:
         |"joni"       |
 
 
-    Scenario: Generer rapport
+    Scenario Outline: Generer rapport
     Given en <medarbejder> findes i systemet
     And en <medarbejder> er tilmeldt projekt <projektnavn>
     When en <medarbejder> genererer rapport
     Then generer rapport ved navn <projektnavn>-rapport-uge-<int>
 
-    Scenario: Genererer uge-rapport uden aktiviteter
+    Scenario Outline: Genererer uge-rapport uden aktiviteter
     Given en <medarbejder> findes i systemet
     And en <medarbejder> er tilmeldt projekt <projektnavn>
     When en <medarbejder> genererer rapport
     And der ikke er nogle aktiviteter i projektet
     Then handling fejler med fejlbesked: "ingen aktiviteter i projekt"
+
+    Examples:
+        | medarbejder | projektnavn | int |
+        | "huba"      | "Website"   | 1   |
 
 
     Examples: 
