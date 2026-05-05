@@ -23,10 +23,4 @@ Feature: tildele medarbejder til en aktivitet
 
     Examples:
         | medarbejder | medarbjeder | aktivitetsnavn |
-        | "huba"      | "ambe"      | "Design"       | 
-|aktivitetsnavn    |
-|"Design"          |
-|"Analyse"         |
-|"Programmering"   |
-|"Mødeindkaldelse" |
-|"Databehandling"  |
+        | "huba"      | "ambe"      | "Design"       |
