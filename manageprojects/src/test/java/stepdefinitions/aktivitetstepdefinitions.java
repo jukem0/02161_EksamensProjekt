@@ -2,6 +2,9 @@ package stepdefinitions;
 
 import com.projectmanager.Aktivitet;
 import com.projectmanager.Medarbejder;
+import com.projectmanager.Main;
+import com.projectmanager.Projekt;
+
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -9,59 +12,51 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class aktivitetstepdefinitions {
-    private Aktivitet oprettetAktivitet;
+    private final List<Aktivitet> oprettedeAktiviteter = Main.projekter.aktiviteter;
+
     private String opretFejlbesked;
-    private final List<Medarbejder> systemMedarbejdere = new ArrayList<>(Arrays.asList(
-        new Medarbejder("huba"),
-        new Medarbejder("wilo"),
-        new Medarbejder("anda")
-    ));
-    private final Set<String> eksisterendeAktiviteter = new HashSet<>();
+
+    private final List<Medarbejder> systemMedarbejdere = Main.systemMedarbejdere;
+
     private String valgtProjekt;
-    private String aktueltMedarbejder;
+    private String aktuelMedarbejder;
 
     @Given("følgende medarbejdere findes i systemet:")
     public void følgendeMedarbejdereFindesISystemet(DataTable table) { // bruger en given liste af medarbejdere for at vise hvem er i systemet.
+        System.out.println("Følgende medarbejdere findes i systemet:" + table.asList());
         // Liste er allerede initialiseret med systemets medarbejdere; denne step er kun til reference.
     }
 
     @Given("en {string} findes i systemet")
     public void getmedarbejder(String medarbejder) {
         medarbejder = medarbejder.replace("\"", "");
-        this.aktueltMedarbejder = medarbejder;
+        this.aktuelMedarbejder = medarbejder;
         assert findMedarbejder(medarbejder) : "Medarbejder " + medarbejder + " findes ikke i systemet.";
     }
 
     @And("et projekt {string} har en projektleder eller en ledig medarbejder")
     public void getProjektAnsvarlig(String projekt) {
         valgtProjekt = projekt.replace("\"", "");
-        assert (erProjektleder(valgtProjekt, aktueltMedarbejder) || erLedig(aktueltMedarbejder)) : 
-            "Medarbejder " + aktueltMedarbejder + " er hverken projektleder eller ledig for projektet " + valgtProjekt;
+        assert (erProjektleder(valgtProjekt, aktuelMedarbejder) || erLedig(aktuelMedarbejder)) : 
+            "Medarbejder " + aktuelMedarbejder + " er hverken projektleder eller ledig for projektet " + valgtProjekt;
     }
 
-    @When("projektleder eller {string} opretter aktivitet med navn {string}")
-    public void opretAktivitet(String medarbejder, String aktivitetsnavn) {
-        medarbejder = medarbejder.replace("\"", "");
+    @When("projektleder eller ledig medarbejder opretter aktivitet med navn {string}")
+    public void opretAktivitet(String aktivitetsnavn) {
         aktivitetsnavn = aktivitetsnavn.replace("\"", "");
-        assert findMedarbejder(medarbejder) : "Medarbejder " + medarbejder + " findes ikke i systemet.";
-        if (eksisterendeAktiviteter.contains(aktivitetsnavn)) {
-            oprettetAktivitet = null;
-            opretFejlbesked = "denne aktivitet findes allerede";
-            return;
-        }
-        oprettetAktivitet = new Aktivitet(aktivitetsnavn);
+        
+        oprettedeAktiviteter.add(new Aktivitet(aktivitetsnavn));
         opretFejlbesked = null;
     }
 
     @Then("opret aktivitet med navn {string}")
     public void opretAktivitetSuccess(String aktivitetsnavn) {
         aktivitetsnavn = aktivitetsnavn.replace("\"", "");
-        if (oprettetAktivitet == null || !oprettetAktivitet.getNavn().equals(aktivitetsnavn)) {
+        System.out.println("Aktivitet oprettet med navn: " + aktivitetsnavn);
+        if (oprettedeAktiviteter.stream().noneMatch(a -> a.getNavn().equals(aktivitetsnavn))) {
             throw new AssertionError("Aktivitet blev ikke oprettet med navnet: " + aktivitetsnavn);
         }
     }
@@ -71,17 +66,12 @@ public class aktivitetstepdefinitions {
         valgtProjekt = projekt.replace("\"", "");
     }
 
-    /*@And("projektet har en projektleder, eller en ledig medarbejder")
-    public void projektetHarEnProjektlederEllerEnLedigMedarbejder() {
-        if (systemMedarbejdere.isEmpty()) {
-            throw new AssertionError("Ingen medarbejdere er tilgængelige til projektet " + valgtProjekt);
-        }
-    }*/
-
-    @And("der findes en aktivitet med navn {string}")
+    @And("der findes allerede en aktivitet med navn {string}")
     public void geteksisterendeAktivitet(String aktivitetsnavn) {
         aktivitetsnavn = aktivitetsnavn.replace("\"", "");
-        eksisterendeAktiviteter.add(aktivitetsnavn);
+        if (oprettedeAktiviteter.stream().anyMatch(a -> a.getNavn().equals(aktivitetsnavn))) {
+            opretFejlbesked = "denne aktivitet findes allerede";
+        }
     }
 
     @Then("handling fejler med fejlbesked: {string}")

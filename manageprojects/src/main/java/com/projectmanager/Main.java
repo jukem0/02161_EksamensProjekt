@@ -5,11 +5,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+    public static List<Medarbejder> systemMedarbejdere = new ArrayList<>();
+    Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        
 
         // Laver "kendte" medarbejdere
-        List<Medarbejder> systemMedarbejdere = new ArrayList<>();
         systemMedarbejdere.add(new Medarbejder("huba"));
         systemMedarbejdere.add(new Medarbejder("wilo"));
         systemMedarbejdere.add(new Medarbejder("anda"));

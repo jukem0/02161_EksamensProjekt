@@ -1,9 +1,9 @@
 package stepdefinitions;
 
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.When;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class UndefinedSteps {
 
@@ -54,31 +54,7 @@ public class UndefinedSteps {
         throw new io.cucumber.java.PendingException();
     }
 
-    // opretaktivitet.feature steps
-    @Given("et projekt {string} har en projektleder eller en ledig medarbejder")
-    public void et_projekt_har_projektleder_eller_ledig(String projektnavn) {
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @When("projektleder eller {string} opretter aktivitet med navn {string}")
-    public void projektleder_eller_medarbejder_opretter_aktivitet(String medarbejder, String aktivitet) {
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @Given("der findes et projekt med navn {string}")
-    public void der_findes_et_projekt(String projektnavn) {
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @And("projektet har en projektleder, eller en ledig medarbejder")
-    public void projektet_har_projektleder_eller_ledig() {
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @Given("der findes en aktivitet med navn {string}")
-    public void der_findes_en_aktivitet(String aktivitet) {
-        throw new io.cucumber.java.PendingException();
-    }
+    // opretaktivitet.feature steps - færdiggjort i aktivitetstepdefinitions.java
 
     // registreretid.feature steps
     @When("en {string} indtaster deres tid brugt på et projekt som decimaltal eller heltal")
