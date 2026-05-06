@@ -7,6 +7,24 @@ import java.util.Scanner;
 public class Main {
     public static List<Medarbejder> systemMedarbejdere = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
+
+    /* ================ fælles metoder, variabler og fields til stepdefinitions: =============================*/
+    public record ProjektlederStat(boolean erProjektLeder, String projektnavn){}
+
+    public static boolean findMedarbejder(String medarbejder) {
+        return systemMedarbejdere.stream().anyMatch(m -> m.getName().equalsIgnoreCase(medarbejder));
+    }
+    
+    public static ProjektlederStat erProjektleder(String projektnavn, String medarbejder){
+        boolean result = false;
+        return new ProjektlederStat(result, projektnavn);
+    }
+    
+    public static boolean erLedig(String medarbejder) {
+        // TODO: Implementer logik for tjek om medarbejder er ledig
+        return true;
+    }
+    /*====================================================================================================== */
     public static void main(String[] args) {
         
 

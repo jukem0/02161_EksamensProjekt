@@ -12,7 +12,7 @@ import java.util.*;
 
 public class aktivitetstepdefinitions {
     private final ArrayList<Projekt> projekter = Main.getProjekter();
-    
+    //lav en getter metode for at få adgang til aktiviteter fra enhver projekt
 
     private String opretFejlbesked;
 
@@ -20,7 +20,7 @@ public class aktivitetstepdefinitions {
 
     private String valgtProjekt;
     private String aktuelMedarbejder;
-    public record ProjektlederStat(boolean erProjektLeder, String projektnavn){}
+    
 
     @Given("følgende medarbejdere findes i systemet:")
     public void følgendeMedarbejdereFindesISystemet(DataTable table) { // bruger en given liste af medarbejdere for at vise hvem er i systemet.
@@ -30,30 +30,26 @@ public class aktivitetstepdefinitions {
 
     @Given("en {string} findes i systemet")
     public void getmedarbejder(String medarbejder) {
-        medarbejder = medarbejder.replace("\"", "");
         this.aktuelMedarbejder = medarbejder;
-        assert findMedarbejder(medarbejder) : "Medarbejder " + medarbejder + " findes ikke i systemet.";
+        assert Main.findMedarbejder(medarbejder) : "Medarbejder " + medarbejder + " findes ikke i systemet.";
     }
 
     @And("et projekt {string} har en projektleder eller en ledig medarbejder")
     public void getProjektAnsvarlig(String projekt) {
-        valgtProjekt = projekt.replace("\"", "");
-        var status = erProjektleder(valgtProjekt, aktuelMedarbejder);
-        assert (status.erProjektLeder() || erLedig(aktuelMedarbejder)) : 
+        valgtProjekt = projekt;
+        var status = Main.erProjektleder(valgtProjekt, aktuelMedarbejder);
+        assert (status.erProjektLeder() || Main.erLedig(aktuelMedarbejder)) : 
             "Medarbejder " + aktuelMedarbejder + " er hverken projektleder eller ledig for projektet " + valgtProjekt;
     }
 
     @When("projektleder eller ledig medarbejder opretter aktivitet med navn {string}")
     public void opretAktivitet(String aktivitetsnavn) {
-        aktivitetsnavn = aktivitetsnavn.replace("\"", "");
-        
         oprettedeAktiviteter.add(new Aktivitet(aktivitetsnavn));
         opretFejlbesked = null;
     }
 
     @Then("opret aktivitet med navn {string}")
     public void opretAktivitetSuccess(String aktivitetsnavn) {
-        aktivitetsnavn = aktivitetsnavn.replace("\"", "");
         System.out.println("Aktivitet oprettet med navn: " + aktivitetsnavn);
         if (oprettedeAktiviteter.stream().noneMatch(a -> a.getNavn().equals(aktivitetsnavn))) {
             throw new AssertionError("Aktivitet blev ikke oprettet med navnet: " + aktivitetsnavn);
@@ -62,13 +58,12 @@ public class aktivitetstepdefinitions {
 
     @Given("der findes et projekt med navn {string}")
     public void getprojekt(String projekt) {
-        valgtProjekt = projekt.replace("\"", "");
+        valgtProjekt = projekt;
         assert Main.projekter.stream().anyMatch(p -> p.getProjektNavn().equals(valgtProjekt)) : "Projekt " + valgtProjekt + " findes ikke i systemet.";
     }
 
     @And("der findes allerede en aktivitet med navn {string}")
     public void geteksisterendeAktivitet(String aktivitetsnavn) {
-        aktivitetsnavn = aktivitetsnavn.replace("\"", "");
         if (oprettedeAktiviteter.stream().anyMatch(a -> a.getNavn().equals(aktivitetsnavn))) {
             opretFejlbesked = "denne aktivitet findes allerede";
         }
@@ -76,23 +71,8 @@ public class aktivitetstepdefinitions {
 
     @Then("handling fejler med fejlbesked: {string}")
     public void opretAktivitetFailure(String fejlbesked) {
-        fejlbesked = fejlbesked.replace("\"", "");
         assert opretFejlbesked != null : "Der var ingen fejl ved oprettelse af aktivitet, men der blev forventet en.";
         assert opretFejlbesked.equals(fejlbesked) : "Forventet fejlbesked '" + fejlbesked + "', men fik '" + opretFejlbesked + "'.";
     }
-
-    private boolean findMedarbejder(String medarbejder) {
-        return systemMedarbejdere.stream().anyMatch(m -> m.getName().equalsIgnoreCase(medarbejder));
-    }
     
-    public ProjektlederStat erProjektleder(String projektnavn, String medarbejder){
-        boolean result = false;
-        return new ProjektlederStat(result, projektnavn);
-    }
-    
-
-    public static boolean erLedig(String medarbejder) {
-        // TODO: Implementer logik for tjek om medarbejder er ledig
-        return true;
-    }
 }
