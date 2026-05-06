@@ -1,18 +1,14 @@
 package stepdefinitions;
 
-import com.projectmanager.Aktivitet;
-import com.projectmanager.Medarbejder;
-import com.projectmanager.Main;
-import com.projectmanager.Projekt;
+import com.projectmanager.*;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
+import java.util.*;
 
 public class aktivitetstepdefinitions {
     private final List<Aktivitet> oprettedeAktiviteter = Main.projekter.aktiviteter;

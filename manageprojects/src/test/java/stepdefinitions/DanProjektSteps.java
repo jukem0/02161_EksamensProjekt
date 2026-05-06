@@ -11,6 +11,8 @@ import com.projectmanager.Projekt;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import com.projectmanager.*;
+
 public class DanProjektSteps {
 
     private ArrayList<Projekt> projekter = new ArrayList<>();

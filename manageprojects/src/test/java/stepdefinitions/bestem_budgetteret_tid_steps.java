@@ -4,6 +4,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import com.projectmanager.*;
+
 public class bestem_budgetteret_tid_steps {
     @Given("en en medarbejder {string} findes i systemet")
     public void en_medarbejder_finds_i_systemet(String medarbejder) {

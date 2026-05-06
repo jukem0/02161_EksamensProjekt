@@ -1,13 +1,10 @@
 package stepdefinitions;
 
-
-import java.time.LocalDate;
-
-import com.projectmanager.Aktivitet;
-
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
+import com.projectmanager.*;
 
 public class AktivitetTidStepDef {
     Aktivitet aktivitet1;
@@ -24,17 +21,17 @@ public class AktivitetTidStepDef {
         // Implementation for checking if an employee is a project leader for a project
     }
 
-    @When("{string} bestemmer start- og sluttid til {string} som datoer {LocalDate}, {LocalDate}")
-    public void bestem_start_og_slut(String medarbejder, Aktivitet aktivitet, LocalDate startDate, LocalDate slutDate){
+    @When("{string} bestemmer start- og sluttid til {string} som datoer {Uge}, {Uge}")
+    public void bestem_start_og_slut(String medarbejder, Aktivitet aktivitet, Uge startDate, Uge slutDate){
         aktivitet1 = aktivitet;
     }
 
-    @When("{LocalDate} er senere end {LocalDate}")
-    public void start_efter_slut(LocalDate start, LocalDate slut){
-        startFørSlut = !start.isAfter(slut);
+    @When("{Uge} er senere end {Uge}")
+    public void start_efter_slut(Uge start, Uge slut){
+        startFørSlut = !start.erEfter(slut);
     }
 
-    @Then("tildel {string} datoerne, {LocalDate} og {LocalDate} som værende afgrænsede tid for færdiggørelse af projekt")
+    @Then("tildel {string} datoerne, {Uge} og {Uge} som værende afgrænsede tid for færdiggørelse af projekt")
 
     @Then("handling feljer med fejlbesked: 'Startdato kan ikke være efter slutdato'")
     public void fejler(){

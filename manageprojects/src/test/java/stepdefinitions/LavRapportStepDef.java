@@ -9,6 +9,8 @@ import com.projectmanager.Projekt;
 import com.projectmanager.ProjektRapport;
 import com.projectmanager.Medarbejder;
 
+import com.projectmanager.*;
+
 public class LavRapportStepDef {
 
     boolean harAktiviteter;
