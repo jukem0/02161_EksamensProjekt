@@ -11,7 +11,8 @@ import io.cucumber.java.en.When;
 import java.util.*;
 
 public class aktivitetstepdefinitions {
-    private final List<Aktivitet> oprettedeAktiviteter = Main.projekter.aktiviteter;
+    private final ArrayList<Projekt> projekter = Main.getProjekter();
+    
 
     private String opretFejlbesked;
 
