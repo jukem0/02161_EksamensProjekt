@@ -34,4 +34,8 @@ public class Aktivitet {
         budgetTimer = budgetgeretTid;
     }
 
+    public String getName(){
+        return navn;
+    }
+
 }

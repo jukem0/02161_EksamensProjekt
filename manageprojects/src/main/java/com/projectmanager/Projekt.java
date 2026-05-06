@@ -52,4 +52,12 @@ public class Projekt {
         return this.projektNr;
     }
 
+    public ArrayList<Aktivitet> getAktiviteter(){
+        return aktiviteter;
+    }
+
+    public HashMap<Medarbejder, ArrayList<Aktivitet>> getMedarbejderAktiviteter(){
+        return medarbejderAktiviteter;
+    }
+
 }

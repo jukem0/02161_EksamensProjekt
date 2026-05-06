@@ -5,15 +5,14 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import com.projectmanager.Projekt;
-import com.projectmanager.ProjektRapport;
-import com.projectmanager.Medarbejder;
+import java.util.*;
 
 import com.projectmanager.*;
 
 public class LavRapportStepDef {
 
     boolean harAktiviteter;
+    Projekt projekt;
 
     // @Given("en {string} findes i systemet")
     // public void en_medarbejder_findes_i_systemet(String medarbejder){
@@ -25,12 +24,18 @@ public class LavRapportStepDef {
     // }
 
     @Given("en {string} er tilmeldt projekt {string}")
-    public void er_tilmeldt_projekt(String medarbejder, String projektNavn){
-        Projekt projekt = findProjekt(projektNavn); 
-        ArrayList<Medarbejder> liste = projekt.getTilmeldte();
-        for (Medarbejder m : liste) {
-            if (medarbejder.equals(m)) {
-                return true;
+    public boolean er_tilmeldt_projekt(String medarbejder, String projektNavn){
+        Projekt projekt = null;
+        for (Projekt p : Main.getProjekter()) {
+            if (p.getProjektNavn().equalsIgnoreCase(projektNavn)) {
+                projekt = p;
+            }
+        }
+        Set liste = projekt.getMedarbejderAktiviteter().keySet();
+        Iterator<Medarbejder> iterator = liste.iterator();
+        while (iterator.hasNext()) { 
+            if (iterator.next().getName().equalsIgnoreCase(medarbejder)) {
+              return true;  
             }
         }
         return false;
@@ -45,7 +50,7 @@ public class LavRapportStepDef {
 
     @When("der ikke er nogle aktivitet i projektet")
     public void projekt_mangler_aktiviteter(){
-        if (projekt.get_aktiviteter().get_size() < 1) {
+        if (projekt.getAktiviteter().size() < 1) {
             harAktiviteter = false;
             return false;
         }
