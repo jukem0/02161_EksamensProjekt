@@ -8,8 +8,7 @@ import io.cucumber.java.en.When;
 import com.projectmanager.*;
 
 public class tildel_projektleder_steps{
-    Main.ProjektlederStat status = Main.erProjektleder(projekt, medarbejder);
-    
+    Main.ProjektlederStat status;
     @And("en medarbejder {string} er ledig")
     public void ledigcheck(String medarbejder){
         assert(Main.erLedig(medarbejder)): "Medarbejder " + medarbejder + " er ikke ledig.";
@@ -18,6 +17,7 @@ public class tildel_projektleder_steps{
     @When("en anden medarbejder {string} udpeger medarbejder {string} som projektLeder for projekt {string}")
     public void udpegning(String udpeger, String medarbejder, String projekt){
         assert (udpeger.appointPL(projekt, medarbejder)) : "Tildeling mislykkedes: Medarbejder " + medarbejder + " findes ikke i systemet eller er ikke ledig.";
+        status = Main.erProjektleder(projekt, medarbejder);
     }
 
     @Then("tildel medarbejder {string} som projektleder for projekt {string} skal lykkes")

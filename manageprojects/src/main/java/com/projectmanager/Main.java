@@ -1,14 +1,15 @@
 package com.projectmanager;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    private static ArrayList<Medarbejder> systemMedarbejdere = new ArrayList<>();
+    public static List<Medarbejder> systemMedarbejdere = new ArrayList<>();
+    public static List<Projekt> systemProjekter = new ArrayList<>();
     static Scanner scanner = new Scanner(System.in);
-    private static ArrayList<Projekt> systemProjekter = new ArrayList<>();
 
-    /* ================ fælles metoder, variabler og fields til stepdefinitions: =============================*/
+    /* ================ fælles metoder, variabler og fields til stepdefinitions =============================*/
     public record ProjektlederStat(boolean erProjektLeder, String projektnavn){}
 
     public static boolean findMedarbejder(String medarbejder) {
@@ -16,15 +17,23 @@ public class Main {
     }
     
     public static ProjektlederStat erProjektleder(String projektnavn, String medarbejder){
-        boolean result = false;
-        return new ProjektlederStat(result, projektnavn);
+        if (systemProjekter.stream().anyMatch(p -> p.getProjektNavn().equalsIgnoreCase(projektnavn) 
+            && p.getProjektLeder() != null 
+            && p.getProjektLeder().getName().equalsIgnoreCase(medarbejder))) {
+            return new ProjektlederStat(true, projektnavn);
+        }
+        else{
+            return new ProjektlederStat(false, projektnavn);
+        }
     }
     
     public static boolean erLedig(String medarbejder) {
         // TODO: Implementer logik for tjek om medarbejder er ledig
+        // beregn om medarbejderen er ledig baseret på deres nuværende opgaver og projekter, hvor projekter og aktiviteter har forskellig vægt
         return true;
     }
-    /*====================================================================================================== */
+    /*=======================================================================================================*/
+
     public static void main(String[] args) {
         
 
@@ -129,11 +138,11 @@ public class Main {
         scanner.close();
     }
 
-    public static ArrayList<Projekt> getProjekter(){
+    public static List<Projekt> getProjekter(){
         return systemProjekter;
     }
 
-    public static ArrayList<Medarbejder> getMedarbejdere(){
+    public static List<Medarbejder> getMedarbejdere(){
         return systemMedarbejdere;
     }
 }

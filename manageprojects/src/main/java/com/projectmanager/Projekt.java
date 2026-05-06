@@ -2,15 +2,19 @@ package com.projectmanager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Projekt {
     private String projektNr, projektNavn;
     private int startUge;
-    public static ArrayList<Aktivitet> aktiviteter = new ArrayList<Aktivitet>();
+    public static List<Aktivitet> aktiviteter = new ArrayList<>(); 
+    // java kan af en eller anden grund bedre lide når <> er angivet på højre side, i stedet for gentagelsen af hvad der står på venstre side
+    // for at undgå at skulle rette alle steder hvor der bruges arraylist, hvis vi skal skifte, kan vi oprette vores lister med list interfacet. 
 
     private Medarbejder projektLeder;
 
-    private HashMap<Medarbejder, ArrayList<Aktivitet>> medarbejderAktiviteter = new HashMap<Medarbejder, ArrayList<Aktivitet>>();
+    private Map<Medarbejder, List<Aktivitet>> medarbejderAktiviteter = new HashMap<>();
 
     //Lav map med medarbejder som "key" og liste over tilnkyttede aktiviteter som værdi der kan returneres.
 
@@ -52,11 +56,11 @@ public class Projekt {
         return this.projektNr;
     }
 
-    public ArrayList<Aktivitet> getAktiviteter(){
+    public List<Aktivitet> getAktiviteter(){
         return aktiviteter;
     }
 
-    public HashMap<Medarbejder, ArrayList<Aktivitet>> getMedarbejderAktiviteter(){
+    public Map<Medarbejder, List<Aktivitet>> getMedarbejderAktiviteter(){
         return medarbejderAktiviteter;
     }
 
