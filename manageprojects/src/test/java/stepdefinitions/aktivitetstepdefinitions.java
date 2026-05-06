@@ -12,15 +12,13 @@ import java.util.*;
 
 public class aktivitetstepdefinitions {
     private final ArrayList<Projekt> projekter = Main.getProjekter();
-    //lav en getter metode for at få adgang til aktiviteter fra enhver projekt
-
     private String opretFejlbesked;
 
-    private final List<Medarbejder> systemMedarbejdere = Main.systemMedarbejdere;
+    private final ArrayList<Medarbejder> systemMedarbejdere = Main.getMedarbejdere();
 
     private String valgtProjekt;
     private String aktuelMedarbejder;
-    
+
 
     @Given("følgende medarbejdere findes i systemet:")
     public void følgendeMedarbejdereFindesISystemet(DataTable table) { // bruger en given liste af medarbejdere for at vise hvem er i systemet.
@@ -74,5 +72,5 @@ public class aktivitetstepdefinitions {
         assert opretFejlbesked != null : "Der var ingen fejl ved oprettelse af aktivitet, men der blev forventet en.";
         assert opretFejlbesked.equals(fejlbesked) : "Forventet fejlbesked '" + fejlbesked + "', men fik '" + opretFejlbesked + "'.";
     }
-    
+
 }

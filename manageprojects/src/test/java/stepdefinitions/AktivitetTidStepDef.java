@@ -1,10 +1,15 @@
 package stepdefinitions;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.projectmanager.Aktivitet;
+import com.projectmanager.Main;
+import com.projectmanager.Projekt;
+import com.projectmanager.Uge;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
-import com.projectmanager.*;
 
 public class AktivitetTidStepDef {
     Aktivitet aktivitet1;
@@ -17,8 +22,16 @@ public class AktivitetTidStepDef {
     // }
 
     @Given("at {string} er projektleder under projekt {string}")
-    public void er_projektleder(String medarbejder){
-        // Implementation for checking if an employee is a project leader for a project
+    public void er_projektleder(String medarbejder, String projekt){
+        Projekt tempProjekt = null;
+        for (Projekt p : Main.getProjekter()) {
+            if (p.getProjektNavn().equalsIgnoreCase(projekt)) {
+                tempProjekt = p;
+            }
+        }
+        if (tempProjekt != null) {
+            assertTrue(tempProjekt.getProjektLeder().getName().equalsIgnoreCase(medarbejder), "Medarbejder " + medarbejder + " er ikke projektleder i projektet " + projekt);
+        }
     }
 
     @When("{string} bestemmer start- og sluttid til {string} som datoer {Uge}, {Uge}")

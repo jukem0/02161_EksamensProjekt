@@ -1,12 +1,12 @@
 package com.projectmanager;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static List<Medarbejder> systemMedarbejdere = new ArrayList<>();
-    Scanner scanner = new Scanner(System.in);
+    private static ArrayList<Medarbejder> systemMedarbejdere = new ArrayList<>();
+    static Scanner scanner = new Scanner(System.in);
+    private static ArrayList<Projekt> systemProjekter = new ArrayList<>();
 
     /* ================ fælles metoder, variabler og fields til stepdefinitions: =============================*/
     public record ProjektlederStat(boolean erProjektLeder, String projektnavn){}
@@ -58,7 +58,6 @@ public class Main {
         }
 
         // Hovedmenu for bruger
-        List<Projekt> systemProjekter = new ArrayList<>();
         boolean isRunning = true;
 
         while (isRunning) {
@@ -128,5 +127,13 @@ public class Main {
         }
 
         scanner.close();
+    }
+
+    public static ArrayList<Projekt> getProjekter(){
+        return systemProjekter;
+    }
+
+    public static ArrayList<Medarbejder> getMedarbejdere(){
+        return systemMedarbejdere;
     }
 }
