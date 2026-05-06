@@ -1,15 +1,13 @@
 package stepdefinitions;
 
 
-import io.cucumber.java.en.And;
+import java.time.LocalDate;
+
+import com.projectmanager.Aktivitet;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
-import java.time.*;
-
-import com.projectmanager.Aktivitet;
-import com.projectmanager.Medarbejder;
 
 public class AktivitetTidStepDef {
     Aktivitet aktivitet1;
@@ -46,5 +44,5 @@ public class AktivitetTidStepDef {
     }
 }
 
-*/
+
 
