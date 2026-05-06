@@ -94,45 +94,6 @@ public class UndefinedSteps {
     }
 
     // tildelprojektleder.feature steps
-    @Given("et projekt med navn {string} eksisterer i systemet")
-    public void projekt_eksisterer_i_systemet(String projektnavn) {
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @And("en {string} er ledig")
-    public void medarbejder_er_ledig(String medarbejder) {
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @When("en anden medarbjeder udpeger {string} som projektleder for projektet")
-    public void anden_udpeger_som_projektleder(String medarbejder) {
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @Then("er {string} registreret som projektleder for {string}")
-    public void er_registreret_som_projektleder(String medarbejder, String projektnavn) {
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @Given("et projekt med {string} eksisterer i systemet")
-    public void projekt_med_navn_eksisterer(String projektnavn) {
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @And("en {string} er projektleder i et andet projekt med navn {string}")
-    public void medarbejder_er_projektleder_i_andet(String medarbejder, String projektnavn) {
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @When("en anden medarbejder udpeger {string} som projektleder for det nuværende projekt")
-    public void anden_udpeger_som_projektleder_nuværende(String medarbejder) {
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @Then("fejler handling med fejlbesked: {string}")
-    public void fejler_handling_med_fejlbesked(String fejlbesked) {
-        throw new io.cucumber.java.PendingException();
-    }
 
     // genererrapport.feature steps
     @Given("en {string} er tilmeldt projekt {string}")
