@@ -38,7 +38,7 @@ public class bestem_budgetteret_tid_steps {
     @Given("en en medarbejder {string} findes i systemet")
     public void en_medarbejder_finds_i_systemet(String medarbejder) {
 
-        assert(medarbejder.erLedig()): "Medarbejder " + medarbejder + " er ikke ledig.";
+        assert(Main.erLedig(medarbejder)): "Medarbejder " + medarbejder + " er ikke ledig.";
     }
 
     @And("denne medarbejder {string} er projektleder for et projekt {string}")
@@ -71,6 +71,9 @@ public class bestem_budgetteret_tid_steps {
 
     @When("en medarbejder {string} bestemmer budgetteret tid {float} for en aktivitet {string} i projektet {string}, som andet end et positivt decimaltal eller heltal")
     public void en_medarbejder_bestemmer_budgetteret_tid(String medarbejder, float budget, String aktivitet, String projekt) {
+        
+        Projekt TempProjekt = getPro(projekt);
+        Aktivitet tempAkt = getAkt(aktivitet, TempProjekt);
 
         if (budget <= 0) {
             errormessage ="Budgetteret tid skal være et positivt decimaltal eller heltal";

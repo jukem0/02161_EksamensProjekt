@@ -63,8 +63,5 @@ public class Projekt {
     public Map<Medarbejder, List<Aktivitet>> getMedarbejderAktiviteter(){
         return medarbejderAktiviteter;
     }
-    
-    public List<Projekt> alleProjekter(){
-        return null;
-    }
+
 }

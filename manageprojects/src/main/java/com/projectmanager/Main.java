@@ -9,7 +9,39 @@ public class Main {
     public static List<Projekt> systemProjekter = new ArrayList<>();
     static Scanner scanner = new Scanner(System.in);
 
+    /* ================ fælles metoder, variabler og fields til stepdefinitions =============================*/
+    public record ProjektlederStat(boolean erProjektLeder, String projektnavn){}
+
+    public static boolean findMedarbejder(String medarbejder) {
+        return systemMedarbejdere.stream().anyMatch(m -> m.getName().equalsIgnoreCase(medarbejder));
+    }
+    
+    public static ProjektlederStat erProjektleder(String projektnavn, String medarbejder){
+        if (systemProjekter.stream().anyMatch(p -> p.getProjektNavn().equalsIgnoreCase(projektnavn) 
+            && p.getProjektLeder() != null 
+            && p.getProjektLeder().getName().equalsIgnoreCase(medarbejder))) {
+            return new ProjektlederStat(true, projektnavn);
+        }
+        else if (systemProjekter.stream().anyMatch(p->p.getProjektLeder() != null 
+            && p.getProjektLeder().getName().equalsIgnoreCase(medarbejder))) {
+                String lederProjekt = systemProjekter.stream().filter(p -> p.getProjektLeder() != null 
+                && p.getProjektLeder().getName().equalsIgnoreCase(medarbejder)).findFirst().get().getProjektNavn();
+            return new ProjektlederStat(false, lederProjekt);
+        }
+        else{
+            return new ProjektlederStat(false, null);
+        }
+    }
+    
+    public static boolean erLedig(String medarbejder) {
+        // TODO: Implementer logik for tjek om medarbejder er ledig
+        // beregn om medarbejderen er ledig baseret på deres nuværende opgaver og projekter, hvor projekter og aktiviteter har forskellig vægt
+        return true;
+    }
+    /*=======================================================================================================*/
+
     public static void main(String[] args) {
+        
 
         // Laver "kendte" medarbejdere
         systemMedarbejdere.add(new Medarbejder("huba"));
