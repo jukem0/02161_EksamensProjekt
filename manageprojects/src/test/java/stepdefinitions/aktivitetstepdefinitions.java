@@ -30,14 +30,16 @@ public class aktivitetstepdefinitions {
 
     @Given("en {string} findes i systemet")
     public void getmedarbejder(String medarbejder) {
-        assert Main.findMedarbejder(medarbejder) : "Medarbejder " + medarbejder + " findes ikke i systemet.";
+        List<Medarbejder> systemMedarbejders = Medarbejder.alleMedarbejders();
+        
+        assert systemMedarbejders.stream().anyMatch(m -> m.getName().equalsIgnoreCase(medarbejder)) : "Medarbejder " + medarbejder + " findes ikke i systemet.";
         this.aktuelMedarbejder = medarbejder;
     }
 
     @And("et projekt {string} har en projektleder eller en ledig medarbejder")
     public void getProjektAnsvarlig(String projekt) {
         var status = Main.erProjektleder(valgtProjekt, aktuelMedarbejder);
-        assert (status.erProjektLeder() || Main.erLedig(aktuelMedarbejder)) : 
+        assert (status.erProjektLeder() || aktuelMedarbejder.erLedig()) : 
             "Medarbejder " + aktuelMedarbejder + " er hverken projektleder eller ledig for projektet " + valgtProjekt;
         this.valgtProjekt = projekt;
     }
