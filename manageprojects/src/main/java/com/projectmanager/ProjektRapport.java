@@ -6,8 +6,8 @@ public class ProjektRapport {
 
     public ProjektRapport(String navn) {
     }
-    
-    public String getName(){
+
+    public String getName() {
         return navn;
     }
 }

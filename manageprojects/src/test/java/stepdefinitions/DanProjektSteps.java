@@ -1,13 +1,15 @@
 package stepdefinitions;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import com.projectmanager.Projekt;
-
+import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -18,14 +20,6 @@ public class DanProjektSteps {
     private ArrayList<Projekt> projekter = new ArrayList<>();
     private Projekt testProjekt;
     private String errorMessage = "";
-
-    /*@Given("følgende medarbejdere findes i systemet:")
-    public void følgende_medarbejdere_findes_i_systemet(io.cucumber.datatable.DataTable dataTable) {
-    }*/
-
-    // @Given("en {string} findes i systemet")
-    // public void en_medarbejder_findes_i_systemet(String medarbejder) {
-    // }
 
     @When("en medarbejder opretter et projekt med navn {string}")
     public void en_medarbejder_opretter_et_projekt(String projektnavn) {

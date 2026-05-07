@@ -16,7 +16,7 @@ public class Medarbejder {
     }
 
     public void blivProjektLeder() {
-        
+
     }
 
     public String getName() {

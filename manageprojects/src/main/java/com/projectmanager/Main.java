@@ -9,39 +9,44 @@ public class Main {
     public static List<Projekt> systemProjekter = new ArrayList<>();
     static Scanner scanner = new Scanner(System.in);
 
-    /* ================ fælles metoder, variabler og fields til stepdefinitions =============================*/
-    public record ProjektlederStat(boolean erProjektLeder, String projektnavn){}
+    /*
+     * ================ fælles metoder, variabler og fields til stepdefinitions
+     * =============================
+     */
+    public record ProjektlederStat(boolean erProjektLeder, String projektnavn) {
+    }
 
     public static boolean findMedarbejder(String medarbejder) {
         return systemMedarbejdere.stream().anyMatch(m -> m.getName().equalsIgnoreCase(medarbejder));
     }
-    
-    public static ProjektlederStat erProjektleder(String projektnavn, String medarbejder){
-        if (systemProjekter.stream().anyMatch(p -> p.getProjektNavn().equalsIgnoreCase(projektnavn) 
-            && p.getProjektLeder() != null 
-            && p.getProjektLeder().getName().equalsIgnoreCase(medarbejder))) {
+
+    public static ProjektlederStat erProjektleder(String projektnavn, String medarbejder) {
+        if (systemProjekter.stream().anyMatch(p -> p.getProjektNavn().equalsIgnoreCase(projektnavn)
+                && p.getProjektLeder() != null
+                && p.getProjektLeder().getName().equalsIgnoreCase(medarbejder))) {
             return new ProjektlederStat(true, projektnavn);
-        }
-        else if (systemProjekter.stream().anyMatch(p->p.getProjektLeder() != null 
-            && p.getProjektLeder().getName().equalsIgnoreCase(medarbejder))) {
-                String lederProjekt = systemProjekter.stream().filter(p -> p.getProjektLeder() != null 
-                && p.getProjektLeder().getName().equalsIgnoreCase(medarbejder)).findFirst().get().getProjektNavn();
+        } else if (systemProjekter.stream().anyMatch(p -> p.getProjektLeder() != null
+                && p.getProjektLeder().getName().equalsIgnoreCase(medarbejder))) {
+            String lederProjekt = systemProjekter.stream().filter(p -> p.getProjektLeder() != null
+                    && p.getProjektLeder().getName().equalsIgnoreCase(medarbejder)).findFirst().get().getProjektNavn();
             return new ProjektlederStat(false, lederProjekt);
-        }
-        else{
+        } else {
             return new ProjektlederStat(false, null);
         }
     }
-    
+
     public static boolean erLedig(String medarbejder) {
         // TODO: Implementer logik for tjek om medarbejder er ledig
-        // beregn om medarbejderen er ledig baseret på deres nuværende opgaver og projekter, hvor projekter og aktiviteter har forskellig vægt
+        // beregn om medarbejderen er ledig baseret på deres nuværende opgaver og
+        // projekter, hvor projekter og aktiviteter har forskellig vægt
         return true;
     }
-    /*=======================================================================================================*/
+    /*
+     * =============================================================================
+     * ==========================
+     */
 
     public static void main(String[] args) {
-        
 
         // Laver "kendte" medarbejdere
         systemMedarbejdere.add(new Medarbejder("huba"));
@@ -113,7 +118,9 @@ public class Main {
                         System.out.println("Fejl: Et projekt med dette navn findes allerede.");
                     } else {
                         Projekt nytProjekt = new Projekt(projektNavn);
-                        nytProjekt.setProjektNr(String.valueOf(1000 + systemProjekter.size()));
+                        nytProjekt.setProjektNr(String
+                                .valueOf(Integer.parseInt(nytProjekt.getProjektNr()) * 1000 + systemProjekter.size()
+                                        + 1));
                         systemProjekter.add(nytProjekt);
                         System.out.println("Projekt '" + projektNavn + "' oprettet med succes!");
                     }
@@ -144,11 +151,11 @@ public class Main {
         scanner.close();
     }
 
-    public static List<Projekt> getProjekter(){
+    public static List<Projekt> getProjekter() {
         return systemProjekter;
     }
 
-    public static List<Medarbejder> getMedarbejdere(){
+    public static List<Medarbejder> getMedarbejdere() {
         return systemMedarbejdere;
     }
 }
