@@ -22,8 +22,14 @@ public class Main {
             && p.getProjektLeder().getName().equalsIgnoreCase(medarbejder))) {
             return new ProjektlederStat(true, projektnavn);
         }
+        else if (systemProjekter.stream().anyMatch(p->p.getProjektLeder() != null 
+            && p.getProjektLeder().getName().equalsIgnoreCase(medarbejder))) {
+                String lederProjekt = systemProjekter.stream().filter(p -> p.getProjektLeder() != null 
+                && p.getProjektLeder().getName().equalsIgnoreCase(medarbejder)).findFirst().get().getProjektNavn();
+            return new ProjektlederStat(false, lederProjekt);
+        }
         else{
-            return new ProjektlederStat(false, projektnavn);
+            return new ProjektlederStat(false, null);
         }
     }
     

@@ -1,17 +1,22 @@
 package stepdefinitions;
 
-import io.cucumber.java.en.And;
+import java.util.Iterator;
+import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.projectmanager.Main;
+import com.projectmanager.Medarbejder;
+import com.projectmanager.Projekt;
+import com.projectmanager.ProjektRapport;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import java.util.*;
-
-import com.projectmanager.*;
-
 public class LavRapportStepDef {
 
-    boolean harAktiviteter;
+    boolean harAktiviteter = false;
     Projekt projekt;
 
     // @Given("en {string} findes i systemet")
@@ -43,28 +48,28 @@ public class LavRapportStepDef {
 
     @When("en {string} genererer rapport")
     public void forsøg_generer_rapport(String medarbejder){
-        if (harAktiviteter) {
-            return true;
-        }
+        assertTrue(harAktiviteter, "Projektet har ingen aktiviteter");
     }
 
     @When("der ikke er nogle aktivitet i projektet")
     public void projekt_mangler_aktiviteter(){
         if (projekt.getAktiviteter().size() < 1) {
             harAktiviteter = false;
-            return false;
         }
+        assertTrue(harAktiviteter);
     }
 
     @Then("generer rapport ved navn {string}-rapport-uge-{int}")
     public void generer_rapport(String projektNavn, int ugenummer){
         ProjektRapport projektRapport = new ProjektRapport(projektNavn + "-rapport-uge-" + ugenummer);
-        return projektRapport;
+        assertTrue(projektRapport.getName().equalsIgnoreCase(projektNavn + "-rapport-uge-" + ugenummer));
     }
 
     @Then("handling fejler med fejlbesked: 'ingen aktiviteter i projekt'")
     public void handling_fejler(){
-        System.out.println("ingen aktiviteter i projekt");
+        String errorMessage = "ingen aktiviteter i projekt";
+        System.out.println(errorMessage);
+        assertTrue(errorMessage.equalsIgnoreCase("ingen aktiviteter i projekt"));
     }
 }
 
