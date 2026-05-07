@@ -1,38 +1,101 @@
 package stepdefinitions;
+import static org.junit.Assert.assertEquals;
+
+import com.projectmanager.Aktivitet;
+import com.projectmanager.Main;
+import com.projectmanager.Projekt;
+
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import com.projectmanager.*;
-
 public class bestem_budgetteret_tid_steps {
+
+    String errormessage="";
+
     @Given("en en medarbejder {string} findes i systemet")
     public void en_medarbejder_finds_i_systemet(String medarbejder) {
-        // Implementation for checking if an employee exists in the system
+
+        assert(Main.erLedig(medarbejder)): "Medarbejder " + medarbejder + " er ikke ledig.";
     }
+
     @And("denne medarbejder {string} er projektleder for et projekt {string}")
     public void denne_medarbejder_er_projektleder_for_et_projekt(String medarbejder, String projekt) {
-        // Implementation for checking if an employee is a project leader for a project
+
+        assert(Main.erProjektleder(projekt, medarbejder).erProjektLeder());
     }
+
     @When("medarbejderen {string} bestemmer budgetteret tid {float} for en aktivitet {string} i projektet {string}, som positivt decimaltal eller heltal")
     public void medarbejder_forsøger_at_budgettere_tid(String medarbejder, float budget, String aktivitet, String projekt) {
-        // Implementation for attempting to budget time for an activity in a project
+        
+        Projekt TempProjekt = null; 
+         for (Projekt p : Main.getProjekter()) {
+            if (p.getProjektNavn().equalsIgnoreCase(projekt)) {
+                TempProjekt = p;
+            }
+        }
+
+        Aktivitet tempAkt = null;
+         for (Aktivitet p : TempProjekt.getAktiviteter()) {
+            if (p.getName().equalsIgnoreCase(aktivitet)) {
+                tempAkt = p;
+            }
+        }
+
+        if (budget > 0) {
+            tempAkt.redigerBudgeteretTid(4);
+        }
     }
+
     @Then("budgettering af tid for aktiviteten {string} i projektet {string} skal lykkes")
     public void budgettering_af_tid_skal_lykkes(String aktivitet, String projekt) {
-        // Implementation for verifying that budgeting time for the activity in the project is successful
+
+        Projekt TempProjekt = null; 
+         for (Projekt p : Main.getProjekter()) {
+            if (p.getProjektNavn().equalsIgnoreCase(projekt)) {
+                TempProjekt = p;
+            }
+        }
+
+        Aktivitet tempAkt = null;
+         for (Aktivitet p : TempProjekt.getAktiviteter()) {
+            if (p.getName().equalsIgnoreCase(aktivitet)) {
+                tempAkt = p;
+            }
+        }
+
+        tempAkt.redigerBudgeteretTid(4);
+
+        assertEquals(tempAkt.getBudgetTime(), 4);
     }
+
     @When("en medarbejder {string} bestemmer budgetteret tid {float} for en aktivitet {string} i projektet {string}, som andet end et positivt decimaltal eller heltal")
     public void en_medarbejder_bestemmer_budgetteret_tid(String medarbejder, float budget, String aktivitet, String projekt) {
-        // Implementation for attempting to budget time for an activity in a project
+        
+        Projekt TempProjekt = null; 
+         for (Projekt p : Main.getProjekter()) {
+            if (p.getProjektNavn().equalsIgnoreCase(projekt)) {
+                TempProjekt = p;
+            }
+        }
+
+        Aktivitet tempAkt = null;
+         for (Aktivitet p : TempProjekt.getAktiviteter()) {
+            if (p.getName().equalsIgnoreCase(aktivitet)) {
+                tempAkt = p;
+            }
+        }
+
+        if (budget <= 0) {
+            errormessage ="Budgetteret tid skal være et positivt decimaltal eller heltal";
+        }
     }
+
     @Then("budgettering af tid for aktiviteten {string} i projektet {string} skal fejle med fejlbesked: 'Budgetteret tid skal være et positivt decimaltal eller heltal'")
     public void budgettering_af_tid_skal_feje(String aktivitet, String projekt) {
-        // Implementation for verifying that budgeting time for the activity in the project fails with the specified error message
+       
+        String besked ="Budgetteret tid skal være et positivt decimaltal eller heltal";
+        assertEquals(errormessage,besked);
     }
 }
-
-
-
-

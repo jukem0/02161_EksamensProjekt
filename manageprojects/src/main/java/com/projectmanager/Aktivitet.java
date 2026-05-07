@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class Aktivitet {
     private String navn;
-    private int budgetTimer;
+    private float budgetTimer;
     private Uge startUge, slutUge;
     private ArrayList<Medarbejder> tilknyttedeMedarbejdere = new ArrayList<Medarbejder>();
 
-    public Aktivitet(String navn, Uge startUge, Uge slutUge, int budgetgeretTid) {
+    public Aktivitet(String navn, Uge startUge, Uge slutUge, float budgetgeretTid) {
         this.navn = navn;
         this.startUge = startUge;
         this.slutUge = slutUge;
@@ -30,12 +30,16 @@ public class Aktivitet {
         tilknyttedeMedarbejdere.add(medarbejder);
     }
 
-    public void redigerBudgeteretTid(int budgetgeretTid){
+    public void redigerBudgeteretTid(float budgetgeretTid){
         budgetTimer = budgetgeretTid;
     }
 
     public String getName(){
         return navn;
+    }
+
+    public float getBudgetTime(){
+        return budgetTimer;
     }
 
 }
