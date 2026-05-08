@@ -1,102 +1,91 @@
-// package stepdefinitions;
-// import static org.junit.Assert.assertEquals;
+package stepdefinitions;
 
-// import com.projectmanager.Aktivitet;
-// import com.projectmanager.Main;
-// import com.projectmanager.Projekt;
+import static org.junit.Assert.assertEquals;
 
-// import io.cucumber.java.en.And;
-// import io.cucumber.java.en.Given;
-// import io.cucumber.java.en.Then;
-// import io.cucumber.java.en.When;
+import com.projectmanager.Aktivitet;
+import com.projectmanager.Main;
+import com.projectmanager.Projekt;
 
-// public class bestem_budgetteret_tid_steps {
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
-// String errormessage="";
+public class bestem_budgetteret_tid_steps {
 
-// private Projekt getPro (String projekt){
-// Projekt TempProjekt = null;
-// for (Projekt p : Main.getProjekter()) {
-// if (p.getProjektNavn().equalsIgnoreCase(projekt)) {
-// TempProjekt = p;
-// }
-// }
-// return TempProjekt;
-// }
+    String errormessage = "";
 
-// private Aktivitet getAkt (String aktivitet, Projekt projekt){
-// Aktivitet tempAkt = null;
-// for (Aktivitet p : projekt.getAktiviteter()) {
-// if (p.getName().equalsIgnoreCase(aktivitet)) {
-// tempAkt = p;
-// }
-// }
-// return tempAkt;
-// }
+    private Projekt getPro(String projekt) {
+        Projekt TempProjekt = null;
+        for (Projekt p : Main.getProjekter()) {
+            if (p.getProjektNavn().equalsIgnoreCase(projekt)) {
+                TempProjekt = p;
+            }
+        }
+        return TempProjekt;
+    }
 
-// @Given("en en medarbejder {string} findes i systemet")
-// public void en_medarbejder_finds_i_systemet(String medarbejder) {
+    private Aktivitet getAkt(String aktivitet, Projekt projekt) {
+        Aktivitet tempAkt = null;
+        for (Aktivitet p : projekt.getAktiviteter()) {
+            if (p.getName().equalsIgnoreCase(aktivitet)) {
+                tempAkt = p;
+            }
+        }
+        return tempAkt;
+    }
 
-// assert(Main.erLedig(medarbejder)): "Medarbejder " + medarbejder + " er ikke
-// ledig.";
-// }
+    @Given("en en medarbejder {string} findes i systemet")
+    public void en_medarbejder_finds_i_systemet(String medarbejder) {
 
-// @And("denne medarbejder {string} er projektleder for et projekt {string}")
-// public void denne_medarbejder_er_projektleder_for_et_projekt(String
-// medarbejder, String projekt) {
+        assert (Main.erLedig(medarbejder)) : "Medarbejder " + medarbejder + " er ikke ledig.";
+    }
 
-// assert(Main.erProjektleder(projekt, medarbejder).erProjektLeder());
-// }
+    @And("denne medarbejder {string} er projektleder for et projekt {string}")
+    public void denne_medarbejder_er_projektleder_for_et_projekt(String medarbejder, String projekt) {
 
-// @When("medarbejderen {string} bestemmer budgetteret tid {float} for en
-// aktivitet {string} i projektet {string}, som positivt decimaltal eller
-// heltal")
-// public void medarbejder_forsøger_at_budgettere_tid(String medarbejder, float
-// budget, String aktivitet, String projekt) {
+        assert (Main.erProjektleder(projekt, medarbejder).erProjektLeder());
+    }
 
-// Projekt TempProjekt = getPro(projekt);
-// Aktivitet tempAkt = getAkt(aktivitet, TempProjekt);
+    @When("medarbejderen {string} bestemmer budgetteret tid {float} for en aktivitet {string} i projektet {string}, som positivt decimaltal eller heltal")
+    public void medarbejder_forsøger_at_budgettere_tid(String medarbejder, float budget, String aktivitet,
+            String projekt) {
 
-// if (budget > 0) {
-// tempAkt.redigerBudgeteretTid(budget);
-// }
-// }
+        Projekt TempProjekt = getPro(projekt);
+        Aktivitet tempAkt = getAkt(aktivitet, TempProjekt);
 
-// @Then("budgettering af tid for aktiviteten {string} i projektet {string} skal
-// lykkes")
-// public void budgettering_af_tid_skal_lykkes(String aktivitet, String projekt)
-// {
+        if (budget > 0) {
+            tempAkt.redigerBudgeteretTid(budget);
+        }
+    }
 
-// Projekt TempProjekt = getPro(projekt);
-// Aktivitet tempAkt = getAkt(aktivitet, TempProjekt);
+    @Then("budgettering af tid for aktiviteten {string} i projektet {string} skal lykkes")
+    public void budgettering_af_tid_skal_lykkes(String aktivitet, String projekt) {
 
-// tempAkt.redigerBudgeteretTid(4);
+        Projekt TempProjekt = getPro(projekt);
+        Aktivitet tempAkt = getAkt(aktivitet, TempProjekt);
 
-// assertEquals(tempAkt.getBudgetTime(), 4);
-// }
+        tempAkt.redigerBudgeteretTid(4);
 
-// @When("en medarbejder {string} bestemmer budgetteret tid {float} for en
-// aktivitet {string} i projektet {string}, som andet end et positivt decimaltal
-// eller heltal")
-// public void en_medarbejder_bestemmer_budgetteret_tid(String medarbejder,
-// float budget, String aktivitet, String projekt) {
+        assertEquals(tempAkt.getBudgetTime(), 4);
+    }
 
-// Projekt TempProjekt = getPro(projekt);
-// Aktivitet tempAkt = getAkt(aktivitet, TempProjekt);
+    @When("en medarbejder {string} bestemmer budgetteret tid {float} for en aktivitet {string} i projektet {string}, som andet end et positivt decimaltal eller heltal")
+    public void en_medarbejder_bestemmer_budgetteret_tid(String medarbejder, float budget, String aktivitet,
+            String projekt) {
 
-// if (budget <= 0) {
-// errormessage ="Budgetteret tid skal være et positivt decimaltal eller
-// heltal";
-// }
-// }
+        Projekt TempProjekt = getPro(projekt);
+        Aktivitet tempAkt = getAkt(aktivitet, TempProjekt);
 
-// @Then("budgettering af tid for aktiviteten {string} i projektet {string} skal
-// fejle med fejlbesked: 'Budgetteret tid skal være et positivt decimaltal eller
-// heltal'")
-// public void budgettering_af_tid_skal_feje(String aktivitet, String projekt) {
+        if (budget <= 0) {
+            errormessage = "Budgetteret tid skal være et positivt decimaltal eller heltal";
+        }
+    }
 
-// String besked ="Budgetteret tid skal være et positivt decimaltal eller
-// heltal";
-// assertEquals(errormessage,besked);
-// }
-// }
+    @Then("budgettering af tid for aktiviteten {string} i projektet {string} skal fejle med fejlbesked: 'Budgetteret tid skal være et positivt decimaltal eller heltal'")
+    public void budgettering_af_tid_skal_feje(String aktivitet, String projekt) {
+
+        String besked = "Budgetteret tid skal være et positivt decimaltal eller heltal";
+        assertEquals(errormessage, besked);
+    }
+}
