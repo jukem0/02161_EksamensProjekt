@@ -10,4 +10,11 @@ public class ProjektRapport {
     public String getName() {
         return navn;
     }
+
+    private double budgetteretTid(){
+        //pr aktivitet er der budgettid + start/slut 
+        
+
+        return 69;
+    }
 }

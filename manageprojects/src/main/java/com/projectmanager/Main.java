@@ -21,14 +21,10 @@ public class Main {
     }
 
     public static ProjektlederStat erProjektleder(String projektnavn, String medarbejder) {
-        if (systemProjekter.stream().anyMatch(p -> p.getProjektNavn().equalsIgnoreCase(projektnavn)
-                && p.getProjektLeder() != null
-                && p.getProjektLeder().getName().equalsIgnoreCase(medarbejder))) {
+        if (systemProjekter.stream().anyMatch(p -> p.getProjektNavn().equalsIgnoreCase(projektnavn) && p.getProjektLeder() != null && p.getProjektLeder().getName().equalsIgnoreCase(medarbejder))) {
             return new ProjektlederStat(true, projektnavn);
-        } else if (systemProjekter.stream().anyMatch(p -> p.getProjektLeder() != null
-                && p.getProjektLeder().getName().equalsIgnoreCase(medarbejder))) {
-            String lederProjekt = systemProjekter.stream().filter(p -> p.getProjektLeder() != null
-                    && p.getProjektLeder().getName().equalsIgnoreCase(medarbejder)).findFirst().get().getProjektNavn();
+        } else if (systemProjekter.stream().anyMatch(p -> p.getProjektLeder() != null && p.getProjektLeder().getName().equalsIgnoreCase(medarbejder))) {
+            String lederProjekt = systemProjekter.stream().filter(p -> p.getProjektLeder() != null && p.getProjektLeder().getName().equalsIgnoreCase(medarbejder)).findFirst().get().getProjektNavn();
             return new ProjektlederStat(false, lederProjekt);
         } else {
             return new ProjektlederStat(false, null);
@@ -80,75 +76,39 @@ public class Main {
         // Hovedmenu for bruger
         boolean isRunning = true;
 
-        while (isRunning) {
-            System.out.println("\n--- Hovedmenu ---");
-            System.out.println("1. Se eksisterende projekter");
-            System.out.println("2. Opret projekt");
-            System.out.println("3. Se ledige medarbejdere");
-            System.out.println("4. Log ud");
-            System.out.print("Vælg en mulighed: ");
+        while (isRunning){
+            //angiv arbejdestimer or type "Other"
+            System.out.println("angiv arbejdes timer på xxxxxxx:   eller tast other");
+            String choose = scanner.nextLine().trim();
+            
+            if (TryParseDouble(choose)!= null){
+                //aktivitwt =+ choose
+            }
+                    
+            else if (choose.equals("Other")){
+                //if medarbejder er lederProjekt
+                        // ProjektRapport
+                        // lav ny aktivitet
 
-            String choice = scanner.nextLine().trim();
+                System.out.println("1: ret i dine timer");
+                System.out.println("2: angiv ferie/sygdom etc");
+                System.out.println("3: angiv timer hjulpet på et andet projket");
 
-            switch (choice) {
-                case "1":
-                    if (systemProjekter.isEmpty()) {
-                        System.out.println("Der er i øjeblikket ingen projekter i systemet.");
-                    } else {
-                        System.out.println("\n--- Eksisterende Projekter ---");
-                        for (Projekt p : systemProjekter) {
-                            System.out.println(
-                                    "- Projektnummer: " + p.getProjektNr() + " (Navn: " + p.getProjektNavn() + ")");
-                        }
-                    }
-                    break;
-
-                case "2":
-                    System.out.print("Indtast navn på det nye projekt: ");
-                    String projektNavn = scanner.nextLine().trim();
-
-                    boolean exists = false;
-                    for (Projekt p : systemProjekter) {
-                        if (p.getProjektNavn() != null && p.getProjektNavn().equalsIgnoreCase(projektNavn)) {
-                            exists = true;
-                            break;
-                        }
-                    }
-                    if (exists) {
-                        System.out.println("Fejl: Et projekt med dette navn findes allerede.");
-                    } else {
-                        Projekt nytProjekt = new Projekt(projektNavn);
-                        nytProjekt.setProjektNr(String
-                                .valueOf(Integer.parseInt(nytProjekt.getProjektNr()) * 1000 + systemProjekter.size()
-                                        + 1));
-                        systemProjekter.add(nytProjekt);
-                        System.out.println("Projekt '" + projektNavn + "' oprettet med succes!");
-                    }
-                    break;
-
-                case "3":
-                    System.out.println("\n--- Ledige Medarbejdere ---");
-                    if (systemMedarbejdere.isEmpty()) {
-                        System.out.println("Ingen medarbejdere i systemet.");
-                    } else {
-                        for (Medarbejder m : systemMedarbejdere) {
-                            System.out.println("- " + m.getName() + " (Ledig)");
-                        }
-                    }
-                    break;
-
-                case "4":
-                    System.out.println("Logger ud...");
-                    loggedInUser = null;
-                    isRunning = false;
-                    break;
-
-                default:
-                    System.out.println("Ugyldigt valg. Prøv igen.");
+            }
+            else {
+                System.out.println("what on earth was that");
             }
         }
 
-        scanner.close();
+       scanner.close();
+    }
+
+    public static Double TryParseDouble(String someText) {
+        try {
+            return Double.parseDouble(someText);
+        } catch (NumberFormatException ex) {
+            return null;
+        }
     }
 
     public static List<Projekt> getProjekter() {
