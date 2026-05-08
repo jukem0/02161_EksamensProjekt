@@ -17,6 +17,10 @@ public class Projekt {
 
     private Medarbejder projektLeder;
 
+    private String curMedarbejder;
+
+    private Aktivitet curAktivitet;
+
     private Map<Medarbejder, List<Aktivitet>> medarbejderAktiviteter = new HashMap<>();
 
     // Lav map med medarbejder som "key" og liste over tilnkyttede aktiviteter som
@@ -71,6 +75,45 @@ public class Projekt {
 
     public Map<Medarbejder, List<Aktivitet>> getMedarbejderAktiviteter() {
         return medarbejderAktiviteter;
+    }
+
+    public void tilføjmedarbtilProjekt() {
+        medarbejderAktiviteter.put(systemmedarbejdere(Medarbejder), );
+
+    }
+
+    public String tjekProjektNr(String Nr) {
+        for (Projekt p : Main.systemProjekter){
+            if (p.getProjektNr().equals(Nr)) {
+                return this.projektNr = Nr;
+            }
+
+        }
+        return "Dette projektnummer tilhører ingen igangværende projekter";
+            
+    }
+
+    public String tjekmedarbejderiProjekt(String medarbejder) {
+        for (Medarbejder i : medarbejderAktiviteter.keySet()){
+            if (i.getName().equals(medarbejder)) {
+                return curMedarbejder = medarbejder;
+            }
+        }
+
+        return "Denne medarbejder er ikke en del af projektet";
+    }
+
+    public Aktivitet tjekAktiviteteriProjekt(String navn) {
+        for (Aktivitet l : aktiviteter) {
+            if (l.getName().equals(navn)){
+                curAktivitet = l;
+                return curAktivitet;
+            }
+        }
+    }
+
+    public void tilføjmedarbejdertilAktivitet(Medarbejder , Aktivitet curAktivitet){
+        medarbejderAktiviteter.get().add();
     }
 
 }
