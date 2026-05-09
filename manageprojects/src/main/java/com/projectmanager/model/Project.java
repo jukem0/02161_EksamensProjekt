@@ -16,4 +16,7 @@ public class Project {
         this.projectLeader = projectLeader;
     }
 
+    public String getName(){
+        return projectName;
+    }
 }
