@@ -77,8 +77,8 @@ public class Projekt {
         return medarbejderAktiviteter;
     }
 
-    public void tilføjmedarbtilProjekt() {
-        medarbejderAktiviteter.put(systemmedarbejdere(Medarbejder), );
+    public void tilføjmedarbtilProjekt(Medarbejder medarbejder) {
+        medarbejderAktiviteter.put(medarbejder, new ArrayList<Aktivitet>() );
 
     }
 
@@ -93,27 +93,28 @@ public class Projekt {
             
     }
 
-    public String tjekmedarbejderiProjekt(String medarbejder) {
+    public boolean tjekmedarbejderiProjekt(String medarbejder) {
         for (Medarbejder i : medarbejderAktiviteter.keySet()){
             if (i.getName().equals(medarbejder)) {
-                return curMedarbejder = medarbejder;
+                return true;
             }
         }
 
-        return "Denne medarbejder er ikke en del af projektet";
+        return false;
     }
 
-    public Aktivitet tjekAktiviteteriProjekt(String navn) {
+    public boolean tjekAktiviteteriProjekt(String navn) {
         for (Aktivitet l : aktiviteter) {
-            if (l.getName().equals(navn)){
+            if (l.getName().equalsIgnoreCase(navn)){
                 curAktivitet = l;
-                return curAktivitet;
+                return true;
             }
         }
+        return false;
     }
 
-    public void tilføjmedarbejdertilAktivitet(Medarbejder , Aktivitet curAktivitet){
-        medarbejderAktiviteter.get().add();
+    public void tilføjmedarbejdertilAktivitet(Medarbejder medarbejder, Aktivitet curAktivitet){
+        medarbejderAktiviteter.get(medarbejder).add(curAktivitet);
     }
 
 }
