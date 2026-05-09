@@ -8,4 +8,7 @@ public class Activity {
     private Week startWeek, endWeek;
     private ArrayList<Employee> employees = new ArrayList<>();
 
+    public Activity() {
+        
+    }
 }

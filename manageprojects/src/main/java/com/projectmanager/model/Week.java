@@ -27,4 +27,18 @@ public class Week {
     public int getYear() {
         return year;
     }
+
+    @Override
+    public boolean equals(Object obj){
+        if(obj == null){
+            return false;
+        }
+
+        if(obj.getClass() != this.getClass()){
+            return false;
+        }
+
+        final Week other = (Uge) obj;
+        return (getWeekNum() == other.getWeekNum() && getYear() == other.Year());
+    }
 }

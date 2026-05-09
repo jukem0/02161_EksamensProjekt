@@ -1,8 +1,6 @@
 package stepdefinitions;
 
 import io.cucumber.java.en.*;
-
-
 import com.projectmanager.app.*;
 import com.projectmanager.model.*;
 
