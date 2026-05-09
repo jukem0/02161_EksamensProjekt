@@ -5,10 +5,14 @@ import java.util.*;
 
 public class Project {
     private String projectName;
+    private double regTime;
     private Employee projectLeader;
     private ArrayList<Activity> activities = new ArrayList<>();
 
-    private Map<Employee, List<Activity>> medarbejderAktiviteter = new HashMap<>();
+
+    public static Map<Employee, Double> employeeRegtime = new HashMap<>();
+
+    public static Map<Activity, Map<Employee, Double>> activityMap = new HashMap<>();
 
     public Project(String projectName) {
         this.projectName = projectName;
@@ -19,26 +23,24 @@ public class Project {
         this.projectLeader = projectLeader;
     }
 
-    public boolean isEmployeeInProject(String employee) {
-        for (Employee i : employeeActivity.keySet()){
-            if (i.getName().equals(employee)) {
-                return true;
-            }
+    
+    public String getActivityName(String activityName) {
+        return String.valueOf(activityMap.keySet().stream().filter(a -> a.getName().equalsIgnoreCase(activityName)).findFirst().orElse(null));
         }
 
-        return false;
+    public String getEmployeeName(String employee){
+        return String.valueOf(employeeRegtime.keySet().stream().filter(a -> a.getName().equalsIgnoreCase(employee)).findFirst().orElse(null));
     }
 
-    public boolean isActivityInProject(String activityName) {
-        for (Activity l : activities) {
-            if (l.getName().equalsIgnoreCase(activityName)){
-                currentActivity = l;
-                return true;
-            }
-        }
-        return false;
+    public String getYear() {
+        return Year.now().toString().substring(2);
     }
 
+    public String getName() {
+        return projectName;
+    }
+
+    
 
 
 }

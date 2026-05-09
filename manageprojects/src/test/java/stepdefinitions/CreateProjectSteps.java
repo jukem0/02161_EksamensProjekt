@@ -1,25 +1,18 @@
 package stepdefinitions;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
-import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import com.projectmanager.*;
-import com.projectmanager.model.Projekt;
-
-public class DanProjektSteps {
+public class CreateProjectSteps {
+    @Given("en {string} findes i systemet")
+    public void employee_findes_i_systemet() {
+        
+    }
 
     @When("en medarbejder opretter et projekt med navn {string}")
     public void en_medarbejder_opretter_et_projekt(String projektnavn) {
+
     }
 
     @When("et projekt med navn {string} ikke findes i systemet")

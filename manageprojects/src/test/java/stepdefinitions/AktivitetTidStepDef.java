@@ -1,29 +1,43 @@
 package stepdefinitions;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-import com.projectmanager.App.*;
+
+import com.projectmanager.app.*;
 import com.projectmanager.model.*;
 
 import io.cucumber.java.en.*;
 
 
 public class AktivitetTidStepDef {
+    int aktivitetIndex = -1;
+    boolean startFørSlut;
+    Week startDato, slutDato;
+    Project tempProjekt = null;
+    String errorMessage = "Startdato kan ikke være efter slutdato";
 
     @Given("at {string} er projektleder under projekt {string}")
     public void er_projektleder(String medarbejder, String projekt) {
+        for (Project p : .getProjekter()) {
+            if (p.getProjektNavn().equalsIgnoreCase(projekt)) {
+                tempProjekt = p;
+            }
+        }
+        if (tempProjekt != null) {
+            assertTrue(tempProjekt.getProjektLeder().getName().equalsIgnoreCase(medarbejder),
+                    "Medarbejder " + medarbejder + " er ikke projektleder i projektet " + projekt);
+        }
     }
 
-    @When("{string} bestemmer start- og sluttid til {string} som datoer {Uge}, {Uge}")
-    public void bestem_start_og_slut(String medarbejder, String aktivitet, Uge startDate, Uge slutDate) {
+    @When("{string} bestemmer start- og sluttid til {string} som datoer {Week}, {Week}")
+    public void bestem_start_og_slut(String medarbejder, String aktivitet, Week startDate, Week slutDate) {
     }
 
-    @When("{Uge} er senere end {Uge}")
-    public void start_efter_slut(Uge start, Uge slut) {
+    @When("{Week} er senere end {Week}")
+    public void start_efter_slut(Week start, Week slut) {
     }
 
-    @Then("tildel {string} datoerne, {Uge} og {Uge} som værende afgrænsede tid for færdiggørelse af projekt")
+    @Then("tildel {string} datoerne, {Week} og {Week} som værende afgrænsede tid for færdiggørelse af projekt")
     public void tildelDatoer() {
         
     }
