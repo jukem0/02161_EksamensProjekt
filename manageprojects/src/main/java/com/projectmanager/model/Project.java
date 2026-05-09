@@ -11,8 +11,10 @@ public class Project{
     private ArrayList<Activity> activities = new ArrayList<>();
 
 
+    // Indre hashmap
     public static Map<Employee, Double> employeeRegtime = new HashMap<>();
 
+    // Ydre hashmap
     public static Map<Activity, Map<Employee, Double>> activityMap = new HashMap<>();
 
     public Project(String projectName) {
@@ -40,13 +42,14 @@ public class Project{
     public String getName() {
         return projectName;
     }
-
     
-    public boolean isEmployeeInProject(String employee) {
-        if (employeeRegtime.containsKey(){
-            
+    public boolean isEmployeeInProject(Map<Employee, Double> employeeRegtime, String employeeName) {
+        for (Employee e : employeeRegtime.keySet()) {
+            if (e.getEmployeeName().equals(employeeName)) {
+                return true;
+            }
         }
-        }
+        return false;
     }
 
     public boolean isActivityInProject(String activityName) {
