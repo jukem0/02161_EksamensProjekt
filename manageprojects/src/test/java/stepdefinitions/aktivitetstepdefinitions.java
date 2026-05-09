@@ -12,7 +12,7 @@ public class aktivitetstepdefinitions {
 
     @Given("følgende medarbejdere findes i systemet:")
     public void følgendeMedarbejdereFindesISystemet(DataTable table) { // bruger en given liste af medarbejdere for at
-                                                                       // vise hvem er i systemet.
+                                                                           // vise hvem er i systemet.
     }
 
     @Given("en {string} findes i systemet")

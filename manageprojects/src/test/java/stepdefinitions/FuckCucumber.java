@@ -1,11 +1,10 @@
 package stepdefinitions;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.projectmanager.model.*;
-import com.projectmanager.services.*;
-import com.projectmanager.services.IProject;
+import com.projectmanager.model.Activity;
+import com.projectmanager.model.Employee;
+import com.projectmanager.model.Project;
 import com.projectmanager.services.ProjectsFunctions;
 
 
@@ -17,7 +16,7 @@ public class FuckCucumber {
         List<Project> projecter = projectFunctions.allProjects();
 
         for (Project p : projecter) {
-            if (p.getName() == project ) {
+            if (p.getName().equalsIgnoreCase(project) ) {
                 return p;
             }
         }
@@ -32,16 +31,5 @@ public class FuckCucumber {
     public Activity getActivity(String emp, Project project){
         return null;
     }
-<<<<<<< HEAD
-=======
 
-    
-
-    
-
-    
-
-
-
->>>>>>> a202982ed00b705a3df04b12a6c00e65366552b9
 }

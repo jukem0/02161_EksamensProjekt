@@ -12,7 +12,13 @@ public class Employee {
         leaderOf = projectNr;
     }
 
-    
+    public Project leaderOf() {
+        return leaderOf;
+    }
+
+    public String getEmployeeName() {
+        return initialer;
+    }
 
 
 }

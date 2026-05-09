@@ -1,5 +1,7 @@
 package stepdefinitions;
 
+import com.projectmanager.model.*;
+
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -14,7 +16,12 @@ public class bestem_budgetteret_tid_steps {
     }
 
     @And("denne medarbejder {string} er projektleder for et projekt {string}")
-    public void denne_medarbejder_er_projektleder_for_et_projekt(String medarbejder, String projekt) {
+    public void denne_medarbejder_er_projektleder_for_et_projekt(String empplyee, String project) {
+        if (FuckCucumber.getEmployee(empplyee)!= null) { 
+
+            Employee employee = FuckCucumber.getEmployee(empplyee);
+            assert (employee.leaderOf().getName().equalsIgnoreCase("project"));
+        }
 
     }
 

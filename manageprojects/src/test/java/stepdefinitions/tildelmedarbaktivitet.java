@@ -6,16 +6,16 @@ import com.projectmanager.model.*;
 
 public class tildelmedarbaktivitet {
     @Given("der findes en aktivitet med navn {string} i projektet")
-    public void getAktivitet(String aktivitetsnavn) {
+    public void getActivity(String aktivitetsnavn) {
     }
 
-    @When("en medarbedjer {string} udpeger en anden medarbejder {string} til at lave aktivitet med navn {string}")
-    public void tildelAktivitet(String aktivitetsnavn) {
+    @When("en medarbedjer udpeger en anden medarbejder {string} til at lave aktivitet med navn {string}")
+    public void addEmployeeToActivity(Activity activityName) {
 
     }
 
     @Then("tildel medarbejder {string} til aktivitet med navn {string} skal lykkes")
-    public boolean tildelAktivitetSuccess(String aktivitetsnavn) {
+    public boolean addEmployeeToActivity(Activity activityName) {
 
     }
 

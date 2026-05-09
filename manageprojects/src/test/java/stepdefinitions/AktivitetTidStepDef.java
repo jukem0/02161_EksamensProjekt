@@ -13,12 +13,12 @@ public class AktivitetTidStepDef {
     int aktivitetIndex = -1;
     boolean startFørSlut;
     Week startDato, slutDato;
-    Projekt tempProjekt = null;
+    Project tempProjekt = null;
     String errorMessage = "Startdato kan ikke være efter slutdato";
 
     @Given("at {string} er projektleder under projekt {string}")
     public void er_projektleder(String medarbejder, String projekt) {
-        for (Projekt p : .getProjekter()) {
+        for (Project p : .getProjekter()) {
             if (p.getProjektNavn().equalsIgnoreCase(projekt)) {
                 tempProjekt = p;
             }

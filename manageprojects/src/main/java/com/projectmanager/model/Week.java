@@ -38,7 +38,12 @@ public class Week {
             return false;
         }
 
-        final Week other = (Uge) obj;
+        final Week other = (Week) obj;
         return (getWeekNum() == other.getWeekNum() && getYear() == other.Year());
+    }
+
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(weekNum, year);
     }
 }

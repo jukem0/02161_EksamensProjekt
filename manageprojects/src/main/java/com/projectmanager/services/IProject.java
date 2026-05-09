@@ -8,5 +8,7 @@ public interface IProject {
     public String MakeRepport(Project project);
     public void addActivity(String activityname, Project project, Employee projectLeader);
     public List<Project> allProjects();
+    public boolean isEmployeeInProject(String employee);
+    public boolean isActivityInProject(String activityName);   
     
 }

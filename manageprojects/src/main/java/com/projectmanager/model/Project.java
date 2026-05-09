@@ -10,9 +10,9 @@ public class Project {
     private ArrayList<Activity> activities = new ArrayList<>();
 
 
-    private Map<Employee, Double> employeeRegtime = new HashMap<>();
+    public static Map<Employee, Double> employeeRegtime = new HashMap<>();
 
-    private Map<Activity, Map<Employee, Double>> activityMap = new HashMap<>();
+    public static Map<Activity, Map<Employee, Double>> activityMap = new HashMap<>();
 
     public Project(String projectName) {
         this.projectName = projectName;
@@ -23,29 +23,24 @@ public class Project {
         this.projectLeader = projectLeader;
     }
 
-    public boolean isEmployeeInProject(String employee) {
-        for (Employee i : employeeRegtime.keySet()){
-            if (i.getName().equals(employee)) {
-                return true;
-            }
+    
+    public String getActivityName(String activityName) {
+        return String.valueOf(activityMap.keySet().stream().filter(a -> a.getName().equalsIgnoreCase(activityName)).findFirst().orElse(null));
         }
 
-        return false;
-    }
-
-    public boolean isActivityInProject(String activityName) {
-        for (Activity l : activityMap.keySet()) {
-            if (l.getName().equalsIgnoreCase(activityName)){
-                return true;
-            }
-        }
-        return false;
+    public String getEmployeeName(String employee){
+        return String.valueOf(employeeRegtime.keySet().stream().filter(a -> a.getName().equalsIgnoreCase(employee)).findFirst().orElse(null));
     }
 
     public String getYear() {
-        return Year.now().;
+        return Year.now().toString().substring(2);
     }
 
+    public String getName() {
+        return projectName;
+    }
+
+    
 
 
 }

@@ -13,4 +13,5 @@ public interface IEmployee {
     public void assignProjectleader(Project project, Employee employee);
     public void registerTime(double hours);
 
+
 }
