@@ -9,8 +9,7 @@ public class Activity {
     private int weekAmount;
     private ArrayList<Employee> employees = new ArrayList<>();
 
-
-    public Activity(String activityName){
+    public Activity(String activityName) {
         this.actName = activityName;
     }
 
@@ -21,9 +20,9 @@ public class Activity {
         this.weekAmount = weekAmount;
         this.startWeek = new Week(endWeek.getWeekNum() - weekAmount, endWeek.getYear());
     }
-    
+
     public String getEmployees() {
-        return null; //!! Skal laves xdDDDDD
+        return null; // !! Skal laves xdDDDDD
     }
 
     public String getActivityName() {
