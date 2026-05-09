@@ -19,11 +19,6 @@ public class Project {
         this.projectLeader = projectLeader;
     }
 
-<<<<<<< HEAD
-    public String getName(){
-        return projectName;
-    }
-=======
     public boolean isEmployeeInProject(String employee) {
         for (Employee i : employeeActivity.keySet()){
             if (i.getName().equals(employee)) {
@@ -46,5 +41,4 @@ public class Project {
 
 
 
->>>>>>> a202982ed00b705a3df04b12a6c00e65366552b9
 }
