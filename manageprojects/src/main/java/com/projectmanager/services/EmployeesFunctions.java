@@ -5,6 +5,7 @@ import com.projectmanager.model.Employee;
 import com.projectmanager.model.Medarbejder;
 import com.projectmanager.model.Project;
 import.com.projectmanager.services.*;
+import java.util.*;
 
 public class EmployeesFunctions implements IEmployee {
 
@@ -24,7 +25,11 @@ public class EmployeesFunctions implements IEmployee {
     @Override
     public void addEmployeeToActivity(Employee employee, Activity activity, Project project){
         // TODO Auto-generated method stub
-        
+        activityMap.putIfAbsent(activity, new HashMap<>());
+
+        Map<Employee, Double> employeeRegtime = activityMap.get(activity);
+
+        employeeRegtime.put(employee, null);
         throw new UnsupportedOperationException("Unimplemented method 'addEmployeeToActivity'");
     }
 
