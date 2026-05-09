@@ -7,11 +7,10 @@ import io.cucumber.java.en.*;
 
 public class aktivitetstepdefinitions {
 
-@Given("følgende medarbejdere findes i systemet:")
-public void følgendeMedarbejdereFindesISystemet(DataTable table) { // bruger
-en given liste af medarbejdere for at
-// vise hvem er i systemet.
-}
+    @Given("følgende medarbejdere findes i systemet:")
+    public void følgendeMedarbejdereFindesISystemet(DataTable table) { // bruger en given liste af medarbejdere for at
+        // vise hvem er i systemet.
+    }
 
     @Given("en {string} findes i systemet")
     public void getmedarbejder(String medarbejder) {
@@ -23,10 +22,7 @@ en given liste af medarbejdere for at
 
     }
 
-    @When("projektleder eller ledig medarbejder opretter aktivitet med navn
-
-{string}")
-
+    @When("projektleder eller ledig medarbejder opretter aktivitet med navn {string}")
     public void opretAktivitet(String aktivitetsnavn) {
 
     }

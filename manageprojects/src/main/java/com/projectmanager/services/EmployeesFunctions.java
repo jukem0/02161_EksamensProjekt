@@ -2,12 +2,11 @@ package com.projectmanager.services;
 
 import com.projectmanager.model.Activity;
 import com.projectmanager.model.Employee;
-import com.projectmanager.model.Medarbejder;
+import com.projectmanager.model.IEmployee;
 import com.projectmanager.model.Project;
-import.com.projectmanager.services.*;
 import java.util.*;
 
-public class EmployeesFunctions implements IEmployee {
+public class EmployeesFunctions implements IEmployeeFunctions {
 
     @Override
     public void addProject(Project project){
@@ -25,6 +24,11 @@ public class EmployeesFunctions implements IEmployee {
     @Override
     public void addEmployeeToActivity(Employee employee, Activity activity, Project project){
         // TODO Auto-generated method stub
+
+        if (project.isActivityInProject(activity.getActivityName())) {
+            activity.addEmployeeToActivity(employee);
+        }
+
         activityMap.putIfAbsent(activity, new HashMap<>());
 
         Map<Employee, Double> employeeRegtime = activityMap.get(activity);

@@ -12,8 +12,7 @@ public class Activity implements IActivity{
     private int weekAmount;
     private ArrayList<Employee> employees = new ArrayList<Employee>();
 
-
-    public Activity(String activityName){
+    public Activity(String activityName) {
         this.actName = activityName;
     }
 
