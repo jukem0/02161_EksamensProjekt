@@ -2,7 +2,9 @@ package com.projectmanager.model;
 
 
 import java.time.Year;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Project{
     private String projectName;
@@ -28,11 +30,11 @@ public class Project{
 
     
     public String getActivityName(String activityName) {
-        return String.valueOf(activityMap.keySet().stream().filter(a -> a.getName().equalsIgnoreCase(activityName)).findFirst().orElse(null));
+        return String.valueOf(activityMap.keySet().stream().filter(a -> a.getActivityName().equalsIgnoreCase(activityName)).findFirst().orElse(null));
         }
 
     public String getEmployeeName(String employee){
-        return String.valueOf(employeeRegtime.keySet().stream().filter(a -> a.getName().equalsIgnoreCase(employee)).findFirst().orElse(null));
+        return String.valueOf(employeeRegtime.keySet().stream().filter(a -> a.getEmployeeName().equalsIgnoreCase(employee)).findFirst().orElse(null));
     }
 
     public String getYear() {
@@ -52,6 +54,10 @@ public class Project{
         return false;
     }
 
+    public boolean isEmployeeInProject(Map<Employee, Double> employeeRegtime, Employee employee){
+        return employeeRegtime.containsKey(employee);
+    }
+
     public boolean isActivityInProject(String activityName) {
         for (Activity l : Project.activityMap.keySet()) {
             if (l.getActivityName().equalsIgnoreCase(activityName)){
@@ -59,6 +65,10 @@ public class Project{
             }
         }
         return false;
+    }
+
+    public boolean isActivityInProject(Activity activity){
+        return activityMap.containsKey(activity);
     }
 
     public boolean isEmployeeInActivity(String employeeName) {

@@ -1,13 +1,16 @@
 package com.projectmanager.model;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class Activity {
+
+public class Activity implements IActivity{
     private String actName;
     private double budgetTime;
     private Week startWeek, endWeek;
     private int weekAmount;
-    private ArrayList<Employee> employees = new ArrayList<>();
+    private ArrayList<Employee> employees = new ArrayList<Employee>();
 
 
     public Activity(String activityName){
@@ -22,38 +25,51 @@ public class Activity {
         this.startWeek = new Week(endWeek.getWeekNum() - weekAmount, endWeek.getYear());
     }
     
-    public String getEmployees() {
-        return null; //!! Skal laves xdDDDDD
+    @Override
+    public ArrayList<Employee> getEmployees(){
+        return employees;
     }
 
+    @Override
+    public void addEmployeeToActivity(Employee employee){
+    }
+
+    @Override
     public String getActivityName() {
         return actName;
     }
 
+    @Override
     public double getBudgetTime() {
         return budgetTime;
     }
 
+    @Override
     public Week getEndWeek() {
         return endWeek;
     }
 
+    @Override
     public Week getStartWeek() {
         return startWeek;
     }
 
+    @Override
     public void setActivityName(String newActivityName) {
         this.actName = newActivityName;
     }
 
+    @Override
     public void setBudgetTime(double newBudgetTime) {
         this.budgetTime = newBudgetTime;
     }
 
+    @Override
     public void setEndWeek(Week newEndWeek) {
         this.endWeek = newEndWeek;
     }
 
+    @Override
     public void setWeekAmount(int newWeekAmount) {
         this.weekAmount = newWeekAmount;
         this.startWeek = new Week(endWeek.getWeekNum() - weekAmount, endWeek.getYear());
