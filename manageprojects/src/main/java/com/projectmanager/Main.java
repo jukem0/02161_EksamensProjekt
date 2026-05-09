@@ -77,22 +77,67 @@ public class Main {
         boolean isRunning = true;
 
         while (isRunning){
-            //angiv arbejdestimer or type "Other"
-            System.out.println("angiv arbejdes timer på xxxxxxx:   eller tast other");
+            
+            System.out.println("angiv arbejdes timer på "+ loggedInUser + "eller tast other");
             String choose = scanner.nextLine().trim();
             
             if (TryParseDouble(choose)!= null){
-                //aktivitwt =+ choose
+
+
+                addHours(projekt,aktivitet,choose);
             }
                     
             else if (choose.equals("Other")){
-                //if medarbejder er lederProjekt
-                        // ProjektRapport
-                        // lav ny aktivitet
+                if (erProjektLeder(loggedInUser)){
+                    System.out.println("a:Dan projekt rapport");
+                    System.out.println("b: lav ny aktivitet for projektet");
+                }
+                System.out.println("1: opret projekt");
+                System.out.println("2: angiv timer hjulpet på et andet projket");
 
-                System.out.println("1: ret i dine timer");
-                System.out.println("2: angiv ferie/sygdom etc");
-                System.out.println("3: angiv timer hjulpet på et andet projket");
+                choose= scanner.nextLine().trim();
+
+                switch(choose){
+                    case "a":
+                        if (erProjektLeder(loggedInUser)) {
+                            //ProjektRapport.nyRapprt(projekt);
+                        }
+
+                    case "b":
+                        if (erProjektLeder(loggedInUser)) {
+                            //ny aktivitet 
+                        }
+
+                    case "1": // opret projekt 
+
+                        String navn;
+                        Uge startUge;
+                        Uge slutUge;
+                        List<Aktivitet> aktiviteter = new ArrayList<>();
+                        // forach elememt nyAktivitet(projekt, aktivitet)
+                        List<Medarbejder> medarbejderer = new ArrayList<>();
+                        //select between all medarbejder.erLedig
+
+                        nytProjekt(navn, startUge, slutUge, aktiviteter, medarbejderer);
+                    
+                    case "2": //liste af alle projekter med deres numre
+                        int nr = Integer.parseInt(scanner.nextLine().trim());
+                        Projekt selectedProject = getProjekter().filter(x->x.getProjektNr==nr); 
+
+                        for (int i = 0; i < selectedProject.getAktiviteter().lenght(); i++) {
+                            System.out.println(i+": "+selectedProject.getAktiviteter().indexOf(i));
+                        } 
+                        int aktNr = Integer.parseInt(scanner.nextLine().trim());
+
+                        Aktivitet selectedAktivitet = selectedProject.getAktiviteter().get(aktNr);
+                        System.out.println(selectedAktivitet.getName()+" hvor lang tid har du brugt?");
+                        double hours = Double.parseDouble(scanner.nextLine().trim());
+
+                        addHours(selectedProject, selectedAktivitet, hours);
+
+                    default:
+                    System.out.println("dumbass");
+                }
 
             }
             else {
@@ -103,13 +148,28 @@ public class Main {
        scanner.close();
     }
 
-    public static Double TryParseDouble(String someText) {
+    public static Double TryParseDouble(String someText) { 
         try {
             return Double.parseDouble(someText);
         } catch (NumberFormatException ex) {
             return null;
         }
     }
+
+    private static void addHours (Projekt projekt, Aktivitet aktivitet, Double timer){
+        //TODO implementation ?????????????????????????????????????????????????????????????????????????????????????????
+
+    }
+
+    private static boolean erProjektLeder(Medarbejder user){ //placeholder====================================
+
+        return true;
+    }
+
+    private static void nytProjekt(String navn, Uge startUge, Uge slutuge, List<Aktivitet> aktiviteter, List<Medarbejder> medarbejder){
+        //placeholder========================================================
+    }
+
 
     public static List<Projekt> getProjekter() {
         return systemProjekter;
