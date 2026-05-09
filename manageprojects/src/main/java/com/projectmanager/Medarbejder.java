@@ -2,6 +2,7 @@ package com.projectmanager;
 
 public class Medarbejder {
     private String initialer;
+    private Boolean erledig = true;
 
     public Medarbejder(String ini) {
         this.initialer = ini;
@@ -16,7 +17,11 @@ public class Medarbejder {
     }
 
     public void blivProjektLeder() {
+        
+    }
 
+    public boolean erLedig(){
+        return erledig;
     }
 
     public String getName() {
