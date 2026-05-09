@@ -17,7 +17,7 @@ public class EmployeesFunctions implements IEmployee {
     @Override
     public void addActivityToProject(String activityname, Project project, Employee projectLeader){
         // TODO Auto-generated method stub
-        ProjectsFunctions.addActivity(activityname, project, projectLeader);
+        project.addActivity(activityname, project, projectLeader);
         throw new UnsupportedOperationException("Unimplemented method 'addActivityToProject'");
     }
 

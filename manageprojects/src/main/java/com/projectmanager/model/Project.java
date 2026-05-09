@@ -42,6 +42,31 @@ public class Project{
     }
 
     
+    public boolean isEmployeeInProject(String employee) {
+        if (employeeRegtime.containsKey(){
+            
+        }
+        }
+    }
+
+    public boolean isActivityInProject(String activityName) {
+        for (Activity l : Project.activityMap.keySet()) {
+            if (l.getActivityName().equalsIgnoreCase(activityName)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isEmployeeInActivity(String employeeName) {
+        for (Employee e : Project.employeeRegtime.keySet()){
+            if (e.getEmployeeName().equalsIgnoreCase(employeeName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
 
 
 }

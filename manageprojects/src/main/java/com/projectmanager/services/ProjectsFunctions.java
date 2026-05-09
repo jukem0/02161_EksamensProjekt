@@ -16,7 +16,7 @@ public class ProjectsFunctions implements IProject {
 
     @Override
     public void addActivity(String activityname, Project project, Employee projectLeader) {
-        if (isActivityInProject(activityname) == true){
+        if (project.isActivityInProject(activityname) == true){
             throw new IllegalArgumentException("Aktiviteten findes allerede i projektet");
         }
         else {
@@ -41,35 +41,5 @@ public class ProjectsFunctions implements IProject {
 
     
 
-    @Override
-    public boolean isEmployeeInProject(String employee) {
-        for (Employee i : Project.employeeRegtime.keySet()){
-            if (i.getEmployeeName().equals(employee)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    @Override
-    public boolean isActivityInProject(String activityName) {
-        for (Activity l : Project.activityMap.keySet()) {
-            if (l.getActivityName().equalsIgnoreCase(activityName)){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public boolean isEmployeeInActivity(String employeeName) {
-        for (Employee e : Project.employeeRegtime.keySet()){
-            if (e.getEmployeeName().equalsIgnoreCase(employeeName)) {
-                return true;
-            }
-        }
-        return false;
-    }
     
 }
