@@ -1,9 +1,9 @@
 package com.projectmanager.model;
 
-public class Medarbejder {
+public class Employee {
     private String initialer;
 
-    public Medarbejder(String ini) {
+    public Employee(String ini) {
         this.initialer = ini;
     }
 }

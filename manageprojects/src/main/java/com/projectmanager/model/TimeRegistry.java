@@ -2,7 +2,7 @@ package com.projectmanager.model;
 
 import java.util.Date;
 
-public class Tidsregistrering {
+public class TimeRegistry {
     private Date dato;
     private double timer;
 }

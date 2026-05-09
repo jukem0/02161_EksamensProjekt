@@ -2,7 +2,7 @@ package com.projectmanager.services;
 
 import com.projectmanager.model.Medarbejder;
 
-public class MedarbejderFunctions implements  IMedarbejder {
+public class EmployeesFunctions implements IEmployee {
 
     @Override
     public Medarbejder getMedarbejder() {
