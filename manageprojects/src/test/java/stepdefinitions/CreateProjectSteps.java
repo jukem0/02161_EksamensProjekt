@@ -1,13 +1,27 @@
 package stepdefinitions;
 
+import static org.junit.Assert.assertEquals;
+
+import com.projectmanager.services.InitializeEmployees;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class CreateProjectSteps {
+    private String foundEmployee = "";
+    InitializeEmployees.initializeEmployees();
+
     @Given("en {string} findes i systemet")
-    public void employee_findes_i_systemet() {
-        
+    public void employee_findes_i_systemet(String empName) {
+        for (int i = 0; i < InitializeEmployees.employees.size(); i++) {
+            if (empName.equals(InitializeEmployees.employees.get(i).getEmployeeName())) {
+                foundEmployee = empName;
+            } else {
+                foundEmployee = null;
+            }
+        }
+        assertEquals(empName, foundEmployee);
     }
 
     @When("en medarbejder opretter et projekt med navn {string}")

@@ -2,12 +2,10 @@ package stepdefinitions;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 import com.projectmanager.app.*;
 import com.projectmanager.model.*;
 
 import io.cucumber.java.en.*;
-
 
 public class AktivitetTidStepDef {
     int aktivitetIndex = -1;
@@ -24,8 +22,7 @@ public class AktivitetTidStepDef {
             }
         }
         if (tempProjekt != null) {
-            assertTrue(tempProjekt.getProjektLeder().getName().equalsIgnoreCase(medarbejder),
-                    "Medarbejder " + medarbejder + " er ikke projektleder i projektet " + projekt);
+            assertTrue(tempProjekt.getProjektLeder().getName().equalsIgnoreCase(medarbejder), "Medarbejder " + medarbejder + " er ikke projektleder i projektet " + projekt);
         }
     }
 
@@ -39,7 +36,7 @@ public class AktivitetTidStepDef {
 
     @Then("tildel {string} datoerne, {Week} og {Week} som værende afgrænsede tid for færdiggørelse af projekt")
     public void tildelDatoer() {
-        
+
     }
 
     @Then("handling feljer med fejlbesked: 'Startdato kan ikke være efter slutdato'")

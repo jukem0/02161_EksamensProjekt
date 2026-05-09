@@ -9,8 +9,10 @@ import com.projectmanager.model.Employee;
 
 public class InitializeEmployees {
     public static ArrayList<Employee> employees = new ArrayList<>();
-    File employeeInitialsFile = new File("../HR/Employees.txt");
-    public void initializeEmployees() {
+    private static File employeeInitialsFile = new File(
+            "manageprojects/src/main/java/com/projectmanager/HR/Employees.txt");
+
+    public static void initializeEmployees() {
         try (Scanner fileReader = new Scanner(employeeInitialsFile)) {
             while (fileReader.hasNextLine()) {
                 String employeeInitials = fileReader.nextLine();
