@@ -1,4 +1,4 @@
-package com.projectmanager;
+package com.projectmanager.model;
 
 public class Medarbejder {
     private String initialer;

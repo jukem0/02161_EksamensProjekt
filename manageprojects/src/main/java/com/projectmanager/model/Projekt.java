@@ -1,4 +1,4 @@
-package com.projectmanager;
+package com.projectmanager.model;
 
 import java.time.Year;
 import java.util.ArrayList;

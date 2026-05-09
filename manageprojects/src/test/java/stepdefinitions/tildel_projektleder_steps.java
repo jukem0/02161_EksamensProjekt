@@ -6,6 +6,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import com.projectmanager.*;
+import com.projectmanager.app.Main;
 
 public class tildel_projektleder_steps {
     Main.ProjektlederStat status;

@@ -3,9 +3,9 @@ package stepdefinitions;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.projectmanager.Main;
-import com.projectmanager.Projekt;
-import com.projectmanager.Uge;
+import com.projectmanager.app.Main;
+import com.projectmanager.model.Projekt;
+import com.projectmanager.model.Uge;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

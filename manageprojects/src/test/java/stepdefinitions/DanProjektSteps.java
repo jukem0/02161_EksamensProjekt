@@ -14,6 +14,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import com.projectmanager.*;
+import com.projectmanager.model.Projekt;
 
 public class DanProjektSteps {
 

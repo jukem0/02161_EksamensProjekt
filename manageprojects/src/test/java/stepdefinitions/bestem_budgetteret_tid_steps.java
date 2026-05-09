@@ -2,9 +2,9 @@ package stepdefinitions;
 
 import static org.junit.Assert.assertEquals;
 
-import com.projectmanager.Aktivitet;
-import com.projectmanager.Main;
-import com.projectmanager.Projekt;
+import com.projectmanager.app.Main;
+import com.projectmanager.model.Aktivitet;
+import com.projectmanager.model.Projekt;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;

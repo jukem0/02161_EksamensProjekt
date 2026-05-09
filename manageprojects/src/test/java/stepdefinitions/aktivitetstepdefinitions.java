@@ -1,6 +1,10 @@
 package stepdefinitions;
 
 import com.projectmanager.*;
+import com.projectmanager.app.Main;
+import com.projectmanager.model.Aktivitet;
+import com.projectmanager.model.Medarbejder;
+import com.projectmanager.model.Projekt;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;

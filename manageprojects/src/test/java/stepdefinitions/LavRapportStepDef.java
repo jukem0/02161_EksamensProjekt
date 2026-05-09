@@ -3,12 +3,12 @@ package stepdefinitions;
 import java.util.Iterator;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.projectmanager.model.Main;
+import com.projectmanager.model.Medarbejder;
+import com.projectmanager.model.Projekt;
+import com.projectmanager.model.ProjektRapport;
 
-import com.projectmanager.Main;
-import com.projectmanager.Medarbejder;
-import com.projectmanager.Projekt;
-import com.projectmanager.ProjektRapport;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

@@ -1,4 +1,4 @@
-package com.projectmanager;
+package com.projectmanager.model;
 
 public class Uge {
     int ugenummer, aar;

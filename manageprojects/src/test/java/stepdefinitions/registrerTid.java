@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 import java.util.Map;
 
-import com.projectmanager.Aktivitet;
-import com.projectmanager.Main;
-import com.projectmanager.Medarbejder;
-import com.projectmanager.Projekt;
+import com.projectmanager.app.Main;
+import com.projectmanager.model.Aktivitet;
+import com.projectmanager.model.Medarbejder;
+import com.projectmanager.model.Projekt;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
