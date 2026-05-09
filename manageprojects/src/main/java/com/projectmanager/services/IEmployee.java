@@ -8,7 +8,7 @@ public interface IEmployee {
 
     public Employee getEmployee();
     public void addProject(Project project);
-    public void addActivityToProject(Activity activity, Project project);
+    public void addActivityToProject(String activityname, Project project, Employee projectLeader);
     public void addEmployeeToActivity(Employee employee, Activity activity, Project project);
     public void assignProjectleader(Project project, Employee employee);
     public void registerTime(double hours);

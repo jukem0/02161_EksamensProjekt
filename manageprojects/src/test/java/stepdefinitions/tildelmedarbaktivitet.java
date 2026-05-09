@@ -11,7 +11,7 @@ public class tildelmedarbaktivitet {
 
     @When("en medarbedjer udpeger en anden medarbejder {string} til at lave aktivitet med navn {string}")
     public void addEmployeeToActivity(Activity activityName) {
-
+        
     }
 
     @Then("tildel medarbejder {string} til aktivitet med navn {string} skal lykkes")

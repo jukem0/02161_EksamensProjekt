@@ -39,6 +39,8 @@ public class ProjectsFunctions implements IProject {
         throw new UnsupportedOperationException("Unimplemented method 'allProjects'");
     }
 
+    
+
     @Override
     public boolean isEmployeeInProject(String employee) {
         for (Employee i : Project.employeeRegtime.keySet()){
@@ -58,11 +60,6 @@ public class ProjectsFunctions implements IProject {
             }
         }
         return false;
-    }
-    
-    @Override
-    public void addEmployeeToActivity(Activity activityName) {
-        
     }
 
     @Override

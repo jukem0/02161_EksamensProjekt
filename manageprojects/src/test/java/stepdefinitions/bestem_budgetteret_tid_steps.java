@@ -22,7 +22,6 @@ public class bestem_budgetteret_tid_steps {
             Employee employee = FuckCucumber.getEmployee(empplyee);
             assert (employee.leaderOf().getName().equalsIgnoreCase("project"));
         }
-
     }
 
     @When("medarbejderen {string} bestemmer budgetteret tid {float} for en aktivitet {string} i projektet {string}, som positivt decimaltal eller heltal")

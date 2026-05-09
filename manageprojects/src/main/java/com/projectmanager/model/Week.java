@@ -39,7 +39,7 @@ public class Week {
         }
 
         final Week other = (Week) obj;
-        return (getWeekNum() == other.getWeekNum() && getYear() == other.Year());
+        return (getWeekNum() == other.getWeekNum() && getYear() == other.getYear());
     }
 
     @Override
