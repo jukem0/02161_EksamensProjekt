@@ -28,7 +28,7 @@ public class FuckCucumber {
         return null;
     }
 
-    public static Activity getActivity(String emp, Project project){
+    public static Activity getActivity(Employee emp, Project project){
         return null;
     }
 

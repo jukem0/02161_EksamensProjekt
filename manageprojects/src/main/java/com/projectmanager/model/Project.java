@@ -28,6 +28,10 @@ public class Project{
         this.projectLeader = projectLeader;
     }
 
+    public Employee getProjectLeader(){
+        return projectLeader;
+    }
+
     
     public String getActivityName(String activityName) {
         return String.valueOf(activityMap.keySet().stream().filter(a -> a.getActivityName().equalsIgnoreCase(activityName)).findFirst().orElse(null));
