@@ -3,7 +3,8 @@ package com.projectmanager.model;
 public class Employee {
     private String initialer;
     private Project leaderOf = null;
-    //Maybe add in ID?
+    // Maybe add in ID?
+    // I'm p sure no ID is needed since their initials should be unique
 
     public Employee(String ini) {
         this.initialer = ini;
@@ -40,7 +41,5 @@ public class Employee {
     public int hashCode() {
         return java.util.Objects.hash(initialer, leaderOf);
     }
-    
-    
 
 }
