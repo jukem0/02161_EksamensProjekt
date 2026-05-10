@@ -1,8 +1,12 @@
 package stepdefinitions;
 
-import java.util.*;
+import java.time.Year;
 
-import com.projectmanager.model.*;
+import static org.junit.Assert.assertTrue;
+
+import com.projectmanager.model.Employee;
+import com.projectmanager.model.Project;
+import com.projectmanager.model.Week;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -17,9 +21,10 @@ public class LavRapportStepDef {
 
         Employee curEmployee = new Employee(employee);
         Project curProject = new Project(projektNr);
-        curProject.getActivityMap().values();
+        curProject.addActivity("Gunner rundt om jorden", 100, new Week(23, Year.now().getValue()), 5);
+        // curProject.getActivityMap().put(curProject.getActivityName(projektNr), null);
 
-        assertTrue(curProject.isEmployeeInProject(curEmployee));
+        assertTrue(curProject.isEmployeeInProject(curProject.getEmployeeMap(), curEmployee));
     }
 
     @When("en {string} genererer rapport")

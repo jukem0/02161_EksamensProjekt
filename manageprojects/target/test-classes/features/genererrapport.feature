@@ -15,6 +15,14 @@ Feature: Generer rapport
         When en <medarbejder> genererer rapport
         Then generer rapport ved navn <projektnavn>-rapport-uge-<int>
 
+        Examples:
+            | medarbejder | projektnavn | int |
+            | "huba"      | "Website"   | 1   |
+            | "wilo"      | "Skylager"  | 2   |
+            | "anda"      | "Kalender"  | 3   |
+            | "wilo"      | "Q1rapport" | 4   |
+            | "huba"      | "test"      | 5   |
+
     Scenario Outline: Genererer uge-rapport uden aktiviteter
         Given en <medarbejder> findes i systemet
         And en <medarbejder> er tilmeldt projekt <projektnavn>
@@ -25,11 +33,7 @@ Feature: Generer rapport
         Examples:
             | medarbejder | projektnavn | int |
             | "huba"      | "Website"   | 1   |
-
-        Examples:
-            | projektnavn |
-            | "Website"   |
-            | "Skylager"  |
-            | "Kalender"  |
-            | "Q1rapport" |
-            | "test"      |
+            | "wilo"      | "Skylager"  | 2   |
+            | "anda"      | "Kalender"  | 3   |
+            | "wilo"      | "Q1rapport" | 4   |
+            | "huba"      | "test"      | 5   |
