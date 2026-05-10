@@ -47,7 +47,7 @@ public class Project {
 
     public String getEmployeeName(String projectNr) {
         return String.valueOf(employeeRegtime.keySet().stream()
-                .filter(a -> a.getEmployeeName().equalsIgnoreCase(employee)).findFirst().orElse(null));
+                .filter(a -> a.getEmployeeName().equalsIgnoreCase(projectNr)).findFirst().orElse(null));
     }
 
     public String getYear() {
