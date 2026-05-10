@@ -1,5 +1,6 @@
 package com.projectmanager.commands;
 
+import com.projectmanager.model.Employee;
 import com.projectmanager.services.Parser;
 import com.projectmanager.services.RuntimeContext;
 
@@ -22,7 +23,7 @@ public class CreateProjectCommand extends Command{
         if (args.length == 1) {
             
         } else if (args.length == 2) {
-            
+            Employee employee = parser.stringToEmployee(args[1]);
         } 
     }
 

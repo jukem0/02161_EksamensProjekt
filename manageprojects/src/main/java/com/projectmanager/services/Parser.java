@@ -34,9 +34,10 @@ public class Parser {
         
     }
 
-    public Week stringsToWeek(String[] args){
+    public static Week stringsToWeek(String[] args){
         int weekNum = Integer.parseInt(args[0]);
         int year = Integer.parseInt(args[1]);
         return new Week(weekNum, year);
     }
+
 }

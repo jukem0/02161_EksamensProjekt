@@ -1,5 +1,8 @@
 package stepdefinitions;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+
 import com.projectmanager.model.Employee;
 import com.projectmanager.model.Project;
 import com.projectmanager.model.Week;
@@ -10,7 +13,7 @@ import io.cucumber.java.en.When;
 
 public class AktivitetTidStepDef {
     int aktivitetIndex = -1;
-    boolean startFørSlut;
+    boolean startBeforeEnd;
     Week startDato, slutDato;
     Project tempProject;
     String errorMessage = "Startdato kan ikke være efter slutdato";
@@ -23,12 +26,14 @@ public class AktivitetTidStepDef {
         Employee.assignProjectleader(this.tempProject.getProjectNr(), this.employee);
     }
 
-    @When("{string} bestemmer start- og sluttid til {string} som datoer {Week}, {Week}")
-    public void bestem_start_og_slut(String medarbejder, String aktivitet, Week startDate, Week slutDate) {
+    @When("{string} bestemmer slutdato, {week}, og {int} for aktiviteten {string}")
+    public void bestem_start_og_slut(String employee, String activity, String endDate) {
+
     }
 
-    @When("{Week} er senere end {Week}")
-    public void start_efter_slut(Week start, Week slut) {
+    @When("{int} er negativ")
+    public void start_efter_slut(int ugemængde) {
+        assertFalse(ugemængde>0);
     }
 
     @Then("tildel {string} datoerne, {Week} og {Week} som værende afgrænsede tidfor færdiggørelse af projekt")
@@ -36,8 +41,8 @@ public class AktivitetTidStepDef {
 
     }
 
-    @Then("handling feljer med fejlbesked: 'Startdato kan ikke være efterslutdato'")
-    public void fejler() {
-
+    @Then("handling feljer med fejlbesked: {string}")
+    public void fejler(String string) {
+        assertEquals(errorMessage, string);
     }
 }
