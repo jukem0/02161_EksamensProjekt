@@ -101,7 +101,7 @@ public class Project {
         assert(projectLeader != null) : "Ingen medarbejder valgt"; 
             if (isActivityInProject(new Activity(activityName)) == true){
                 throw new IllegalArgumentException("Aktiviteten findes allerede i projektet");
-            } else if (projectLeader.leaderOf().equals(this.getProjectNr()|| projectLeader.isAvailable())){ //isAvailable() er ikke implementeret endnu{
+            } else if (projectLeader.leaderOf().equals(this.getProjectNr()) || projectLeader.isAvailable()){ //isAvailable() er ikke implementeret endnu{
                 activityMap.put(new Activity(activityName), null);
             } else{
                 throw new IllegalArgumentException("Der er ingen projektleder eller ledig medarbejder til at oprette aktiviteten");
