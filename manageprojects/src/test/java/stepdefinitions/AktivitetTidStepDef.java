@@ -16,11 +16,7 @@ public class AktivitetTidStepDef {
 
     @Given("at {string} er projektleder under projekt {string}")
     public void er_projektleder(String medarbejder, String projekt) {
-        for (Project p : .getProjekter()) {
-            if (p.getProjektNavn().equalsIgnoreCase(projekt)) {
-                tempProjekt = p;
-            }
-        }
+        tempProjekt = FuckCucumber.getProject(projekt);
         if (tempProjekt != null) {
             assertTrue(tempProjekt.getProjektLeder().getName().equalsIgnoreCase(medarbejder), "Medarbejder " + medarbejder + " er ikke projektleder i projektet " + projekt);
         }

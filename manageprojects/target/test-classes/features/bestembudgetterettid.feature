@@ -27,8 +27,4 @@ Feature: Budgetteret tid for aktivitet
 
         Examples:
             | medarbejder | projektnavn | aktivitetsnavn | budgetterettid |
-<<<<<<< HEAD
-            | "huba"      | "Website"   | "Design"       | 10.5           |
-=======
             | "huba"      | "Website"   | "Design"       | -10.5         |
->>>>>>> fc1dad1c499799d0576b151f32ae2406f1bcc7e8

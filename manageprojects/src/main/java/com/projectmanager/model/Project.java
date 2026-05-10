@@ -35,14 +35,11 @@ public class Project {
         return getYear() + String.format("%03d", serialNumber);
     }
 
-<<<<<<< HEAD
-=======
     public Employee getProjectLeader(){
         return projectLeader;
     }
 
     
->>>>>>> fc1dad1c499799d0576b151f32ae2406f1bcc7e8
     public String getActivityName(String activityName) {
         return String.valueOf(activityMap.keySet().stream()
                 .filter(a -> a.getActivityName().equalsIgnoreCase(activityName)).findFirst().orElse(null));
