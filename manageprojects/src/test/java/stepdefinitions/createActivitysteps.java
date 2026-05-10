@@ -1,13 +1,19 @@
 package stepdefinitions;
 
-import com.projectmanager.model.*;
-//import com.projectmanager.stepdefinitions.CreateProjectSteps;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.projectmanager.model.Activity;
+import com.projectmanager.model.Employee;
+import com.projectmanager.model.Project;
 
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.en.*;
-import org.junit.Assert.*;
-import java.util.List;
-import java.util.ArrayList;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+
 
 public class createActivitysteps {
     public static List<Employee> employees = new ArrayList<>();
@@ -20,8 +26,12 @@ public class createActivitysteps {
             Employee newEmp = new Employee(name);
             employees.add(newEmp);
         }
+        List<String> projectnames = table.asList(String.class);
+        for (String name : projectnames) {
+            Project newProject = new Project(name);
+            projects.add(newProject);
+        }
         // vise hvem er i systemet.
-    
     }
 
     // @Given("en {string} findes i systemet")
