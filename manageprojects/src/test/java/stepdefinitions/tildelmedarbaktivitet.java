@@ -50,7 +50,7 @@ public class tildelmedarbaktivitet {
     @And("medarbejder {string} allerede er tildelt aktivitet med navn {string}")
     public void medarbejderAlleredeTildelt(String aktivitetsnavn) {
 
-
+        
         
     }
 
