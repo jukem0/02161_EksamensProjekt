@@ -12,14 +12,16 @@ Feature: Tider for aktiviteter
     Scenario Outline: Projektleder bestemmer tider for aktiviteter
         Given en <medarbejder> findes i systemet
         And at <medarbejder> er projektleder under <projektnavn>
-        When <medarbejder> bestemmer slutdato, <slutdato>, og <antaluger> for aktiviteten <aktivitet>
-        And opretter <aktivitetsnavn> og tildeler slutdatoen, <slutdato>, og <antaluger> uger som værende afgrænsede tid for færdiggørelse af projekt
-        Then kan <aktivitetsnavn> findes under projektet med startdatoen, <startdato>, og <antaluger> uger
+        And <aktivitet> er findes i systemet
+        When <medarbejder> bestemmer slutdato, (<uge>, <aar>), og <antaluger> for aktiviteten <aktivitet>
+        And tildeler <aktivitetsnavn> slutdatoen, <slutdato>, og <antaluger> uger som værende afgrænsede tid for færdiggørelse af projekt
+        Then kan <aktivitetsnavn> findes under projektet med slutdatoen, <slutdato>, og <antaluger> uger
 
     Scenario Outline: Projektleder angiver en negativ ugemængde
         Given at <medarbejder> er projektleder under <projektnavn>
-        When <medarbejder> bestemmer slutdato, <slutdato>, og <antaluger> for aktiviteten <aktivitet>
-        And <ugemængde> er negativ
+        And <aktivitet> er findes i systemet
+        When <medarbejder> bestemmer slutdato, (<uge>, <aar>), og <antaluger> for aktiviteten <aktivitet>
+        But <ugemængde> er negativ
         Then handling fejler med fejlbesked: <fejlbesked>
 
         Examples:

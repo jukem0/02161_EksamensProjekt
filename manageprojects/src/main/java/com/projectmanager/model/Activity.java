@@ -84,6 +84,11 @@ public class Activity implements IActivity {
     }
 
     @Override
+    public int getWeekAmount(){
+        return weekAmount;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;

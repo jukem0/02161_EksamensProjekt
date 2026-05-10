@@ -6,32 +6,17 @@ import com.projectmanager.model.Project;
 import com.projectmanager.model.Week;
 
 public class Parser {
-    RuntimeContext context;
 
-    public Parser(RuntimeContext context) {
-        this.context = context;
+    public static Employee stringToEmployee(String string){
+        return new Employee(string);
     }
 
-    public Employee stringToEmployee(String string){
-        for (Employee e : context.getEmployees()) {
-            if (e.getEmployeeName().equalsIgnoreCase(string)) {
-                return e;
-            }
-        }
-        return null;
+    public static Project stringToProject(String string){
+        return new Project(string);
     }
 
-    public Project stringToProject(String string){
-        for (Project p : context.getProjects()) {
-            if (p.getName().equalsIgnoreCase(string)) {
-                return p;
-            }
-        }
-        return null;
-    }
-
-    public Activity stringToActivity(String string){
-        
+    public static Activity stringToActivity(String string){
+        return new Activity(string);
     }
 
     public static Week stringsToWeek(String[] args){
