@@ -39,8 +39,7 @@ public class EmployeesFunctions implements IEmployeeFunctions {
     }
     @Override 
     public void registerTime(double hours){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'registerTime'");
+        //employeeRegTime
     }
 
     @Override

@@ -1,11 +1,10 @@
 package com.projectmanager.model;
 
 public class Employee {
-    private String initialer;
-    private String leaderOf;
+    private String initialer, leaderOf;
     // Maybe add in ID?
     // I'm p sure no ID is needed since their initials should be unique
-    //800 people are called Sara Jensen
+    // 700 people are called Sara(h) Jensen
 
     public Employee(String ini) {
         this.initialer = ini;
@@ -32,7 +31,8 @@ public class Employee {
     }
 
     public boolean isAvailable(){
-        return (leaderOf == null);
+        //return (leaderOf == null);
+        return true; // antager lige at det altid er rigtigt.
     }
 
     @Override

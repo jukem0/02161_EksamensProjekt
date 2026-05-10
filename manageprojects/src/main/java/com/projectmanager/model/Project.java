@@ -139,9 +139,13 @@ public class Project {
     public String generateReport() {
         String str = "";
         str.concat(projectName + "\n\n\n");
+        for (Activity a : activities) {
+            str.concat(a.getActivityName() + ":\n");
+            str.concat(" -  Time Budget: " + a.getBudgetTime() + "  -  Time Spend: " + a.getTimeSpend() + "  -  Time Remaining: " + a.getRemainingTime() + "\n");
+        }
         
 
-        return null;
+        return str;
     }
 
 }

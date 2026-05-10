@@ -25,12 +25,14 @@ public class tildelmedarbaktivitet {
 
         Project Pro = new Project(pro);
        
-        Activity act1 = new Activity(testActivity,20.1, new Week(5, 2026),1);
-        Activity act2 = new Activity(testActivity,20.1, new Week(4, 2026),1);
+        Activity act = new Activity(testActivity,20.1, new Week(5, 2026),1);
+        //Activity act2 = new Activity(testActivity,20.1, new Week(4, 2026),1);
+        Employee emp = new Employee("proo");
+        emp.becomeLeaderOf("2601");
 
-        Pro.addActivity(act2, new Employee("nejo"));
+        Pro.addActivity(testActivity, emp);
         
-        assertFalse(Pro.isActivityInProject(act1));
+        assertFalse(Pro.isActivityInProject(act));
     }
 
     // @And findes i CreateProjectSteps

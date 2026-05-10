@@ -5,23 +5,32 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class Activity implements IActivity{
+public class Activity implements IActivity {
     private String actName;
-    private double budgetTime;
+    private double budgetTime, timeSpend, timeRemaining;
     private Week startWeek, endWeek;
     private int weekAmount;
     private ArrayList<Employee> employees = new ArrayList<Employee>();
 
     public Activity(String activityName) {
         this.actName = activityName;
+        this.timeSpend = 0;
     }
 
     public Activity(String activityName, double budgetTime, Week endWeek, int weekAmount) {
         this.actName = activityName;
         this.budgetTime = budgetTime;
+        this.timeRemaining = budgetTime;
         this.endWeek = endWeek;
         this.weekAmount = weekAmount;
         this.startWeek = new Week(endWeek.getWeekNum() - weekAmount, endWeek.getYear());
+        this.timeSpend = 0;
+
+        if (budgetTime < 0) {
+            budgetTime = 0;
+        } else {
+            budgetTime = (Math.round(budgetTime*2 + 0.5))/2;
+        }
     }
     
     @Override
@@ -94,6 +103,11 @@ public class Activity implements IActivity{
         return java.util.Objects.hash(actName, employees, startWeek, endWeek);
     }
 
-    
+    public double getTimeSpend() {
+        return timeSpend;
+    }
 
+    public double getRemainingTime() {
+        return timeRemaining;
+    }
 }

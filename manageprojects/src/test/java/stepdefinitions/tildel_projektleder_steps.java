@@ -20,14 +20,17 @@ public class tildel_projektleder_steps {
     @When("en anden medarbejder {string} udpeger medarbejder {string} som projektLeder for projekt {string}")
     public void udpegning(String udpeger, String medarbejder, String projekt) {
         
+        Employee uemp = new Employee(udpeger);
         Employee emp = new Employee(medarbejder);
         Project pro = new Project(projekt);
 
-        pro.
+        uemp.assignProjectleader(projekt,emp);
     }
 
     @Then("tildel medarbejder {string} som projektleder for projekt {string} skal lykkes")
     public void tildelProjektlederSuccess(String medarbejder, String projekt) {
+
+        
        
     }
 

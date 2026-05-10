@@ -35,7 +35,8 @@ public class createActivitysteps {
     public void følgendeProjekterFindesISystemet(DataTable table) { // bruger en given liste af projekter for at
         List<String> projectNames = table.asList(String.class);
         for (String name : projectNames) {
-            Project newProject = new Project(name);
+            String cleanName = name.replace("\"", ""); // fjerner eventuelle anførselstegn fra navnet
+            Project newProject = new Project(cleanName);
             projectlist.add(newProject);
         }
         // vise hvilke projekter er i systemet.
@@ -45,11 +46,16 @@ public class createActivitysteps {
     // public void getmedarbejder(String medarbejder) {
     // }
  
-    @Given("et projekt {string} har en projektleder eller en ledig medarbejder")
+    @And("et projekt {string} har en projektleder eller en ledig medarbejder")
     public void getProjektAnsvarlig(String projectname) {
         project = projectlist.stream().filter(p -> p.getName().equalsIgnoreCase(projectname)).findFirst().orElse(null);
-        employee = employeelist.stream().filter(e -> e.isAvailable() || e.leaderOf().equals(project.getProjectNr())).findFirst().orElse(null);
-
+        assert(project != null): "Projektet blev ikke fundet i systemet";        
+        //employee = employeelist.stream().filter(e -> e.isAvailable() || e.leaderOf().equals(project.getProjectNr())).findFirst().orElse(null);
+        this.employee = employeelist.stream()
+        .filter(Employee::isAvailable) // Tjekker kun om de er ledige
+        .findFirst().orElse(null);
+        assert(employee != null): "Der skal være en projektleder eller en ledig medarbejder for at kunne oprette en aktivitet";
+        
         assert(project.getName().equalsIgnoreCase(projectname) && project.getProjectLeader() != null && 
         (employee.leaderOf().equals(project.getProjectNr()) || employee.isAvailable())): 
         "Der skal være en projektleder eller en ledig medarbejder for at kunne oprette en aktivitet";
