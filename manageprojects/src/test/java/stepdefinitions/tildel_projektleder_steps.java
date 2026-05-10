@@ -1,5 +1,8 @@
 package stepdefinitions;
 
+import com.projectmanager.model.Employee;
+import com.projectmanager.model.Project;
+
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -8,12 +11,19 @@ public class tildel_projektleder_steps {
 
     @And("en medarbejder {string} er ledig")
     public void ledigcheck(String medarbejder) {
+
+        Employee emp = new Employee(medarbejder);
+        assert(emp.isAvailable());
         
     }
 
     @When("en anden medarbejder {string} udpeger medarbejder {string} som projektLeder for projekt {string}")
     public void udpegning(String udpeger, String medarbejder, String projekt) {
         
+        Employee emp = new Employee(medarbejder);
+        Project pro = new Project(projekt);
+
+        pro.
     }
 
     @Then("tildel medarbejder {string} som projektleder for projekt {string} skal lykkes")
