@@ -14,7 +14,11 @@ import io.cucumber.java.en.When;
 public class CreateProjectSteps {
     private ArrayList<Project> projects;
     public static ArrayList<Employee> employees = new ArrayList<>();
+<<<<<<< HEAD
+
+=======
     
+>>>>>>> ce078dd633beb60f3b885ce3e1516ae2e50bcaef
     @Given("en {string} findes i systemet")
     public void medarbejder_findes_i_systemet(String empName) {
         for (int i = 0; i < employees.size(); i++) {
