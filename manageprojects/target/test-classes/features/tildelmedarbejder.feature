@@ -15,6 +15,10 @@ Feature: tildele medarbejder til en aktivitet
     When en medarbejder <medarbejder> udpeger en anden medarbejder <medarbjeder> til at lave aktivitet med <aktivitetsnavn>
     Then tildel medarbejder <medarbejder> til aktivitet med navn <aktivitetsnavn>
 
+    Examples:
+      | medarbjeder | aktivitetsnavn |
+      | "ambe"      | "Design"       |
+
   Scenario Outline: medarbejder er allerede tildelt aktivitet
     Given der findes en aktivitet med navn <aktivitetsnavn>
     When en anden medarbjeder udpeger <medarbjeder> til at lave aktivitet med <aktivitetsnavn>

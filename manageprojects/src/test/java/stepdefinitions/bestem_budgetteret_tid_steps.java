@@ -37,9 +37,7 @@ public class bestem_budgetteret_tid_steps {
     @When("medarbejderen bestemmer {double} til {string} som positivt decimaltal eller heltal, som slutter i {int} og varer {int}")
     public void medarbejderen_bestemmer_budgetteret_tid_til_som_positivt_decimaltal_eller_heltal_som_slutter_i_og_varer(
             double budgetTime, String aktivitetsNavn, Integer endWeek, Integer amountWeek) {
-        projects.get(selectedIndex).addActivity(
-                new Activity(aktivitetsNavn, budgetTime, new Week(endWeek, Year.now().getValue()), amountWeek),
-                employees.get(selectedIndex));
+        projects.get(selectedIndex).addActivity(new Activity(aktivitetsNavn, budgetTime, new Week(endWeek, Year.now().getValue()), amountWeek),employees.get(selectedIndex));
         assertEquals(selectedIndex, selectedIndex);
     }
 
