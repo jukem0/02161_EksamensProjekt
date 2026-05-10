@@ -90,6 +90,7 @@ public class createActivitysteps {
 
     @Given("der findes et projekt med navn {string}")
     public void getprojekt(String projectname) {
+        project = projectlist.stream().filter(p -> p.getName().equalsIgnoreCase(projectname)).findFirst().orElse(null);
         assert(project.getName().equalsIgnoreCase(projectname)): "Projektet blev ikke fundet";
 
     }

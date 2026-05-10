@@ -9,6 +9,8 @@ import io.cucumber.java.en.When;
 
 public class tildel_projektleder_steps {
 
+    String error="";
+
     @And("en medarbejder {string} er ledig")
     public void ledigcheck(String medarbejder) {
 
@@ -45,12 +47,16 @@ public class tildel_projektleder_steps {
         Employee emp = new Employee(medarbejder);
     
         uemp.assignProjectleader(projekt,emp);
-        uemp.assignProjectleader("pro2",emp);    
+        try {
+            uemp.assignProjectleader("pro2",emp); 
+        } catch (Exception e) {
+            error = e.getMessage();
+        }
+           
     }
 
     @Then("handling fejler med fejlbesked: 'Medarbejder er allerede projektleder for et andet projekt'")
     public void tildelPLFejler(String medarbejder) {
-
-        
+        assert (error.equalsIgnoreCase("Medarbejder er allerede projektleder for et andet projekt"));
     }
 }

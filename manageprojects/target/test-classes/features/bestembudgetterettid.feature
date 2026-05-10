@@ -13,7 +13,7 @@ Feature: Budgetteret tid for aktivitet
         Given en <medarbejder> findes i systemet
         And at <medarbejder> er projektleder under <projektnavn>
         When medarbejderen bestemmer <budgetteret tid> til <aktivitetsnavn> som positivt decimaltal eller heltal, som slutter i <slut uge> og varer <uge antal>
-        Then tildel <aktivitetsnavn> mængde af budgetteret tid rundet op til nærmeste halve
+        Then tildel aktiviteten mængde af budgetteret tid rundet op til nærmeste halve <budgetteret tid>
 
         Examples:
             | medarbejder | projektnavn | aktivitetsnavn | budgetteret tid | slut uge | uge antal |

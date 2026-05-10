@@ -26,8 +26,8 @@ public class bestem_budgetteret_tid_steps {
             Project newProject = new Project(project, employees.get(i));
             projects.add(newProject);
             if (projects.get(i).getProjectLeader().getEmployeeName().equals(employee)) {
-                assertEquals(employee, projects.get(i).getProjectLeader());
                 selectedIndex = i;
+                assertEquals(employee, projects.get(i).getProjectLeader());
             }
         }
     }
@@ -36,20 +36,17 @@ public class bestem_budgetteret_tid_steps {
     public void medarbejderen_bestemmer_budgetteret_tid_til_som_positivt_decimaltal_eller_heltal_som_slutter_i_og_varer(
             double budgetTime, String aktivitetsNavn, Integer endWeek, Integer amountWeek) {
         projects.get(selectedIndex).addActivity(aktivitetsNavn, budgetTime, new Week(endWeek, Year.now().getValue()), amountWeek);
-        employees.get(selectedIndex);
     }
 
     @When("medarbejderen bestemmer {double} til {string} som negativt decimaltal eller heltal, som slutter i {int} og varer {int}")
     public void medarbejderen_bestemmer_budgetteret_tid_til_som_negativt_decimaltal_eller_heltal_som_slutter_i_og_varer(
             double budgetTime, String aktivitetsNavn, Integer endWeek, Integer amountWeek) {
         projects.get(selectedIndex).addActivity(aktivitetsNavn, budgetTime, new Week(endWeek, Year.now().getValue()), amountWeek);
-        employees.get(selectedIndex);
     }
 
-    @Then("tildel {string} mængde af budgetteret tid rundet op til nærmeste halve")
-    public void tildel_mængde_af_budgetteret_tid_rundet_op_til_naermeste_halve(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @Then("tildel aktiviteten mængde af budgetteret tid rundet op til nærmeste halve {double}")
+    public void tildel_mængde_af_budgetteret_tid_rundet_op_til_naermeste_halve(double time) {
+        assertEquals(time, projects.get(selectedIndex).getActivity(0).getBudgetTime());
     }
 
 }

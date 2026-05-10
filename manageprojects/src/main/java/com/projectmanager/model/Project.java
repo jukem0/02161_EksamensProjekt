@@ -146,7 +146,7 @@ public class Project {
         }
     }
 
-    public String generateReport() {
+    public String generateReport(int weeknr) {
         String str = "";
         str.concat(projectName + "\n\n\n");
         for (Activity a : activities) {
@@ -156,6 +156,10 @@ public class Project {
         
 
         return str;
+    }
+
+    public Activity getActivity(int index) {
+        return activities.get(index);
     }
 
 }

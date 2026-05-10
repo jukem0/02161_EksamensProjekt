@@ -2,8 +2,6 @@ package stepdefinitions;
 
 import java.time.Year;
 
-import static org.junit.Assert.assertEquals;
-
 import com.projectmanager.model.Employee;
 import com.projectmanager.model.Project;
 import com.projectmanager.model.Week;
@@ -30,7 +28,7 @@ public class LavRapportStepDef {
 
     @When("en {string} genererer rapport")
     public void forsøg_generer_rapport(String medarbejder) {
-        curProject.generateReport();
+        curProject.generateReport(1);
     }
 
     @When("der ikke er nogle aktivitet i projektet")
@@ -39,6 +37,10 @@ public class LavRapportStepDef {
 
     @Then("generer rapport ved navn {string}-rapport-uge-{int}")
     public void generer_rapport(String projektNavn, int ugenummer) {
+
+        Project pro = new Project(projektNavn);
+        pro.generateReport(ugenummer);
+        
     }
 
     @Then("handling fejler med fejlbesked: 'ingen aktiviteter i projekt'")

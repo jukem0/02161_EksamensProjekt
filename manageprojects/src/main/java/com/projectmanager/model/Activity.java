@@ -106,4 +106,12 @@ public class Activity implements IActivity {
     public double getRemainingTime() {
         return timeRemaining;
     }
+
+    public void registerTime(double hours) {
+        timeSpend += hours;
+    }
+
+    public double getTimeSpend() {
+        return timeSpend;
+    }
 }
