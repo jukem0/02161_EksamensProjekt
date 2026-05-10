@@ -18,7 +18,9 @@ import io.cucumber.java.en.When;
 public class createActivitysteps {
     public static List<Employee> employees = new ArrayList<>();
     public static List<Project> projects = new ArrayList<>();
-
+    private  Project project;
+    private  Employee employee; 
+    
     @Given("følgende medarbejdere findes i systemet:")
     public void følgendeMedarbejdereFindesISystemet(DataTable table) { // bruger en given liste af medarbejdere for at
         List<String> employeeNames = table.asList(String.class);
@@ -33,23 +35,25 @@ public class createActivitysteps {
         }
         // vise hvem er i systemet.
     }
-
+    
     // @Given("en {string} findes i systemet")
     // public void getmedarbejder(String medarbejder) {
 
     // }
-
+ 
     @And("et projekt {string} har en projektleder eller en ledig medarbejder")
-    public void getProjektAnsvarlig(String projectname, Project project, Employee Employee, String employeename) {
+    public void getProjektAnsvarlig(String projectname) {
+        project = projects.stream().filter(p -> p.getName().equalsIgnoreCase(projectname)).findFirst().orElse(null);
+        employee = employees.stream().filter(e -> e.isAvailable() || e.leaderOf().equals(project.getProjectNr())).findFirst().orElse(null);
         assert(project.getName().equalsIgnoreCase(projectname) && project.getProjectLeader() != null && 
-        (Employee.leaderOf().equals(project.getProjectNr()) || Employee.isAvailable())): 
+        (employee.leaderOf().equals(project.getProjectNr()) || employee.isAvailable())): 
         "Der skal være en projektleder eller en ledig medarbejder for at kunne oprette en aktivitet";
     }
 
     @When("projektleder eller ledig medarbejder opretter aktivitet med navn {string}")
-    public void opretAktivitet(String aktivitetsnavn, Project project, Employee Employee) {
+    public void opretAktivitet(String aktivitetsnavn){
         try {
-            project.addActivity(aktivitetsnavn, Employee);
+            project.addActivity(aktivitetsnavn, employee);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -57,19 +61,19 @@ public class createActivitysteps {
     }
 
     @Then("opret aktivitet med navn {string}")
-    public void opretAktivitetSuccess(String aktivitetsnavn, Project project, Employee Employee) {
+    public void opretAktivitetSuccess(String aktivitetsnavn) {
         assert(project.isActivityInProject(new Activity(aktivitetsnavn))): "Aktiviteten blev ikke oprettet, der er noget galt";
 
     }
 
     @Given("der findes et projekt med navn {string}")
-    public void getprojekt(String projectname, Project project) {
+    public void getprojekt(String projectname) {
         assert(project.getName().equalsIgnoreCase(projectname)): "Projektet blev ikke fundet";
 
     }
 
     @And("der findes allerede en aktivitet med navn {string}")
-    public void geteksisterendeAktivitet(String aktivitetsnavn, Project project) {
+    public void geteksisterendeAktivitet(String aktivitetsnavn) {
         assert(project.isActivityInProject(new Activity(aktivitetsnavn))): "Aktiviteten blev ikke fundet";
     }
 

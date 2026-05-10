@@ -1,5 +1,5 @@
 #lavet af Guillermo
-Feature: Opret projekt
+Feature: A Opret projekt
 	Description: en medarbejder opretter et nyt projekt.
 
 	Background:
@@ -16,6 +16,6 @@ Feature: Opret projekt
 
 		Examples:
 			| projektnavn | medarbejder | projektNummer |
-			| "Website"   | "huba"      | "26001"       |
-			| "Skylager"  | "wilo"      | "26002"       |
-			| "Kalender"  | "anda"      | "26003"       |
+			| "Website"   | "huba"      | "26005"       |
+			| "Skylager"  | "wilo"      | "26010"       |
+			| "Kalender"  | "anda"      | "26015"       |

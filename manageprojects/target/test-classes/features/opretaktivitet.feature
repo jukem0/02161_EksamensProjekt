@@ -25,7 +25,7 @@ Feature: oprettelse af aktivitet
 
     Scenario Outline: aktivitet findes allerede
         Given der findes et projekt med navn <projektnavn>
-        And projektet har en projektleder, eller en ledig medarbejder
+        And et projekt <projektnanv> har en projektleder eller en ledig medarbejder
         When projektleder eller ledig medarbejder opretter aktivitet med navn <aktivitetsnavn>
         And der findes allerede en aktivitet med navn <aktivitetsnavn>
         Then handling fejler med fejlbesked: "denne aktivitet findes allerede"

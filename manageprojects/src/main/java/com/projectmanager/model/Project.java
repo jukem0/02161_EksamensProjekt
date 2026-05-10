@@ -97,12 +97,12 @@ public class Project {
         activityMap.put(newAct, null);
     }
 
-    public void addActivity(String activityName, Employee projectLeader) {
+    public void addActivity(Activity activity, Employee projectLeader) {
         assert(projectLeader != null) : "Ingen medarbejder valgt"; 
-            if (isActivityInProject(new Activity(activityName))){
+            if (isActivityInProject(activity) == true){
                 throw new IllegalArgumentException("Aktiviteten findes allerede i projektet");
-            } else if (projectLeader.leaderOf().equals(this.getProjectNr()) || projectLeader.isAvailable()){
-                activityMap.put(new Activity(activityName), null);
+            } else if (projectLeader.leaderOf().equals(this.getProjectNr()|| projectLeader.isAvailable())) { //isAvailable() er ikke implementeret endnu{
+                activityMap.put(activity, null);
             } else{
                 throw new IllegalArgumentException("Der er ingen projektleder eller ledig medarbejder til at oprette aktiviteten");
             }

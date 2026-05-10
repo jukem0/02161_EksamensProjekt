@@ -14,17 +14,15 @@ import io.cucumber.java.en.When;
 public class CreateProjectSteps {
     private ArrayList<Project> projects;
     public static ArrayList<Employee> employees = new ArrayList<>();
-<<<<<<< HEAD
+    int selectedIndex = 0;
 
-=======
-    
->>>>>>> ce078dd633beb60f3b885ce3e1516ae2e50bcaef
     @Given("en {string} findes i systemet")
     public void medarbejder_findes_i_systemet(String empName) {
         for (int i = 0; i < employees.size(); i++) {
             if (!empName.equals(employees.get(i).getEmployeeName())) {
                 Employee newEmp = new Employee(empName);
                 employees.add(newEmp);
+                selectedIndex = i;
             }
             assertEquals(empName, employees.get(i).getEmployeeName());
         }
@@ -39,6 +37,6 @@ public class CreateProjectSteps {
 
     @Then("er projektet oprettet og har projekt-nummer {string}")
     public void er_projektet_oprettet_og_har_projekt_nummer(String projectNummer) {
-        assertEquals(projectNummer, projects.get(0).getProjectNr());
+        assertEquals(projectNummer, projects.get(selectedIndex).getProjectNr());
     }
 }

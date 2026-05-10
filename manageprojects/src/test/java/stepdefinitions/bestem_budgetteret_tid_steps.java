@@ -25,10 +25,10 @@ public class bestem_budgetteret_tid_steps {
     @Given("at {string} er projektleder under {string}")
     public void denne_medarbejder_er_projektleder_for_et_projekt(String employee, String project) {
         for (int i = 0; i < projects.size(); i++) {
-            Project newProject = new Project(project, employees.get(0));
+            Project newProject = new Project(project, employees.get(i));
             projects.add(newProject);
             if (projects.get(i).getProjectLeader().getEmployeeName().equals(employee)) {
-                assertEquals(employee, projects.get(0).getProjectLeader());
+                assertEquals(employee, projects.get(i).getProjectLeader());
                 selectedIndex = i;
             }
         }
@@ -37,13 +37,11 @@ public class bestem_budgetteret_tid_steps {
     @When("medarbejderen bestemmer {double} til {string} som positivt decimaltal eller heltal, som slutter i {int} og varer {int}")
     public void medarbejderen_bestemmer_budgetteret_tid_til_som_positivt_decimaltal_eller_heltal_som_slutter_i_og_varer(
             double budgetTime, String aktivitetsNavn, Integer endWeek, Integer amountWeek) {
-        projects.get(selectedIndex).addActivity(
-                new Activity(aktivitetsNavn, budgetTime, new Week(endWeek, Year.now().getValue()), amountWeek),
-                employees.get(selectedIndex));
+        projects.get(selectedIndex).addActivity(new Activity(aktivitetsNavn, budgetTime, new Week(endWeek, Year.now().getValue()), amountWeek),employees.get(selectedIndex));
         assertEquals(selectedIndex, selectedIndex);
     }
 
-    @When("medarbejderen bestemmer {double} til {string} som positivt decimaltal eller heltal, som slutter i {int} og varer {int}")
+    @When("medarbejderen bestemmer {double} til {string} som decimaltal eller heltal, som slutter i {int} og varer {int}")
     public void medarbejderen_bestemmer_budgetteret_tid_til_som_negativt_decimaltal_eller_heltal_som_slutter_i_og_varer(
             double budgetTime, String aktivitetsNavn, Integer endWeek, Integer amountWeek) {
         projects.get(selectedIndex).addActivity(

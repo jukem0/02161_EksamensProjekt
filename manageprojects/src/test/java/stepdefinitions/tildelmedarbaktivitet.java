@@ -9,6 +9,9 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+
+//lavet af sara og fabrizio
+
 public class tildelmedarbaktivitet {
 
     private Activity testActivity;
@@ -41,17 +44,19 @@ public class tildelmedarbaktivitet {
     public void addEmployeeToActivity(String emp, String activityName) {
         
         Activity act = new Activity(activityName);
-        Employee Emp = new Employee("empo");
+        Employee Emp = new Employee(emp);
         act.addEmployeeToActivity(Emp);
 
         assert (act.getEmployees().contains(Emp));
     }
 
     @And("medarbejder {string} allerede er tildelt aktivitet med navn {string}")
-    public void medarbejderAlleredeTildelt(String aktivitetsnavn) {
+    public void medarbejderAlleredeTildelt(String emp, String activityName) {
 
-        
-        
+        Activity act = new Activity(activityName);
+        Employee Emp = new Employee(emp);
+        act.addEmployeeToActivity(Emp);
+        act.addEmployeeToActivity(Emp);
     }
 
     @Then("handling fejler med fejlbesked: 'Medarbejder er allerede tildelt til denne aktivitet'")
