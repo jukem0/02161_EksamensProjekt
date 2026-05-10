@@ -1,15 +1,35 @@
 package stepdefinitions;
 
+import java.util.*;
+
+import com.projectmanager.model.*;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+//lavet af sara
 
 public class LavRapportStepDef {
 
     @Given("en {string} er tilmeldt projekt {string}")
     public void er_tilmeldt_projekt(String medarbejder, String projektNavn) {
-    }
+
+        Project project = (new Project(projektNavn));
+
+        Activity act = new Activity("smt");
+        Employee emp = new Employee("sanj");
+        emp.assignProjectleader(projektNavn, emp);
+
+        project.addActivity(act, emp);
+
+        project.getActivityMap().get(act);
+        
+
+        
+        assert (project.isEmployeeInProject()==true);
+        
+       }
 
     @When("en {string} genererer rapport")
     public void forsøg_generer_rapport(String medarbejder) {

@@ -11,15 +11,16 @@ Feature: tildele medarbejder til en aktivitet
 
   Scenario Outline: tildel medarbejder en aktivitet
     Given der findes en aktivitet med navn <aktivitetsnavn>
-    When en medarbejder udpeger en medarbejder <medarbjeder> til at lave aktivitet med <aktivitetsnavn>
+    And en <medarbejder> findes i systemet
+    When en medarbejder <medarbejder> udpeger en anden medarbejder <medarbjeder> til at lave aktivitet med <aktivitetsnavn>
     Then tildel medarbejder <medarbejder> til aktivitet med navn <aktivitetsnavn>
 
   Scenario Outline: medarbejder er allerede tildelt aktivitet
     Given der findes en aktivitet med navn <aktivitetsnavn>
-    When en medarbjeder udpeger en medarbejder <medarbjeder> til at lave aktivitet med <aktivitetsnavn>
+    When en anden medarbjeder udpeger <medarbjeder> til at lave aktivitet med <aktivitetsnavn>
     And <medarbejder> er allerede tildelt aktivitet
     Then handling fejler med fejlbesked: "Medarbejder er allerede tildelt denne aktivitet"
 
     Examples:
-      | medarbejder | medarbjeder | aktivitetsnavn |
-      | "huba"      | "ambe"      | "Design"       |
+      | medarbjeder | aktivitetsnavn |
+      | "ambe"      | "Design"       |
