@@ -7,7 +7,7 @@ public class Employee {
     // 700 people are called Sara(h) Jensen
 
     public Employee(String ini) {
-        this.initialer = ini;
+        this.initialer = ini.replace("\"", ""); 
         leaderOf = null;
     }
 

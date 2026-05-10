@@ -25,7 +25,7 @@ Feature: Budgetteret tid for aktivitet
     Scenario Outline: Projektleder angiver ikke budgetteret tid i decimaltal eller heltal
         Given at <medarbejder> er projektleder under <projektnavn>
         When medarbejderen bestemmer <budgetteret tid> til <aktivitetsnavn> som negativt decimaltal eller heltal, som slutter i <slut uge> og varer <uge antal>
-        Then handling fejler med fejlbesked: "Budgetteret tid er ikke angivet som decimal- eller heltal"
+        Then handling fejler med fejlbesked: "Time budget cannot be negative."
 
         Examples:
             | medarbejder | projektnavn | aktivitetsnavn | budgetteret tid | slut uge | uge antal |

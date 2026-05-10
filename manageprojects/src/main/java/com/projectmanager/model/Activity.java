@@ -29,7 +29,7 @@ public class Activity implements IActivity {
         if (budgetTime < 0) {
             budgetTime = 0;
         } else {
-            budgetTime = (Math.round(budgetTime*2 + 0.5))/2;
+            budgetTime = Math.round(budgetTime*2)/2.0;
         }
     }
     
@@ -101,10 +101,6 @@ public class Activity implements IActivity {
     @Override
     public int hashCode() {
         return java.util.Objects.hash(actName, employees, startWeek, endWeek);
-    }
-
-    public double getTimeSpend() {
-        return timeSpend;
     }
 
     public double getRemainingTime() {

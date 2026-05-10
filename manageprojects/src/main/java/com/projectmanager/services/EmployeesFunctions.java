@@ -38,7 +38,7 @@ public class EmployeesFunctions implements IEmployeeFunctions {
         throw new UnsupportedOperationException("Unimplemented method 'assignProjectleader'");
     }
     @Override 
-    public void registerTime(double hours){
+    public void registerTime(Employee emp,Project pro, Activity act, Double hours){
         //employeeRegTime
     }
 

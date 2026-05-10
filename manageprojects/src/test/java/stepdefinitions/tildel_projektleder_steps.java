@@ -14,7 +14,6 @@ public class tildel_projektleder_steps {
 
         Employee emp = new Employee(medarbejder);
         assert(emp.isAvailable());
-        
     }
 
     @When("en anden medarbejder {string} udpeger medarbejder {string} som projektLeder for projekt {string}")
@@ -30,17 +29,28 @@ public class tildel_projektleder_steps {
     @Then("tildel medarbejder {string} som projektleder for projekt {string} skal lykkes")
     public void tildelProjektlederSuccess(String medarbejder, String projekt) {
 
-        
-       
+        Employee uemp = new Employee("plac");
+        Employee emp = new Employee(medarbejder);
+        Project pro = new Project(projekt);
+
+        uemp.assignProjectleader(projekt,emp);
+
+        assert (pro.getProjectLeader().getEmployeeName().equalsIgnoreCase(medarbejder));
     }
 
     @And("medarbejder {string} allerede er projektleder for et andet projekt med navn {string}")
     public void medarbejderErProjektlederForAndetProjekt(String medarbejder, String projekt) {
-        
+
+        Employee uemp = new Employee("plac");
+        Employee emp = new Employee(medarbejder);
+    
+        uemp.assignProjectleader(projekt,emp);
+        uemp.assignProjectleader("pro2",emp);    
     }
 
     @Then("handling fejler med fejlbesked: 'Medarbejder er allerede projektleder for et andet projekt'")
     public void tildelPLFejler(String medarbejder) {
-    }
 
+        
+    }
 }
