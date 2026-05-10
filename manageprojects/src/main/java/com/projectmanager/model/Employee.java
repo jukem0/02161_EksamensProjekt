@@ -2,10 +2,13 @@ package com.projectmanager.model;
 
 public class Employee {
     private String initialer;
-    private String leaderOf = null; //Should be projectNr when assigned
-
+    private String leaderOf;
+    // Maybe add in ID?
+    // I'm p sure no ID is needed since their initials should be unique
+    //800 people are called Sara Jensen
     public Employee(String ini) {
         this.initialer = ini;
+        leaderOf = null;
     }
 
     public void assignProjectleader(String projectNr, Employee employee) {
@@ -22,9 +25,13 @@ public class Employee {
     public void addProject(String projectname, Project project){
         projectlist.add(project = new Project(projectname));
     }
-    
+
     public String getEmployeeName() {
         return initialer;
+    }
+
+    public boolean isAvailable(){
+        return (leaderOf == null);
     }
 
     @Override
