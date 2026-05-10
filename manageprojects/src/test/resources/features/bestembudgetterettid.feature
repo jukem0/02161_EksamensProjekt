@@ -32,11 +32,3 @@ Feature: Budgetteret tid for aktivitet
             | "huba"      | "Website"   | "Design"       | -100            | 23       | 3         |
             | "wilo"      | "Rapport"   | "Indhold"      | -50.3           | 51       | 5         |
             | "anda"      | "Q1"        | "Presentation" | -50.2           | 12       | 2         |
-|
-            | "anda"      | "Q1"        | "Presentation" | -50.2           | 12       | 2         |
-=======
-            | medarbejder | projektnavn | aktivitetsnavn | budgetterettid | slut uge | uge antal |
-            | "huba"      | "Website"   | "Design"       | 100            | 23       | 3         |
-            | "wilo"      | "Rapport"   | "Indhold"      | 50.3           | 51       | 5         |
-            | "anda"      | "Q1"        | "Presentation" | 50.2           | 12       | 2         |
->>>>>>> ce078dd633beb60f3b885ce3e1516ae2e50bcaef

@@ -25,10 +25,10 @@ public class bestem_budgetteret_tid_steps {
     @Given("at {string} er projektleder under {string}")
     public void denne_medarbejder_er_projektleder_for_et_projekt(String employee, String project) {
         for (int i = 0; i < projects.size(); i++) {
-            Project newProject = new Project(project, employees.get(0));
+            Project newProject = new Project(project, employees.get(i));
             projects.add(newProject);
             if (projects.get(i).getProjectLeader().getEmployeeName().equals(employee)) {
-                assertEquals(employee, projects.get(0).getProjectLeader());
+                assertEquals(employee, projects.get(i).getProjectLeader());
                 selectedIndex = i;
             }
         }
