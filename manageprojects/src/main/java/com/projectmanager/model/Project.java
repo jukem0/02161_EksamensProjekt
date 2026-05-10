@@ -137,18 +137,18 @@ public class Project {
     }
 
     public double getTimeSpend() {
-
         double timeSpend = 0.0;
-        for (Map<Aktivitet, Double> employeeRegtime : this.activityMap.values()) {
+        for (Map<Employee, Double> employeeRegtime : this.activityMap.values()) {
             for (double value : employeeRegtime.values()) {
-                timeSpend = value;
+                timeSpend += value;
             }
         }
+        return timeSpend;
     }
 
     public String generateReport(int weeknr) {
         String str = "";
-        str.concat(projectName + "\n\n\n");
+        str.concat(projectName + ", " + weeknr + "\n\n\n");
         for (Activity a : activities) {
             str.concat(a.getActivityName() + ":\n");
             str.concat(" -  Time Budget: " + a.getBudgetTime() + "  -  Time Spend: " + a.getTimeSpend() + "  -  Time Remaining: " + a.getRemainingTime() + "\n");
