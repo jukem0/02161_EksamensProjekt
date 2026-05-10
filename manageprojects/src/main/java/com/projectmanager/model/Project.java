@@ -38,7 +38,6 @@ public class Project {
     public Employee getProjectLeader(){
         return projectLeader;
     }
-
     
     public String getActivityName(String activityName) {
         return String.valueOf(activityMap.keySet().stream()

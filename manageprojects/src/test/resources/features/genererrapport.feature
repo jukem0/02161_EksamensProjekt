@@ -20,8 +20,18 @@ Feature: Generer rapport
             | "huba"      | "Website"   | 1   |
             | "wilo"      | "Skylager"  | 2   |
             | "anda"      | "Kalender"  | 3   |
+<<<<<<< HEAD
+<<<<<<< HEAD
             | "argh"      | "Q1rapport" | 4   |
             | "sara"      | "test"      | 5   |
+=======
+            | "wilo"      | "Q1rapport" | 4   |
+            | "huba"      | "test"      | 5   |
+>>>>>>> 1775d8218ace5b6ec09c4dbe5a7d1f6ed65d6962
+=======
+            | "argh"      | "Q1rapport" | 4   |
+            | "sara"      | "test"      | 5   |
+>>>>>>> 2b64fbbf8d825cbfeac4fb57bc5c9dcb6ffe829b
 
     Scenario Outline: Genererer uge-rapport uden aktiviteter
         Given en <medarbejder> findes i systemet
@@ -35,5 +45,15 @@ Feature: Generer rapport
             | "huba"      | "Website"   | 1   |
             | "wilo"      | "Skylager"  | 2   |
             | "anda"      | "Kalender"  | 3   |
+<<<<<<< HEAD
+<<<<<<< HEAD
             | "argh"      | "Q1rapport" | 4   |
             | "sara"      | "test"      | 5   |
+=======
+            | "wilo"      | "Q1rapport" | 4   |
+            | "huba"      | "test"      | 5   |
+>>>>>>> 1775d8218ace5b6ec09c4dbe5a7d1f6ed65d6962
+=======
+            | "argh"      | "Q1rapport" | 4   |
+            | "sara"      | "test"      | 5   |
+>>>>>>> 2b64fbbf8d825cbfeac4fb57bc5c9dcb6ffe829b
