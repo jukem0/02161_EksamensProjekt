@@ -2,7 +2,6 @@ package com.projectmanager.services;
 
 import com.projectmanager.model.Activity;
 import com.projectmanager.model.Employee;
-import com.projectmanager.model.IEmployee;
 import com.projectmanager.model.Project;
 import java.util.*;
 

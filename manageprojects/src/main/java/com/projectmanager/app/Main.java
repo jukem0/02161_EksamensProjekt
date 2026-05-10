@@ -23,7 +23,6 @@ public class Main {
             new HelpCommand()
         ));
 
-
         Scanner commandInput = new Scanner(System.in);
 
 
