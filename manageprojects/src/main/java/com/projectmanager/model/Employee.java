@@ -6,6 +6,7 @@ public class Employee {
     // Maybe add in ID?
     // I'm p sure no ID is needed since their initials should be unique
     //800 people are called Sara Jensen
+
     public Employee(String ini) {
         this.initialer = ini;
         leaderOf = null;
