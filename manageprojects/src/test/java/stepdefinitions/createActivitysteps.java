@@ -28,7 +28,6 @@ public class createActivitysteps {
             Employee newEmp = new Employee(name);
             employeelist.add(newEmp);
         }
-        
         // vise hvem er i systemet.
     }
 
@@ -39,28 +38,27 @@ public class createActivitysteps {
             Project newProject = new Project(name);
             projectlist.add(newProject);
         }
-        
         // vise hvilke projekter er i systemet.
     }
     
     // @Given("en {string} findes i systemet")
     // public void getmedarbejder(String medarbejder) {
-
     // }
  
-    @And("et projekt {string} har en projektleder eller en ledig medarbejder")
+    @Given("et projekt {string} har en projektleder eller en ledig medarbejder")
     public void getProjektAnsvarlig(String projectname) {
         project = projectlist.stream().filter(p -> p.getName().equalsIgnoreCase(projectname)).findFirst().orElse(null);
         employee = employeelist.stream().filter(e -> e.isAvailable() || e.leaderOf().equals(project.getProjectNr())).findFirst().orElse(null);
+
         assert(project.getName().equalsIgnoreCase(projectname) && project.getProjectLeader() != null && 
         (employee.leaderOf().equals(project.getProjectNr()) || employee.isAvailable())): 
         "Der skal være en projektleder eller en ledig medarbejder for at kunne oprette en aktivitet";
     }
 
     @When("projektleder eller ledig medarbejder opretter aktivitet med navn {string}")
-    public void opretAktivitet(String aktivitetsnavn){
+    public void opretAktivitet(String actname){
         try {
-            project.addActivity(aktivitetsnavn, employee);
+            project.addActivity(actname, employee);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -68,8 +66,8 @@ public class createActivitysteps {
     }
 
     @Then("opret aktivitet med navn {string}")
-    public void opretAktivitetSuccess(String aktivitetsnavn) {
-        assert(project.isActivityInProject(new Activity(aktivitetsnavn))): "Aktiviteten blev ikke oprettet, der er noget galt";
+    public void opretAktivitetSuccess(String actname) {
+        assert(project.isActivityInProject(new Activity(actname))): "Aktiviteten blev ikke oprettet, der er noget galt";
 
     }
 
@@ -80,8 +78,8 @@ public class createActivitysteps {
     }
 
     @And("der findes allerede en aktivitet med navn {string}")
-    public void geteksisterendeAktivitet(String aktivitetsnavn) {
-        assert(project.isActivityInProject(new Activity(aktivitetsnavn))): "Aktiviteten blev ikke fundet";
+    public void geteksisterendeAktivitet(String actname) {
+        assert(project.isActivityInProject(new Activity(actname))): "Aktiviteten blev ikke fundet";
     }
 
     @Then("handling fejler med fejlbesked: {string}")

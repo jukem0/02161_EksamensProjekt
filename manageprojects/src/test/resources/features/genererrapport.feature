@@ -6,30 +6,54 @@ Feature: Generer rapport
         Given følgende medarbejdere findes i systemet:
             | medarbejder |
             | "huba"      |
-            | "ambe"      |
-            | "joni"      |
+            | "wilo"      |
+            | "anda"      |
 
     Scenario Outline: Generer rapport
         Given en <medarbejder> findes i systemet
         And en <medarbejder> er tilmeldt projekt <projektnavn>
-        When en <medarbejder> genererer rapport
+        When en medarbejder genererer rapport
         Then generer rapport ved navn <projektnavn>-rapport-uge-<int>
+
+        Examples:
+            | medarbejder | projektnavn | int |
+            | "huba"      | "Website"   | 1   |
+            | "wilo"      | "Skylager"  | 2   |
+            | "anda"      | "Kalender"  | 3   |
+<<<<<<< HEAD
+<<<<<<< HEAD
+            | "argh"      | "Q1rapport" | 4   |
+            | "sara"      | "test"      | 5   |
+=======
+            | "wilo"      | "Q1rapport" | 4   |
+            | "huba"      | "test"      | 5   |
+>>>>>>> 1775d8218ace5b6ec09c4dbe5a7d1f6ed65d6962
+=======
+            | "argh"      | "Q1rapport" | 4   |
+            | "sara"      | "test"      | 5   |
+>>>>>>> 2b64fbbf8d825cbfeac4fb57bc5c9dcb6ffe829b
 
     Scenario Outline: Genererer uge-rapport uden aktiviteter
         Given en <medarbejder> findes i systemet
         And en <medarbejder> er tilmeldt projekt <projektnavn>
         When der ikke er nogle aktiviteter i projektet
-        And en <medarbejder> genererer rapport
+        And en medarbejder genererer rapport
         Then handling fejler med fejlbesked: "ingen aktiviteter i projekt"
 
         Examples:
             | medarbejder | projektnavn | int |
             | "huba"      | "Website"   | 1   |
-
-        Examples:
-            | projektnavn |
-            | "Website"   |
-            | "Skylager"  |
-            | "Kalender"  |
-            | "Q1rapport" |
-            | "test"      |
+            | "wilo"      | "Skylager"  | 2   |
+            | "anda"      | "Kalender"  | 3   |
+<<<<<<< HEAD
+<<<<<<< HEAD
+            | "argh"      | "Q1rapport" | 4   |
+            | "sara"      | "test"      | 5   |
+=======
+            | "wilo"      | "Q1rapport" | 4   |
+            | "huba"      | "test"      | 5   |
+>>>>>>> 1775d8218ace5b6ec09c4dbe5a7d1f6ed65d6962
+=======
+            | "argh"      | "Q1rapport" | 4   |
+            | "sara"      | "test"      | 5   |
+>>>>>>> 2b64fbbf8d825cbfeac4fb57bc5c9dcb6ffe829b

@@ -1,8 +1,16 @@
 package stepdefinitions;
 
-import java.util.*;
+import java.time.Year;
 
-import com.projectmanager.model.*;
+<<<<<<< HEAD
+import static org.junit.Assert.assertEquals;
+=======
+import static org.junit.Assert.assertTrue;
+>>>>>>> 1775d8218ace5b6ec09c4dbe5a7d1f6ed65d6962
+
+import com.projectmanager.model.Employee;
+import com.projectmanager.model.Project;
+import com.projectmanager.model.Week;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -13,13 +21,24 @@ import io.cucumber.java.en.When;
 public class LavRapportStepDef {
 
     @Given("en {string} er tilmeldt projekt {string}")
+<<<<<<< HEAD
+    public void er_tilmeldt_projekt(String employee, String projektNavn) {
+
+        Employee curEmployee = new Employee(employee);
+        Project curProject = new Project(projektNavn);
+        curProject.addActivity("Gunner rundt om jorden", 100, new Week(23, Year.now().getValue()), 5);
+        curProject.getEmployeeMap().put(curEmployee, null);
+        // curProject.getActivityMap().put(curProject.getActivityName(projektNr), null);
+=======
     public void er_tilmeldt_projekt(String employee, String projektNr) {
 
         Employee curEmployee = new Employee(employee);
         Project curProject = new Project(projektNr);
-        curProject.getActivityMap().values();
+        curProject.addActivity("Gunner rundt om jorden", 100, new Week(23, Year.now().getValue()), 5);
+        // curProject.getActivityMap().put(curProject.getActivityName(projektNr), null);
 
-        assertTrue(curProject.isEmployeeInProject(curEmployee));
+        assertTrue(curProject.isEmployeeInProject(curProject.getEmployeeMap(), curEmployee));
+>>>>>>> 1775d8218ace5b6ec09c4dbe5a7d1f6ed65d6962
     }
 
     @When("en {string} genererer rapport")
