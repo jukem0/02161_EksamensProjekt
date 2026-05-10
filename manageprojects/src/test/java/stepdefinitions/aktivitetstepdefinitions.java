@@ -12,10 +12,10 @@ public class aktivitetstepdefinitions {
         // vise hvem er i systemet.
     }
 
-    @Given("en {string} findes i systemet")
-    public void getmedarbejder(String medarbejder) {
+    // @Given("en {string} findes i systemet")
+    // public void getmedarbejder(String medarbejder) {
 
-    }
+    // }
 
     @And("et projekt {string} har en projektleder eller en ledig medarbejder")
     public void getProjektAnsvarlig(String projekt) {
