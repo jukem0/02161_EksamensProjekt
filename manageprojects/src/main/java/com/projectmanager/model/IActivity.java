@@ -12,5 +12,6 @@ public interface IActivity {
     public void setBudgetTime(double newBudgetTime);
     public void setEndWeek(Week newEndWeek);
     public void setWeekAmount(int newWeekAmount);
+    public int getWeekAmount();
     public void addEmployeeToActivity(Employee employee);
 }

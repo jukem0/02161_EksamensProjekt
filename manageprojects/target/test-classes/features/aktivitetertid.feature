@@ -12,14 +12,17 @@ Feature: Tider for aktiviteter
     Scenario Outline: Projektleder bestemmer tider for aktiviteter
         Given en <medarbejder> findes i systemet
         And at <medarbejder> er projektleder under <projektnavn>
-        When <medarbejder> bestemmer start- og sluttid til <aktivitetsnavn> som datoer <startdato>, <slutdato>
-        Then tildel <aktivitetsnavn> datoerne, <startdato> og <slutdato> som værende afgrænsede tid for færdiggørelse af projekt
+        And <aktivitet> er findes i systemet
+        When <medarbejder> bestemmer slutdato, (<uge>, <aar>), og <antaluger> for aktiviteten <aktivitet>
+        And tildeler <aktivitetsnavn> slutdatoen, <slutdato>, og <antaluger> uger som værende afgrænsede tid for færdiggørelse af projekt
+        Then kan <aktivitetsnavn> findes under projektet med slutdatoen, <slutdato>, og <antaluger> uger
 
-    Scenario Outline: Projektleder angiver startdato senere end slutdato
+    Scenario Outline: Projektleder angiver en negativ ugemængde
         Given at <medarbejder> er projektleder under <projektnavn>
-        When <medarbejder> bestemmer start- og sluttid til <aktivitetsnavn> som datoer <startdato>, <slutdato>
-        And <startdato> er senere end <slutdato>
-        Then handling fejler med fejlbesked: "Startdato kan ikke være efter slutdato"
+        And <aktivitet> er findes i systemet
+        When <medarbejder> bestemmer slutdato, (<uge>, <aar>), og <antaluger> for aktiviteten <aktivitet>
+        But <ugemængde> er negativ
+        Then handling fejler med fejlbesked: <fejlbesked>
 
         Examples:
             | medarbejder | projektnavn | aktivitetsnavn | startdato    | slutdato     |

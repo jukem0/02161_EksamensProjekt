@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import com.projectmanager.commands.Command;
 import com.projectmanager.commands.CommandRegistry;
+import com.projectmanager.commands.CreateProjectCommand;
 import com.projectmanager.commands.HelpCommand;
 import com.projectmanager.services.DataAccessLayer;
 import com.projectmanager.services.RuntimeContext;
@@ -22,7 +23,8 @@ public class Main {
         RuntimeContext curContext = new RuntimeContext();
         curContext.setEmployees(data.parseToEmployee("manageprojects\\src\\main\\java\\com\\projectmanager\\HR\\Employees.txt"));
         CommandRegistry registry = new CommandRegistry(List.of(
-            new HelpCommand()
+            new HelpCommand(),
+            new CreateProjectCommand(curContext)
         ));
 
         Scanner commandInput = new Scanner(System.in);

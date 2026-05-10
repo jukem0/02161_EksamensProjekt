@@ -1,13 +1,14 @@
 package com.projectmanager.commands;
 
+import com.projectmanager.model.Employee;
 import com.projectmanager.services.Parser;
 import com.projectmanager.services.RuntimeContext;
 
 public class CreateProjectCommand extends Command{
-    private Parser parser;
+    private RuntimeContext context;
 
     public CreateProjectCommand(RuntimeContext context){
-        parser = new Parser(context);
+        this.context = context;
     }
 
     @Override
@@ -22,7 +23,10 @@ public class CreateProjectCommand extends Command{
         if (args.length == 1) {
             
         } else if (args.length == 2) {
-            
+            Employee employee = Parser.stringToEmployee(args[1]);
+            if (context.getEmployees().contains(employee)) {
+                //Call the method
+            }
         } 
     }
 

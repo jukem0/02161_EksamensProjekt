@@ -10,6 +10,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class registrerTid {
+    //@Given lånt fra CreateProjectStepsDef
 
     @When("en {string} indtaster deres tid brugt på en aktivitet {string} i projekt {string} som decimaltal eller heltal {double}")
     public void en_indtaster_deres_tid(String medarbejder,String activityName, String projectName, double timer) {
@@ -24,8 +25,11 @@ public class registrerTid {
 
     @Then("Under {string} findes tiden{double} brugt af {string} rundet op til nærmeste halve")
     public void under_aktivitet_findes_tiden(String aktivitetNavn, Double time, String medarbejderNavn) throws Exception {
-        
-        
+        try {
+            
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
     }
 
 }
