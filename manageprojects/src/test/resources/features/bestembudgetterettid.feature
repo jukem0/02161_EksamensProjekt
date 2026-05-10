@@ -15,6 +15,11 @@ Feature: Budgetteret tid for aktivitet
         When <medarbejder> bestemmer budgetteret tid til <aktivitetsnavn> som positivt decimaltal eller heltal
         Then tildel <aktivitetsnavn> mængde af budgetteret tid rundet op til nærmeste halve
 
+        Examples:
+        | medarbejder | projektnavn | aktivitetsnavn | budgetterettid |
+        | "huba"      | "Website"   | "Design"       | 10.5         |
+
+
     Scenario Outline: Projektleder angiver ikke budgetteret tid i decimaltal eller heltal
         Given at <medarbejder> er projektleder under <projektnavn>
         When <medarbejder> bestemmer budgetteret tid, <budgetterettid>, til <aktivitetsnavn> som andet end decimal- eller heltal
@@ -22,4 +27,8 @@ Feature: Budgetteret tid for aktivitet
 
         Examples:
             | medarbejder | projektnavn | aktivitetsnavn | budgetterettid |
+<<<<<<< HEAD
             | "huba"      | "Website"   | "Design"       | 10.5           |
+=======
+            | "huba"      | "Website"   | "Design"       | -10.5         |
+>>>>>>> fc1dad1c499799d0576b151f32ae2406f1bcc7e8
