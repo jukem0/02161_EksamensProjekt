@@ -45,10 +45,11 @@ public class createActivitysteps {
     // public void getmedarbejder(String medarbejder) {
     // }
  
-    @And("et projekt {string} har en projektleder eller en ledig medarbejder")
+    @Given("et projekt {string} har en projektleder eller en ledig medarbejder")
     public void getProjektAnsvarlig(String projectname) {
         project = projectlist.stream().filter(p -> p.getName().equalsIgnoreCase(projectname)).findFirst().orElse(null);
         employee = employeelist.stream().filter(e -> e.isAvailable() || e.leaderOf().equals(project.getProjectNr())).findFirst().orElse(null);
+
         assert(project.getName().equalsIgnoreCase(projectname) && project.getProjectLeader() != null && 
         (employee.leaderOf().equals(project.getProjectNr()) || employee.isAvailable())): 
         "Der skal være en projektleder eller en ledig medarbejder for at kunne oprette en aktivitet";
