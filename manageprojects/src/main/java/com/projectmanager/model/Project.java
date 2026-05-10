@@ -38,7 +38,6 @@ public class Project {
     public Employee getProjectLeader(){
         return projectLeader;
     }
-
     
     public String getActivityName(String activityName) {
         return String.valueOf(activityMap.keySet().stream()
@@ -97,12 +96,12 @@ public class Project {
         activityMap.put(newAct, null);
     }
 
-    public void addActivity(Activity activity, Employee projectLeader) {
+    public void addActivity(String actname, Employee projectLeader) {
         assert(projectLeader != null) : "Ingen medarbejder valgt"; 
-            if (isActivityInProject(activity) == true){
+            if (isActivityInProject(new Activity(actname)) == true){
                 throw new IllegalArgumentException("Aktiviteten findes allerede i projektet");
-            } else if (projectLeader.leaderOf().equals(this.getProjectNr()|| projectLeader.isAvailable())) { //isAvailable() er ikke implementeret endnu{
-                activityMap.put(activity, null);
+            } else if (projectLeader.leaderOf().equals(this.getProjectNr()) || projectLeader.isAvailable()) { //isAvailable() er ikke implementeret endnu{
+                activityMap.put(new Activity(actname), null);
             } else{
                 throw new IllegalArgumentException("Der er ingen projektleder eller ledig medarbejder til at oprette aktiviteten");
             }
@@ -111,6 +110,10 @@ public class Project {
 
     public Map<Activity, Map<Employee, Double>> getActivityMap() {
         return activityMap;
+    }
+
+    public Map<Employee, Double> getEmployeeMap() {
+        return employeeRegtime;
     }
 
     @Override
