@@ -28,10 +28,11 @@ Feature: Budgetteret tid for aktivitet
         Then handling fejler med fejlbesked: "Budgetteret tid er ikke angivet som decimal- eller heltal"
 
         Examples:
-<<<<<<< HEAD
             | medarbejder | projektnavn | aktivitetsnavn | budgetteret tid | slut uge | uge antal |
             | "huba"      | "Website"   | "Design"       | -100            | 23       | 3         |
             | "wilo"      | "Rapport"   | "Indhold"      | -50.3           | 51       | 5         |
+            | "anda"      | "Q1"        | "Presentation" | -50.2           | 12       | 2         |
+|
             | "anda"      | "Q1"        | "Presentation" | -50.2           | 12       | 2         |
 =======
             | medarbejder | projektnavn | aktivitetsnavn | budgetterettid | slut uge | uge antal |
