@@ -12,13 +12,12 @@ import io.cucumber.java.en.When;
 public class bestem_budgetteret_tid_steps {
 
     @Given("en en medarbejder {string} findes i systemet")
-    public void en_medarbejder_finds_i_systemet(String medarbejder) {
+    public void en_medarbejder_finds_i_systemet(String employee) {
 
-        if (FuckCucumber.getEmployee(medarbejder)!= null){
-            Employee actualEmp = FuckCucumber.getEmployee(medarbejder);
-            //assert ();
+        if (FuckCucumber.getEmployee(employee)!= null){
+            Employee actualEmp = FuckCucumber.getEmployee(employee);
+            assert (employee.equalsIgnoreCase(actualEmp.getEmployeeName())); 
         }
-
     }
 
     @And("denne medarbejder {string} er projektleder for et projekt {string}")
@@ -52,36 +51,40 @@ public class bestem_budgetteret_tid_steps {
         
     }
 
-    @Then("budgettering af tid for aktiviteten {string} i projektet {string} skallykkes")
-    public void budgettering_af_tid_skal_lykkes(String aktivitet, String projekt) {
+    @Then("budgettering af tid {double} for aktiviteten {string} i projektet {string} skallykkes")
+    public void budgettering_af_tid_skal_lykkes(Double time, String activity, String project) {
 
-        
+
     }
 
     @When("en medarbejder {string} bestemmer budgetteret tid {float} for enaktivitet {string} i projektet {string}, som andet end et positivt decimaltal eller heltal")
     public void en_medarbejder_bestemmer_budgetteret_tid(String empplyee, float budget, String aktivitet, String project) {
     
-         if (FuckCucumber.getEmployee(empplyee) != null && FuckCucumber.getProject(project)!= null) {
+        if (FuckCucumber.getEmployee(empplyee) != null && FuckCucumber.getProject(project)!= null) {
 
             Employee actualEmp = FuckCucumber.getEmployee(empplyee);
             Project actualPro = FuckCucumber.getProject(project);
 
             if (FuckCucumber.getActivity(actualEmp, actualPro)!= null){
                 Activity actualAct = FuckCucumber.getActivity(actualEmp, actualPro);
-                
-                actualAct.setBudgetTime(budget);
+                String mes="";
 
-                assert ("error in input".equalsIgnoreCase(project));   
+                try {
+                    actualAct.setBudgetTime(budget);
+                }
+                catch (Exception e)
+                {
+                    mes = e.getMessage();
+                }
+
+                assert ("Budgetteret tidskal væreet positivtdecimaltal eller heltal".equalsIgnoreCase(mes));   
             }
         }
-
-
-
-
-
     }
 
     @Then("budgettering af tid for aktiviteten {string} i projektet {string} skalfejle med fejlbesked:'Budgetteret tidskal væreet positivtdecimaltal eller heltal'")
     public void budgettering_af_tid_skal_feje(String aktivitet, String projekt) {
+        
+
     }
 }

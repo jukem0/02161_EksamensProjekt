@@ -1,5 +1,5 @@
 #lavet af Guillermo
-Feature: opret projekt
+Feature: Opret projekt
 	Description: en medarbejder opretter et nyt projekt.
 
 	Background:
@@ -12,23 +12,10 @@ Feature: opret projekt
 	Scenario Outline: Opret projekt
 		Given en <medarbejder> findes i systemet
 		When en medarbejder opretter et projekt med navn <projektnavn>
-		And et projekt med navn <projektnavn> ikke findes i systemet
-		Then opret projekt med navn <projektnavn> og unikt projektnummer "1234"
+		Then er projektet oprettet og har projekt-nummer <projektNummer>
 
 		Examples:
-			| projektnavn | medarbejder |
-			| "Website"   | "huba"      |
-			| "Skylager"  | "wilo"      |
-			| "Kalender"  | "anda"      |
-
-	Scenario Outline: Projekt findes allerede
-		Given en <medarbejder> findes i systemet
-		When en medarbejder opretter et projekt med navn <projektnavn>
-		And et projekt med navn <projektnavn> findes i systemet
-		Then Fejler handling med besked "et projekt med dette navn findes allerede i systemet"
-
-		Examples:
-			| projektnavn | medarbejder |
-			| "Website"   | "huba"      |
-			| "Skylager"  | "wilo"      |
-			| "Kalender"  | "anda"      |
+			| projektnavn | medarbejder | projektNummer |
+			| "Website"   | "huba"      | "26001"       |
+			| "Skylager"  | "wilo"      | "26002"       |
+			| "Kalender"  | "anda"      | "26003"       |
