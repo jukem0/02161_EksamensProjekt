@@ -10,7 +10,7 @@ import com.projectmanager.services.ProjectsFunctions;
 
 public class FuckCucumber {
 
-    public Project getProject(String project){
+    public static Project getProject(String project){
         
         ProjectsFunctions projectFunctions = new ProjectsFunctions();
         List<Project> projecter = projectFunctions.allProjects();
@@ -24,11 +24,11 @@ public class FuckCucumber {
         return null;
     }
 
-    public Employee getEmployee(String emp){
+    public static Employee getEmployee(String emp){
         return null;
     }
 
-    public Activity getActivity(String emp, Project project){
+    public static Activity getActivity(String emp, Project project){
         return null;
     }
 
