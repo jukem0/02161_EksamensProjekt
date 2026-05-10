@@ -12,23 +12,30 @@ Feature: Budgetteret tid for aktivitet
     Scenario Outline: Projektleder bestemmer budgetteret tid
         Given en <medarbejder> findes i systemet
         And at <medarbejder> er projektleder under <projektnavn>
-        When medarbejderen bestemmer budgetteret tid til <aktivitetsnavn> som positivt decimaltal eller heltal, som slutter i <slut uge> og varer <uge antal>
+        When medarbejderen bestemmer <budgetteret tid> til <aktivitetsnavn> som positivt decimaltal eller heltal, som slutter i <slut uge> og varer <uge antal>
         Then tildel <aktivitetsnavn> mængde af budgetteret tid rundet op til nærmeste halve
 
         Examples:
-            | medarbejder | projektnavn | aktivitetsnavn | budgetterettid | slut uge | uge antal |
-            | "huba"      | "Website"   | "Design"       | 100            | 23       | 3         |
-            | "wilo"      | "Rapport"   | "Indhold"      | 50.3           | 51       | 5         |
-            | "anda"      | "Q1"        | "Presentation" | 50.2           | 12       | 2         |
+            | medarbejder | projektnavn | aktivitetsnavn | budgetteret tid | slut uge | uge antal |
+            | "huba"      | "Website"   | "Design"       | 100             | 23       | 3         |
+            | "wilo"      | "Rapport"   | "Indhold"      | 50.3            | 51       | 5         |
+            | "anda"      | "Q1"        | "Presentation" | 50.2            | 12       | 2         |
 
 
     Scenario Outline: Projektleder angiver ikke budgetteret tid i decimaltal eller heltal
         Given at <medarbejder> er projektleder under <projektnavn>
-        When <medarbejder> bestemmer budgetteret tid, <budgetterettid>, til <aktivitetsnavn> som andet end decimal- eller heltal
+        When medarbejderen bestemmer <budgetteret tid> til <aktivitetsnavn> som negativt decimaltal eller heltal, som slutter i <slut uge> og varer <uge antal>
         Then handling fejler med fejlbesked: "Budgetteret tid er ikke angivet som decimal- eller heltal"
 
         Examples:
+<<<<<<< HEAD
+            | medarbejder | projektnavn | aktivitetsnavn | budgetteret tid | slut uge | uge antal |
+            | "huba"      | "Website"   | "Design"       | -100            | 23       | 3         |
+            | "wilo"      | "Rapport"   | "Indhold"      | -50.3           | 51       | 5         |
+            | "anda"      | "Q1"        | "Presentation" | -50.2           | 12       | 2         |
+=======
             | medarbejder | projektnavn | aktivitetsnavn | budgetterettid | slut uge | uge antal |
             | "huba"      | "Website"   | "Design"       | 100            | 23       | 3         |
             | "wilo"      | "Rapport"   | "Indhold"      | 50.3           | 51       | 5         |
             | "anda"      | "Q1"        | "Presentation" | 50.2           | 12       | 2         |
+>>>>>>> ce078dd633beb60f3b885ce3e1516ae2e50bcaef
