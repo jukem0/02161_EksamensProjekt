@@ -2,7 +2,7 @@ package com.projectmanager.model;
 
 public class Employee {
     private String initialer;
-    private Project leaderOf = null;
+    private String leaderOf = null;
     // Maybe add in ID?
     // I'm p sure no ID is needed since their initials should be unique
 
@@ -10,11 +10,15 @@ public class Employee {
         this.initialer = ini;
     }
 
-    public void assignProjectleader(Project projectNr, Employee employee) {
-        leaderOf = projectNr;
+    public void assignProjectleader(String projectNr, Employee employee) {
+        this.leaderOf = projectNr;
     }
 
-    public Project leaderOf() {
+    public void becomeLeaderOf(String projectNr) {
+        this.leaderOf = projectNr;
+    }
+
+    public String leaderOf() {
         return leaderOf;
     }
 
