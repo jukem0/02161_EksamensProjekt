@@ -31,7 +31,7 @@ public class tildelmedarbaktivitet {
     // @And findes i CreateProjectSteps
 
     @When("en medarbedjer udpeger en anden medarbejder {string} til at være tilknyttet aktivitet med navn {string}")
-    public void iTryToAddEmployeeToActivity(String emp, String act ) throws Exception {
+    public void iTryToAddEmployeeToActivity(String emp, String act) throws Exception {
         
         try {
             addEmployeeToActivity(emp,act);

@@ -12,8 +12,8 @@ public class Employee {
         leaderOf = null;
     }
 
-    public void assignProjectleader(String projectNr, Employee employee) {
-        this.leaderOf = projectNr;
+    public static void assignProjectleader(String projectNr, Employee employee) {
+        employee.leaderOf = projectNr;
     }
 
     public void becomeLeaderOf(String projectNr) {

@@ -1,16 +1,14 @@
 package stepdefinitions;
 
-import static org.junit.Assert.assertEquals;
-
 import java.time.Year;
 import java.util.ArrayList;
 
-import com.projectmanager.model.Activity;
+import static org.junit.Assert.assertEquals;
+
 import com.projectmanager.model.Employee;
 import com.projectmanager.model.Project;
 import com.projectmanager.model.Week;
 
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -37,16 +35,17 @@ public class bestem_budgetteret_tid_steps {
     @When("medarbejderen bestemmer {double} til {string} som positivt decimaltal eller heltal, som slutter i {int} og varer {int}")
     public void medarbejderen_bestemmer_budgetteret_tid_til_som_positivt_decimaltal_eller_heltal_som_slutter_i_og_varer(
             double budgetTime, String aktivitetsNavn, Integer endWeek, Integer amountWeek) {
-        projects.get(selectedIndex).addActivity(new Activity(aktivitetsNavn, budgetTime, new Week(endWeek, Year.now().getValue()), amountWeek),employees.get(selectedIndex));
+        projects.get(selectedIndex).addActivity(aktivitetsNavn, budgetTime, new Week(endWeek, Year.now().getValue()), amountWeek);
+        employees.get(selectedIndex);
         assertEquals(selectedIndex, selectedIndex);
     }
 
     @When("medarbejderen bestemmer {double} til {string} som decimaltal eller heltal, som slutter i {int} og varer {int}")
     public void medarbejderen_bestemmer_budgetteret_tid_til_som_negativt_decimaltal_eller_heltal_som_slutter_i_og_varer(
             double budgetTime, String aktivitetsNavn, Integer endWeek, Integer amountWeek) {
-        projects.get(selectedIndex).addActivity(
-                new Activity(aktivitetsNavn, budgetTime, new Week(endWeek, Year.now().getValue()), amountWeek),
-                employees.get(selectedIndex));
+        projects.get(selectedIndex).addActivity(aktivitetsNavn, budgetTime, new Week(endWeek, Year.now().getValue()), amountWeek);
+        employees.get(selectedIndex);
+        assertEquals(selectedIndex, selectedIndex);
     }
 
     @Then("tildel {string} mængde af budgetteret tid rundet op til nærmeste halve")

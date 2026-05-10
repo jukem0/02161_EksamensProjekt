@@ -8,6 +8,13 @@ Feature: oprettelse af aktivitet
             | huba        |
             | ambe        |
             | joni        |
+        Given følgende projekter findes i systemet:
+            | projektnanv |
+            | Website     |
+            | Skylager    |
+            | Kalender    |
+            | Q1rapport   |
+            | test        |
 
     Scenario Outline: opret aktivitet
         Given en <medarbejder> findes i systemet

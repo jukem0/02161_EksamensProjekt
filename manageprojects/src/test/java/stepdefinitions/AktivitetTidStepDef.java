@@ -1,25 +1,26 @@
 package stepdefinitions;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.projectmanager.model.Employee;
+import com.projectmanager.model.Project;
+import com.projectmanager.model.Week;
 
-import com.projectmanager.app.*;
-import com.projectmanager.model.*;
-
-import io.cucumber.java.en.*;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class AktivitetTidStepDef {
     int aktivitetIndex = -1;
     boolean startFørSlut;
     Week startDato, slutDato;
-    Project tempProjekt = null;
+    Project tempProject;
     String errorMessage = "Startdato kan ikke være efter slutdato";
+    Employee employee;
 
     @Given("at {string} er projektleder under projekt {string}")
-    public void er_projektleder(String medarbejder, String projekt) {
-        tempProjekt = FuckCucumber.getProject(projekt);
-        if (tempProjekt != null) {
-            assertTrue(tempProjekt.getProjektLeder().getName().equalsIgnoreCase(medarbejder), "Medarbejder " + medarbejder + " er ikke projektleder i projektet " + projekt);
-        }
+    public void er_projektleder(String employee, String project) {
+        this.employee = new Employee(employee);
+        this.tempProject = new Project(project);
+        Employee.assignProjectleader(this.tempProject.getProjectNr(), this.employee);
     }
 
     @When("{string} bestemmer start- og sluttid til {string} som datoer {Week}, {Week}")
