@@ -2,7 +2,12 @@ package stepdefinitions;
 
 import static org.junit.Assert.assertEquals;
 
-import com.projectmanager.services.InitializeEmployees;
+import java.util.ArrayList;
+import java.io.*;
+
+import com.projectmanager.model.Employee;
+import com.projectmanager.services.DataAccessLayer;
+import com.projectmanager.services.RuntimeContext;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -10,12 +15,21 @@ import io.cucumber.java.en.When;
 
 public class CreateProjectSteps {
     private String foundEmployee = "";
-    InitializeEmployees.initializeEmployees();
+    private ArrayList<Employee> employeesFromFile;
+
+    public CreateProjectSteps() {
+        try {
+            DataAccessLayer data = new DataAccessLayer();
+            employeesFromFile = data.parseToEmployee("manageprojects/src/main/java/com/projectmanager/HR/Employees.txt");
+        } catch (FileNotFoundException e) {
+            employeesFromFile = new ArrayList<>();
+        }
+    }
 
     @Given("en {string} findes i systemet")
     public void employee_findes_i_systemet(String empName) {
-        for (int i = 0; i < InitializeEmployees.employees.size(); i++) {
-            if (empName.equals(InitializeEmployees.employees.get(i).getEmployeeName())) {
+        for (int i = 0; i < employeesFromFile.size(); i++) {
+            if (empName.equals(employeesFromFile.get(i).getEmployeeName())) {
                 foundEmployee = empName;
             } else {
                 foundEmployee = null;
