@@ -99,9 +99,9 @@ public class Project {
 
     public void addActivity(String activityName, Employee projectLeader) {
         assert(projectLeader != null) : "Ingen medarbejder valgt"; 
-            if (isActivityInProject(new Activity(activityName)) == true){
+            if (isActivityInProject(new Activity(activityName))){
                 throw new IllegalArgumentException("Aktiviteten findes allerede i projektet");
-            } else if (projectLeader.leaderOf().equals(this.getProjectNr()|| projectLeader.isAvailable())){ //isAvailable() er ikke implementeret endnu{
+            } else if (projectLeader.leaderOf().equals(this.getProjectNr()) || projectLeader.isAvailable()){
                 activityMap.put(new Activity(activityName), null);
             } else{
                 throw new IllegalArgumentException("Der er ingen projektleder eller ledig medarbejder til at oprette aktiviteten");
