@@ -20,9 +20,16 @@ public class ActivityFuctions implements  IActivityFunctions{
     }
 
     @Override
-    public void setBudgetTime(double budgetTime) {
-        //check if posetive number and round up to the nearst half
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void setBudgetTime(double budgetTime) throws IllegalArgumentException {
+
+        if (budgetTime >0){
+
+        }
+        else 
+        {
+            throw new IllegalArgumentException("Budgetteret tidskal væreet positivtdecimaltal eller heltal");
+        }
+        
     }
 
     @Override
