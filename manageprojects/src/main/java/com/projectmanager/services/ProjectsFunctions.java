@@ -39,6 +39,21 @@ public class ProjectsFunctions implements IProjectFunctions {
         throw new UnsupportedOperationException("Unimplemented method 'allProjects'");
     }
 
+    @Override
+    public boolean isEmployeeInProject(String employee) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public boolean isActivityInProject(String activityName) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public boolean isEmployeeInActivity(String employeeName) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
     
 
     
