@@ -74,4 +74,26 @@ public class Activity implements IActivity{
         this.startWeek = new Week(endWeek.getWeekNum() - weekAmount, endWeek.getYear());
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Activity other = (Activity) obj;
+
+        return (getActivityName().equals(other.getActivityName()) && getEmployees().equals(other.getEmployees()) && getStartWeek().equals(other.getStartWeek()) && getEndWeek().equals(other.getEndWeek()));
+    }
+
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(actName, employees, startWeek, endWeek);
+    }
+
+    
+
 }

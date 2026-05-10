@@ -14,10 +14,10 @@ public class Project{
 
 
     // Indre hashmap
-    public static Map<Employee, Double> employeeRegtime = new HashMap<>();
+    private static Map<Employee, Double> employeeRegtime = new HashMap<>();
 
     // Ydre hashmap
-    public static Map<Activity, Map<Employee, Double>> activityMap = new HashMap<>();
+    private static Map<Activity, Map<Employee, Double>> activityMap = new HashMap<>();
 
     public Project(String projectName) {
         this.projectName = projectName;
@@ -31,7 +31,7 @@ public class Project{
     
     public String getActivityName(String activityName) {
         return String.valueOf(activityMap.keySet().stream().filter(a -> a.getActivityName().equalsIgnoreCase(activityName)).findFirst().orElse(null));
-        }
+    }
 
     public String getEmployeeName(String employee){
         return String.valueOf(employeeRegtime.keySet().stream().filter(a -> a.getEmployeeName().equalsIgnoreCase(employee)).findFirst().orElse(null));
@@ -80,6 +80,11 @@ public class Project{
         return false;
     }
 
+    public Map<Activity, Map<Employee, Double>> getActivityMap(){
+        return activityMap;
+    }
+
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -92,12 +97,12 @@ public class Project{
 
         Project other = (Project) obj;
 
-        return (getName().equals(other.getName()));
+        return (getName().equals(other.getName()) && getActivityMap().equals(other.getActivityMap()));
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return java.util.Objects.hash(projectName, activityMap);
     }
 
     
