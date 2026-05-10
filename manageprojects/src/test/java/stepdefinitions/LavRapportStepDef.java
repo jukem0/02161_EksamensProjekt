@@ -1,10 +1,9 @@
 package stepdefinitions;
 
 import java.time.Year;
+import java.util.*;
 
-import com.projectmanager.model.Employee;
-import com.projectmanager.model.Project;
-import com.projectmanager.model.Week;
+import com.projectmanager.model.*;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -33,6 +32,11 @@ public class LavRapportStepDef {
 
     @When("der ikke er nogle aktivitet i projektet")
     public void projekt_mangler_aktiviteter() {
+
+        Project pro = new Project("idkman");
+        Set keySet = pro.getActivityMap().keySet();
+
+        assert(keySet == null);
     }
 
     @Then("generer rapport ved navn {string}-rapport-uge-{int}")
@@ -45,5 +49,11 @@ public class LavRapportStepDef {
 
     @Then("handling fejler med fejlbesked: 'ingen aktiviteter i projekt'")
     public void handling_fejler() {
+        try {
+            projekt_mangler_aktiviteter();
+
+        }catch(Exception e) {
+            assert(e.getMessage().equalsIgnoreCase("ingen aktiviteter i projekt"));
+        }
     }
 }
