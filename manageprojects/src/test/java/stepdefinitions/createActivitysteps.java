@@ -1,15 +1,16 @@
 package stepdefinitions;
 
-import com.projectmanager.*;
+import com.projectmanager.model.*;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.*;
 
-public class aktivitetstepdefinitions {
+public class createActivitysteps {
 
     @Given("følgende medarbejdere findes i systemet:")
     public void følgendeMedarbejdereFindesISystemet(DataTable table) { // bruger en given liste af medarbejdere for at
         // vise hvem er i systemet.
+    
     }
 
     // @Given("en {string} findes i systemet")
@@ -18,8 +19,8 @@ public class aktivitetstepdefinitions {
     // }
 
     @And("et projekt {string} har en projektleder eller en ledig medarbejder")
-    public void getProjektAnsvarlig(String projekt) {
-
+    public void getProjektAnsvarlig(String projectname, Project project) {
+        assert(project.getName().equalsIgnoreCase(projectname) && (project.getProjektLeder() != null || project.getAvailableEmployees().size() > 0));
     }
 
     @When("projektleder eller ledig medarbejder opretter aktivitet med navn {string}")

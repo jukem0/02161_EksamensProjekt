@@ -62,27 +62,11 @@ public class Project {
         return projectNr;
     }
 
-    public boolean isEmployeeInProject(Map<Employee, Double> employeeRegtime, String employeeName) {
-        for (Employee e : employeeRegtime.keySet()) {
-            if (e.getEmployeeName().equals(employeeName)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     public boolean isEmployeeInProject(Map<Employee, Double> employeeRegtime, Employee employee) {
         return employeeRegtime.containsKey(employee);
     }
 
-    public boolean isActivityInProject(String activityName) {
-        for (Activity l : Project.activityMap.keySet()) {
-            if (l.getActivityName().equalsIgnoreCase(activityName)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     public boolean isActivityInProject(Activity activity) {
         return activityMap.containsKey(activity);
@@ -97,16 +81,16 @@ public class Project {
         return false;
     }
 
-    public void addActivity(String activityname, Project project, Employee projectLeader) {
-        if (project.isActivityInProject(activityname) == true){
+    public void addActivity(Activity activity, Project project, Employee projectLeader) {
+        if (isActivityInProject(activity) == true){
             throw new IllegalArgumentException("Aktiviteten findes allerede i projektet");
         }
         else {
-            if (projectLeader != null && projectLeader.leaderOf() == project) {
-                Project.activityMap.put(new Activity(activityname),null);
+            if (projectLeader != null && projectLeader.leaderOf().equals(project.getName())) {
+                Project.activityMap.put(activity, null);
             }
-            else if(projectLeader == null && projectLeader.isAvailable() == true){ //isAvailable() er ikke implementeret endnu
-                Project.activityMap.put(new Activity(activityname),null);
+            else if(projectLeader == null && projectLeader.isAvailable()){ //isAvailable() er ikke implementeret endnu
+                Project.activityMap.put(activity, null);
             }
             else{
                 throw new IllegalArgumentException("Der er ingen projektleder eller ledig medarbejder til at oprette aktiviteten");

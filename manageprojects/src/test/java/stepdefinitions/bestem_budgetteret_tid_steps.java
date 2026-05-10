@@ -17,11 +17,7 @@ public class bestem_budgetteret_tid_steps {
     ArrayList<Employee> employees = new ArrayList<>();
     ArrayList<Project> projects = new ArrayList<>();
 
-    @Given("en medarbejder {string} findes i systemet")
-    public void en_medarbejder_finds_i_systemet(String employee) {
-        Employee newEmp = new Employee(employee);
-        employees.add(newEmp);
-    }
+    // @Given i CreateProjectSteps
 
     @And("at {string} er projektleder under {string}")
     public void denne_medarbejder_er_projektleder_for_et_projekt(String empplyee, String project) {
@@ -33,14 +29,9 @@ public class bestem_budgetteret_tid_steps {
 
             }
         }
-
-        if (FuckCucumber.getEmployee(empplyee) != null && FuckCucumber.getProject(project) != null) {
-
-            Employee employee = FuckCucumber.getEmployee(empplyee);
-            Project projectCheck = FuckCucumber.getProject(project);
-
-            assert (employee.getEmployeeName().equalsIgnoreCase(projectCheck.getProjectLeader().getEmployeeName()));
-        }
+        
+        assert (employee.getEmployeeName().equalsIgnoreCase(projectCheck.getProjectLeader().getEmployeeName()));
+        
     }
 
     @When("medarbejderen {string} bestemmer budgetteret tid {float} for en aktivitet {string} i projektet {string}, som positivt decimaltal eller heltal")

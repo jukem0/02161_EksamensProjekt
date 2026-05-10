@@ -9,9 +9,6 @@ import java.util.*;
 public class EmployeesFunctions implements IEmployeeFunctions {
 
     @Override
-   
-
-    @Override
     public void addActivityToProject(String activityname, Project project, Employee projectLeader){
         // TODO Auto-generated method stub
         project.addActivity(activityname, project, projectLeader);

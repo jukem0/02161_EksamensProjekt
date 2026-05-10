@@ -21,7 +21,10 @@ public class Employee {
     public String leaderOf() {
         return leaderOf;
     }
-
+    public void addProject(String projectname, Project project){
+        projectlist.add(project = new Project(projectname));
+    }
+    
     public String getEmployeeName() {
         return initialer;
     }

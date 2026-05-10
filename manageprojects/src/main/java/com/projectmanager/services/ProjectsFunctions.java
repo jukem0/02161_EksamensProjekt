@@ -2,8 +2,6 @@ package com.projectmanager.services;
 
 import java.util.List;
 
-import com.projectmanager.model.Activity;
-import com.projectmanager.model.Employee;
 import com.projectmanager.model.Project;
 
 public class ProjectsFunctions implements IProjectFunctions {
@@ -21,8 +19,5 @@ public class ProjectsFunctions implements IProjectFunctions {
         
         throw new UnsupportedOperationException("Unimplemented method 'allProjects'");
     }
-
-    
-
     
 }
