@@ -13,11 +13,13 @@ import io.cucumber.java.en.When;
 public class LavRapportStepDef {
 
     @Given("en {string} er tilmeldt projekt {string}")
-    public void er_tilmeldt_projekt(Employee employee, String projektNr) {
+    public void er_tilmeldt_projekt(String employee, String projektNr) {
 
-        Employee curemployee = Project.getEmployeeName();
-        String curProject = Project.getProjectNr(projektNr);
+        Employee curEmployee = new Employee(employee);
+        Project curProject = new Project(projektNr);
+        curProject.getActivityMap().values();
 
+        assertTrue(curProject.isEmployeeInProject(curEmployee));
     }
 
     @When("en {string} genererer rapport")

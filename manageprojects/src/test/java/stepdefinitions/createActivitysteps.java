@@ -16,8 +16,8 @@ import io.cucumber.java.en.When;
 
 
 public class createActivitysteps {
-    public static List<Employee> employees = new ArrayList<>();
-    public static List<Project> projects = new ArrayList<>();
+    private static List<Employee> employeelist = new ArrayList<>();
+    private static List<Project> projectlist = new ArrayList<>();
     private  Project project;
     private  Employee employee; 
     
@@ -26,14 +26,21 @@ public class createActivitysteps {
         List<String> employeeNames = table.asList(String.class);
         for (String name : employeeNames) {
             Employee newEmp = new Employee(name);
-            employees.add(newEmp);
+            employeelist.add(newEmp);
         }
-        List<String> projectnames = table.asList(String.class);
-        for (String name : projectnames) {
-            Project newProject = new Project(name);
-            projects.add(newProject);
-        }
+        
         // vise hvem er i systemet.
+    }
+
+    @Given("følgende projekter findes i systemet:")
+    public void følgendeProjekterFindesISystemet(DataTable table) { // bruger en given liste af projekter for at
+        List<String> projectNames = table.asList(String.class);
+        for (String name : projectNames) {
+            Project newProject = new Project(name);
+            projectlist.add(newProject);
+        }
+        
+        // vise hvilke projekter er i systemet.
     }
     
     // @Given("en {string} findes i systemet")
@@ -43,8 +50,8 @@ public class createActivitysteps {
  
     @And("et projekt {string} har en projektleder eller en ledig medarbejder")
     public void getProjektAnsvarlig(String projectname) {
-        project = projects.stream().filter(p -> p.getName().equalsIgnoreCase(projectname)).findFirst().orElse(null);
-        employee = employees.stream().filter(e -> e.isAvailable() || e.leaderOf().equals(project.getProjectNr())).findFirst().orElse(null);
+        project = projectlist.stream().filter(p -> p.getName().equalsIgnoreCase(projectname)).findFirst().orElse(null);
+        employee = employeelist.stream().filter(e -> e.isAvailable() || e.leaderOf().equals(project.getProjectNr())).findFirst().orElse(null);
         assert(project.getName().equalsIgnoreCase(projectname) && project.getProjectLeader() != null && 
         (employee.leaderOf().equals(project.getProjectNr()) || employee.isAvailable())): 
         "Der skal være en projektleder eller en ledig medarbejder for at kunne oprette en aktivitet";
