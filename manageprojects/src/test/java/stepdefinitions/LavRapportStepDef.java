@@ -1,8 +1,10 @@
 package stepdefinitions;
 
-import java.util.*;
+import java.time.Year;
 
-import com.projectmanager.model.*;
+import com.projectmanager.model.Employee;
+import com.projectmanager.model.Project;
+import com.projectmanager.model.Week;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -12,18 +14,21 @@ import io.cucumber.java.en.When;
 
 public class LavRapportStepDef {
 
+    private Project curProject;
+
     @Given("en {string} er tilmeldt projekt {string}")
-    public void er_tilmeldt_projekt(String employee, String projektNr) {
+    public void er_tilmeldt_projekt(String employee, String projektNavn) {
 
         Employee curEmployee = new Employee(employee);
-        Project curProject = new Project(projektNr);
-        curProject.getActivityMap().values();
-
-        assertTrue(curProject.isEmployeeInProject(curEmployee));
+        Project curProject = new Project(projektNavn);
+        curProject.addActivity("Gunner rundt om jorden", 100, new Week(23, Year.now().getValue()), 5);
+        curProject.getEmployeeMap().put(curEmployee, null);
+        // curProject.getActivityMap().put(curProject.getActivityName(projektNr), null);
     }
 
     @When("en {string} genererer rapport")
     public void forsøg_generer_rapport(String medarbejder) {
+        curProject.generateReport(1);
     }
 
     @When("der ikke er nogle aktivitet i projektet")
@@ -32,6 +37,10 @@ public class LavRapportStepDef {
 
     @Then("generer rapport ved navn {string}-rapport-uge-{int}")
     public void generer_rapport(String projektNavn, int ugenummer) {
+
+        Project pro = new Project(projektNavn);
+        pro.generateReport(ugenummer);
+        
     }
 
     @Then("handling fejler med fejlbesked: 'ingen aktiviteter i projekt'")

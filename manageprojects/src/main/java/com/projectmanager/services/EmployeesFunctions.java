@@ -38,9 +38,8 @@ public class EmployeesFunctions implements IEmployeeFunctions {
         throw new UnsupportedOperationException("Unimplemented method 'assignProjectleader'");
     }
     @Override 
-    public void registerTime(double hours){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'registerTime'");
+    public void registerTime(Employee emp,Project pro, Activity act, Double hours){
+        //employeeRegTime
     }
 
     @Override

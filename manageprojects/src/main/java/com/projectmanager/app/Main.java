@@ -32,7 +32,7 @@ public class Main {
             Command command = registry.findCommand(commandName);
 
             if (command == null) {
-                System.out.println("Command" + commandName + "not found");
+                System.out.println("Command " + commandName + " not found");
                 continue;
             }
 

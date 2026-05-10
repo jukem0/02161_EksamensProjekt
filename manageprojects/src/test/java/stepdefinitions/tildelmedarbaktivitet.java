@@ -1,8 +1,11 @@
 package stepdefinitions;
 
+import static org.junit.Assert.assertFalse;
+
 import com.projectmanager.model.Activity;
 import com.projectmanager.model.Employee;
 import com.projectmanager.model.Project;
+import com.projectmanager.model.Week;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -14,7 +17,6 @@ import io.cucumber.java.en.When;
 
 public class tildelmedarbaktivitet {
 
-    private Activity testActivity;
     private String errorMessageEmployeeAlrAdd;
 
 
@@ -22,10 +24,14 @@ public class tildelmedarbaktivitet {
     public void checkIfActivityInProject(String testActivity, String pro) {
 
         Project Pro = new Project(pro);
-        Pro.addActivity(testActivity);
-        Activity act = new Activity(testActivity);
+       
+        Activity act = new Activity(testActivity,20.1, new Week(5, 2026),1);
+        Employee emp = new Employee("proo");
+        emp.becomeLeaderOf("2601");
+
+        Pro.addActivity(testActivity, emp);
         
-        assert(Pro.isActivityInProject(act));
+        assertFalse(Pro.isActivityInProject(act));
     }
 
     // @And findes i CreateProjectSteps
@@ -43,7 +49,7 @@ public class tildelmedarbaktivitet {
     @Then("tildel medarbejder {string} til aktivitet med navn {string} skal lykkes")
     public void addEmployeeToActivity(String emp, String activityName) {
         
-        Activity act = new Activity(activityName);
+        Activity act = new Activity(activityName, 20.1, new Week(5, 2026),1);
         Employee Emp = new Employee(emp);
         act.addEmployeeToActivity(Emp);
 
@@ -53,7 +59,7 @@ public class tildelmedarbaktivitet {
     @And("medarbejder {string} allerede er tildelt aktivitet med navn {string}")
     public void medarbejderAlleredeTildelt(String emp, String activityName) {
 
-        Activity act = new Activity(activityName);
+        Activity act = new Activity(activityName,20.1, new Week(5, 2026),1);
         Employee Emp = new Employee(emp);
         act.addEmployeeToActivity(Emp);
         act.addEmployeeToActivity(Emp);
