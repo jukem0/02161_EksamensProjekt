@@ -9,10 +9,7 @@ import java.util.*;
 public class EmployeesFunctions implements IEmployeeFunctions {
 
     @Override
-    public void addProject(Project project){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addProject'");
-    }
+   
 
     @Override
     public void addActivityToProject(String activityname, Project project, Employee projectLeader){
@@ -36,6 +33,8 @@ public class EmployeesFunctions implements IEmployeeFunctions {
         employeeRegtime.put(employee, null);
         throw new UnsupportedOperationException("Unimplemented method 'addEmployeeToActivity'");
     }
+
+    
 
     @Override
     public void assignProjectleader(Project project, Employee employee){

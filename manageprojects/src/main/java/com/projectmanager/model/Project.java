@@ -97,6 +97,23 @@ public class Project {
         return false;
     }
 
+    public void addActivity(String activityname, Project project, Employee projectLeader) {
+        if (project.isActivityInProject(activityname) == true){
+            throw new IllegalArgumentException("Aktiviteten findes allerede i projektet");
+        }
+        else {
+            if (projectLeader != null && projectLeader.leaderOf() == project) {
+                Project.activityMap.put(new Activity(activityname),null);
+            }
+            else if(projectLeader == null && projectLeader.isAvailable() == true){ //isAvailable() er ikke implementeret endnu
+                Project.activityMap.put(new Activity(activityname),null);
+            }
+            else{
+                throw new IllegalArgumentException("Der er ingen projektleder eller ledig medarbejder til at oprette aktiviteten");
+            }
+        }
+    }
+
     public Map<Activity, Map<Employee, Double>> getActivityMap() {
         return activityMap;
     }
