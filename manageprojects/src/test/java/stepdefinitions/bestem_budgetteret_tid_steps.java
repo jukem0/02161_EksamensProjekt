@@ -14,24 +14,17 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class bestem_budgetteret_tid_steps {
-    ArrayList<Employee> employees = new ArrayList<>();
     ArrayList<Project> projects = new ArrayList<>();
+    ArrayList<Employee> employees = new ArrayList<>(CreateProjectSteps.employees);
 
     // @Given i CreateProjectSteps
 
-    @And("at {string} er projektleder under {string}")
-    public void denne_medarbejder_er_projektleder_for_et_projekt(String empplyee, String project) {
-        for (int i = 0; i < employees.size(); i++) {
-            if (employees.get(i).getEmployeeName().equals(empplyee)) {
-                Project newProject = new Project(project);
-                projects.add(newProject);
-                employees.get(i).becomeLeaderOf(projects.get(i).getProjectNr());
-
-            }
-        }
+    @Given("at {string} er projektleder under {string}")
+    public void denne_medarbejder_er_projektleder_for_et_projekt(String employee, String project) {
         
-        assert (employee.getEmployeeName().equalsIgnoreCase(projectCheck.getProjectLeader().getEmployeeName()));
-        
+        Project newProject = new Project(project, employees.get(0));
+        projects.add(newProject);
+        assertEquals(employee, projects.get(0).getProjectLeader());
     }
 
     @When("medarbejderen {string} bestemmer budgetteret tid {float} for en aktivitet {string} i projektet {string}, som positivt decimaltal eller heltal")

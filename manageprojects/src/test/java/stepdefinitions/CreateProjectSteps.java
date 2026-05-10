@@ -13,13 +13,17 @@ import io.cucumber.java.en.When;
 
 public class CreateProjectSteps {
     private ArrayList<Project> projects;
+    public static ArrayList<Employee> employees = new ArrayList<>();
     
     @Given("en {string} findes i systemet")
     public void medarbejder_findes_i_systemet(String empName) {
-        ArrayList<Employee> employeesOnFile = new ArrayList<>();
-        Employee newEmp = new Employee(empName);
-        employeesOnFile.add(newEmp);
-        assertEquals(empName, employeesOnFile.get(0).getEmployeeName());
+        for (int i = 0; i < employees.size(); i++) {
+            if (!empName.equals(employees.get(i).getEmployeeName())) {
+                Employee newEmp = new Employee(empName);
+                employees.add(newEmp);
+            }
+            assertEquals(empName, employees.get(i).getEmployeeName());
+        }
     }
 
     @When("en medarbejder opretter et projekt med navn {string}")
