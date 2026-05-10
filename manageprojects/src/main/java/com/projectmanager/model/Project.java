@@ -79,6 +79,28 @@ public class Project{
         }
         return false;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+
+        if (obj.getClass() != this.getClass()){
+            return false;
+        }
+
+        Project other = (Project) obj;
+
+        return (getName().equals(other.getName()));
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    
     
 
 
