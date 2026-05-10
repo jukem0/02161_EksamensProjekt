@@ -136,4 +136,12 @@ public class Project {
         return java.util.Objects.hash(projectName, activityMap);
     }
 
+    public String generateReport() {
+        String str = "";
+        str.concat(projectName + "\n\n\n");
+        
+
+        return null;
+    }
+
 }
