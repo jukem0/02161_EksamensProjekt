@@ -6,11 +6,7 @@ import com.projectmanager.model.Week;
 import com.projectmanager.services.RuntimeContext;
 
 public class CreateActivityCommand extends Command{
-
-    @Override
-    public String getName() {
-        return "create_activity";
-    }
+    String format = "create_activity <projectNr> <activityName> or  : create_activity <projectNr> <activityName> <budgetTime> <endWeek> <amountWeek>";
 
     @Override
     public void execute(String[] args) {
@@ -29,6 +25,8 @@ public class CreateActivityCommand extends Command{
                     RuntimeContext.getProjects().get(i).addActivity(args[1], Integer.parseInt(args[2]), new Week(Integer.parseInt(args[3]),Year.now().getValue()), Integer.parseInt(args[4]));
                 }
             }
-        } 
+        } else{
+            System.out.println("Expected format: " + format);
+        }
     }
 }
