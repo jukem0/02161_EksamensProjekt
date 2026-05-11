@@ -27,7 +27,7 @@ Feature: Generer rapport
         Given en <medarbejder> findes i systemet
         And en <medarbejder> er tilmeldt projekt <projektnavn>
         When der ikke er nogle aktivitet i projektet
-        And en medarbejder genererer rapport
+        When en medarbejder genererer rapport for uge <int>
         Then handling fejler med fejlbesked: "ingen aktiviteter i projekt"
 
         Examples:
