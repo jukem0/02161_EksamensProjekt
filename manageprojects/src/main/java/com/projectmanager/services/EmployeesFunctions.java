@@ -10,14 +10,14 @@ import com.projectmanager.model.Project;
 public class EmployeesFunctions implements IEmployeeFunctions {
 
     @Override
-    public void nsaddActivityToProject(String activityname, Project project, Employee projectLeader){
+    public void nsaddActivityToProject(String activityname, Project project, Employee projectLeader) {
         // TODO Auto-generated method stub
         project.addActivity(activityname, projectLeader);
         throw new UnsupportedOperationException("Unimplemented method 'addActivityToProject'");
     }
 
     @Override
-    public void nsaddEmployeeToActivity(Employee employee, Activity activity, Project project){
+    public void nsaddEmployeeToActivity(Employee employee, Activity activity, Project project) {
         // TODO Auto-generated method stub
 
         Map<Activity, Map<Employee, Double>> activityMap = project.getActivityMap();
@@ -30,21 +30,16 @@ public class EmployeesFunctions implements IEmployeeFunctions {
     @Override
     public void nsaddProject(Project project) {
         // TODO Auto-generated method stub
-        
+
     }
-    
+
     @Override
-<<<<<<< HEAD
     public void nsassignProjectleader(Project project, Employee employee) {
         if (employee.leaderOf() != null) {
             throw new IllegalArgumentException("Medarbejder er allerede projektleder for et andet projekt");
         }
         project.setProjectLeader(employee);
         employee.becomeLeaderOf(project.getProjectNr());
-=======
-    public void nsassignProjectleader(Project project, Employee employee){
-        Employee.assignProjectleader(project.getProjectNr(), employee);
->>>>>>> 9694e37b5529d4f2d0f7abfd09ad465e1f1d2c6e
     }
 
     @Override
@@ -62,33 +57,35 @@ public class EmployeesFunctions implements IEmployeeFunctions {
         empMap.put(emp, oldVal + hours);
     }
 
-
-    
-
     public static void addActivityToProject(String activityname, Project project, Employee projectLeader) {
         IEmployeeFunctions obj = new EmployeesFunctions();
         obj.nsaddActivityToProject(activityname, project, projectLeader);
     }
 
-    public static void addEmployeeToActivity(Employee employee, Activity activity, Project project){
+    public static void addEmployeeToActivity(Employee employee, Activity activity, Project project) {
         IEmployeeFunctions obj = new EmployeesFunctions();
         obj.nsaddEmployeeToActivity(employee, activity, project);
     }
 
-    public static void addProject(Project projects){
+    public static void addProject(Project projects) {
         IEmployeeFunctions obj = new EmployeesFunctions();
         obj.nsaddProject(projects);
     }
 
-    public static void assignProjectleader(Project project, Employee employee){
+    public static void assignProjectleader(Project project, Employee employee) {
         IEmployeeFunctions obj = new EmployeesFunctions();
         obj.nsassignProjectleader(project, employee);
     }
 
-    public static void registerTime(Employee emp, Project pro, Activity act, Double hours) throws Exception{
+    public static void registerTime(Employee emp, Project pro, Activity act, Double hours) throws Exception {
         IEmployeeFunctions obj = new EmployeesFunctions();
         obj.nsregisterTime(emp, pro, act, hours);
     }
 
+    @Override
+    public Employee nsgetEmployee() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'nsgetEmployee'");
+    }
 
 }
