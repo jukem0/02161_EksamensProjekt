@@ -23,7 +23,7 @@ Feature: Registrering af brugt tid
     Scenario Outline: Medarbejder skriver en negativ tid ind
         Given en <medarbejder> findes i systemet
         When en <medarbejder> indtaster deres tid brugt på en <aktivitetsnavn> i et <projekt> som decimaltal eller heltal <timer>
-        Then handling fejler med fejlbesked: "Tiden kan ikke indtastes som negativt"
+        Then handling fejler med fejlbesked at "Tiden kan ikke indtastes som negativt"
 
         Examples:
             | medarbejder | aktivitetsnavn  |  projekt          |   timer  | 

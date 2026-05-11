@@ -11,7 +11,7 @@ public interface IEmployeeFunctions {
     public void addActivityToProject(String activityname, Project project, Employee projectLeader);
     public void addEmployeeToActivity(Employee employee, Activity activity, Project project);
     public void assignProjectleader(Project project, Employee employee);
-    public void registerTime(Employee emp,Project pro, Activity act, Double hours);
+    public void registerTime(Employee emp,Project pro, Activity act, Double hours) throws Exception;
 
 
 }
