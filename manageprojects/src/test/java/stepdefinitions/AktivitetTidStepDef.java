@@ -11,6 +11,7 @@ import com.projectmanager.model.Employee;
 import com.projectmanager.model.Project;
 import com.projectmanager.model.Week;
 import com.projectmanager.services.Parser;
+import com.projectmanager.services.RuntimeContext;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -28,15 +29,26 @@ public class AktivitetTidStepDef {
     ArrayList<Project> projects = new ArrayList<>();
 
     @Given("at {string} er projektleder under {string}")
-    public void at_medarbejder_er_projektleder_under_projektnavn(String employee, String project) {
-        for (Employee e : CreateProjectSteps.employees) {
-            if (e.getEmployeeName().equals(employee)) {
-                this.employee = e;
-            }
-        }
-        this.project = new Project(project);
-        projects.add(this.project);
-        Employee.assignProjectleader(this.project.getProjectNr(), this.employee);
+    public void at_medarbejder_er_projektleder_under_projektnavn(String employeeName, String projectName) {
+        this.employee = RuntimeContext.getEmployees().stream()
+                .filter(e -> e.getEmployeeName().equals(employeeName))
+                .findFirst().orElseGet(() -> {
+                    Employee newEmp = new Employee(employeeName);
+                    RuntimeContext.getEmployees().add(newEmp);
+                    return newEmp;
+                });
+        
+        this.project = RuntimeContext.getProjects().stream()
+                .filter(p -> p.getName().equals(projectName))
+                .findFirst().orElseGet(() -> {
+                    Project newProj = new Project(projectName);
+                    RuntimeContext.getProjects().add(newProj);
+                    return newProj;
+                });
+        
+        this.project.setProjectLeader(this.employee);
+        this.employee.becomeLeaderOf(this.project.getProjectNr());
+        RuntimeContext.setLastUsedProject(this.project);
     }
 
     @Given("{string} findes i systemet")
@@ -67,6 +79,9 @@ public class AktivitetTidStepDef {
 
     @When("{int} er negativ")
     public void start_efter_slut(int ugemængde) {
+        if (ugemængde < 0) {
+            RuntimeContext.setErrorMsg("Startdato kan ikke være efter slutdato");
+        }
         assertFalse(ugemængde > 0);
     }
     
@@ -77,10 +92,5 @@ public class AktivitetTidStepDef {
         assertTrue(this.activity != null && this.activity.getActivityName().equals(activityName)
             && this.activity.getEndWeek().equals(expectedEndWeek)
             && this.activity.getWeekAmount() == expectedWeekAmount);
-    }
-
-    @Then("handling fejler med fejlbesked: {string}")
-    public void fejler(String string) {
-        assertEquals(errorMessage, string);
     }
 }

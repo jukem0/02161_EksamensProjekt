@@ -9,6 +9,9 @@ import com.projectmanager.model.Project;
 public class RuntimeContext {
     private static ArrayList<Employee> employees = new ArrayList<>();
     private static ArrayList<Project> projects = new ArrayList<>();
+    private static Activity lastCreatedActivity;
+    private static Project lastUsedProject;
+    private static String errorMsg = "";
 
     private static RuntimeContext context_instance = null;
 
@@ -18,6 +21,14 @@ public class RuntimeContext {
         }
 
         return context_instance;
+    }
+    
+    public static String getErrorMsg() {
+        return errorMsg;
+    }
+
+    public static void setErrorMsg(String msg) {
+        errorMsg = msg;
     }
     
     public static ArrayList<Employee> getEmployees(){
@@ -61,5 +72,29 @@ public class RuntimeContext {
                 }
             }
         }
+    }
+
+    public static Activity getLastCreatedActivity() {
+        return lastCreatedActivity;
+    }
+
+    public static void setLastCreatedActivity(Activity activity) {
+        lastCreatedActivity = activity;
+    }
+
+    public static Project getLastUsedProject() {
+        return lastUsedProject;
+    }
+
+    public static void setLastUsedProject(Project project) {
+        lastUsedProject = project;
+    }
+
+    public static void reset() {
+        employees.clear();
+        projects.clear();
+        lastCreatedActivity = null;
+        lastUsedProject = null;
+        errorMsg = "";
     }
 }

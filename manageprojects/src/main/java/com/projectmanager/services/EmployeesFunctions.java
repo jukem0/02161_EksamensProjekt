@@ -34,9 +34,12 @@ public class EmployeesFunctions implements IEmployeeFunctions {
     }
     
     @Override
-    public void nsassignProjectleader(Project project, Employee employee){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'assignProjectleader'");
+    public void nsassignProjectleader(Project project, Employee employee) {
+        if (employee.leaderOf() != null) {
+            throw new IllegalArgumentException("Medarbejder er allerede projektleder for et andet projekt");
+        }
+        project.setProjectLeader(employee);
+        employee.becomeLeaderOf(project.getProjectNr());
     }
 
     @Override

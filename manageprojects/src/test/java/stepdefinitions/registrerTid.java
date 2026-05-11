@@ -32,8 +32,8 @@ public class registrerTid {
             EmployeesFunctions.addEmployeeToActivity(emp, act, pro);
             EmployeesFunctions.registerTime(emp,pro,act,timer);
             
-        } catch (Exception e){
-            fejlbesked = e.toString();
+        } catch (Exception e) {
+            fejlbesked = e.getMessage();
         }
     }
 
@@ -52,9 +52,9 @@ public class registrerTid {
     }
 
     @Then("handling fejler med fejlbesked at {string}")
-    public void handling_fejler(String tidNegativt) throws Exception{
-        if (fejlbesked != tidNegativt){
-            throw new Exception(fejlbesked);
+    public void handling_fejler(String tidNegativt) throws Exception {
+        if (fejlbesked == null || !fejlbesked.equals(tidNegativt)) {
+            throw new Exception("Expected message: '" + tidNegativt + "' but got: '" + fejlbesked + "'");
         }
     }
 }

@@ -37,6 +37,10 @@ public class Activity implements IActivity {
 
     @Override
     public void addEmployeeToActivity(Employee employee) {
+        if (employees.contains(employee)) {
+            throw new IllegalArgumentException("Medarbejder er allerede tildelt denne aktivitet");
+        }
+        employees.add(employee);
     }
 
     @Override

@@ -4,6 +4,7 @@ import java.time.Year;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import com.projectmanager.services.RuntimeContext;
 
 public class Project {
     private String projectName, projectNr;
@@ -11,6 +12,10 @@ public class Project {
     private Employee projectLeader;
     private ArrayList<Activity> activities = new ArrayList<>();
     private static int serialNumber = 0;
+
+    public static void resetSerialNumber() {
+        serialNumber = 0;
+    }
 
     // Indre hashmap
     private static Map<Employee, Double> employeeRegtime = new HashMap<>();
@@ -37,6 +42,10 @@ public class Project {
 
     public Employee getProjectLeader() {
         return projectLeader;
+    }
+
+    public void setProjectLeader(Employee employee) {
+        this.projectLeader = employee;
     }
 
     public String getActivityName(String activityName) {
@@ -88,21 +97,26 @@ public class Project {
         Activity newAct = new Activity(actName);
         activities.add(newAct);
         activityMap.put(newAct, null);
+        RuntimeContext.setLastCreatedActivity(newAct);
     }
 
     public void addActivity(String actName, double budgetTime, Week endWeek, int weekAmount) {
         Activity newAct = new Activity(actName, budgetTime, endWeek, weekAmount);
         activities.add(newAct);
         activityMap.put(newAct, null);
+        RuntimeContext.setLastCreatedActivity(newAct);
     }
 
     public void addActivity(String actname, Employee projectLeader) {
         assert (projectLeader != null) : "Ingen medarbejder valgt";
         if (isActivityInProject(new Activity(actname)) == true) {
-            throw new IllegalArgumentException("Aktiviteten findes allerede i projektet");
+            throw new IllegalArgumentException("denne aktivitet findes allerede");
         } else if (projectLeader.leaderOf() != null && projectLeader.leaderOf().equals(this.getProjectNr())
                 || projectLeader.isAvailable()) { // isAvailable() er ikke implementeret endnu{
-            activityMap.put(new Activity(actname), null);
+            Activity newAct = new Activity(actname);
+            activityMap.put(newAct, null);
+            activities.add(newAct);
+            RuntimeContext.setLastCreatedActivity(newAct);
         } else {
             throw new IllegalArgumentException(
                     "Der er ingen projektleder eller ledig medarbejder til at oprette aktiviteten");
@@ -162,14 +176,18 @@ public class Project {
     }
 
     public String generateReport(int weeknr) {
-        String str = "";
-        str.concat(projectName + ", " + weeknr + "\n\n\n");
-        for (Activity a : activities) {
-            str.concat(a.getActivityName() + ":\n");
-            str.concat(" -  Time Budget: " + a.getBudgetTime() + "  -  Time Spend: " + a.getTimeSpend()
-                    + "  -  Time Remaining: " + a.getRemainingTime() + "\n");
+        if (activities.isEmpty()) {
+            throw new IllegalArgumentException("ingen aktiviteter i projekt");
         }
-        return str;
+        StringBuilder sb = new StringBuilder();
+        sb.append(projectName).append(", ").append(weeknr).append("\n\n\n");
+        for (Activity a : activities) {
+            sb.append(a.getActivityName()).append(":\n");
+            sb.append(" -  Time Budget: ").append(a.getBudgetTime())
+                    .append("  -  Time Spend: ").append(a.getTimeSpend())
+                    .append("  -  Time Remaining: ").append(a.getRemainingTime()).append("\n");
+        }
+        return sb.toString();
     }
 
     public Activity getActivity(int index) {

@@ -16,6 +16,6 @@ Feature: A Opret projekt
 
 		Examples:
 			| projektnavn | medarbejder | projektNummer |
-			| "Website"   | "huba"      | "26008"       |
-			| "Skylager"  | "wilo"      | "26009"       |
-			| "Kalender"  | "anda"      | "26010"       |
+			| "Website"   | "huba"      | "26001"       |
+			| "Skylager"  | "wilo"      | "26002"       |
+			| "Kalender"  | "anda"      | "26003"       |

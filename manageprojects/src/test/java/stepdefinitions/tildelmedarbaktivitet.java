@@ -1,73 +1,108 @@
 package stepdefinitions;
 
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import com.projectmanager.model.Activity;
 import com.projectmanager.model.Employee;
 import com.projectmanager.model.Project;
 import com.projectmanager.model.Week;
+import com.projectmanager.services.RuntimeContext;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-
 //lavet af sara og fabrizio
 
 public class tildelmedarbaktivitet {
 
-    private String errorMessageEmployeeAlrAdd;
-
+    private Project project;
+    private Employee employee;
+    private Activity activity;
 
     @Given("der findes en aktivitet med navn {string} i projektet {string}")
-    public void checkIfActivityInProject(String testActivity, String pro) {
-
-        Project Pro = new Project(pro);
-       
-        Activity act = new Activity(testActivity,20.1, new Week(5, 2026),1);
-        Employee emp = new Employee("proo");
-        emp.becomeLeaderOf("2601");
-
-        Pro.addActivity(testActivity, emp);
+    public void checkIfActivityInProject(String activityName, String projectName) {
+        this.project = RuntimeContext.getProjects().stream()
+                .filter(p -> p.getName().equalsIgnoreCase(projectName))
+                .findFirst().orElseGet(() -> {
+                    Project newProj = new Project(projectName);
+                    RuntimeContext.getProjects().add(newProj);
+                    return newProj;
+                });
         
-        assertFalse(Pro.isActivityInProject(act));
+        if (!this.project.isActivityInProject(new Activity(activityName))) {
+            this.project.addActivity(activityName);
+        }
+        
+        this.activity = this.project.getActivityMap().keySet().stream()
+                .filter(a -> a.getActivityName().equalsIgnoreCase(activityName))
+                .findFirst().orElse(null);
+        assertNotNull(this.activity);
     }
 
-    // @And findes i CreateProjectSteps
-
-    @When("en medarbedjer udpeger en anden medarbejder {string} til at være tilknyttet aktivitet med navn {string}")
-    public void iTryToAddEmployeeToActivity(String emp, String act) throws Exception {
+    @When("en medarbejder udpeger en anden medarbejder {string} til at være tilknyttet aktivitet med navn {string}")
+    public void iTryToAddEmployeeToActivity(String empInitial, String actName) {
+        this.employee = RuntimeContext.getEmployees().stream()
+                .filter(e -> e.getEmployeeName().equalsIgnoreCase(empInitial))
+                .findFirst().orElseGet(() -> {
+                    Employee newEmp = new Employee(empInitial);
+                    RuntimeContext.getEmployees().add(newEmp);
+                    return newEmp;
+                });
         
+        if (this.activity == null || !this.activity.getActivityName().equals(actName)) {
+            // Try to find it in the current project
+            if (this.project != null) {
+                this.activity = this.project.getActivityMap().keySet().stream()
+                    .filter(a -> a.getActivityName().equalsIgnoreCase(actName))
+                    .findFirst().orElse(null);
+            }
+        }
+
         try {
-            addEmployeeToActivity(emp,act);
-        } catch (Exception e){
-            errorMessageEmployeeAlrAdd = "The employee is already a part of this activity";
+            if (this.activity != null) {
+                this.activity.addEmployeeToActivity(this.employee);
+            }
+        } catch (Exception e) {
+            RuntimeContext.setErrorMsg(e.getMessage());
         }
     }
 
     @Then("tildel medarbejder {string} til aktivitet med navn {string} skal lykkes")
-    public void addEmployeeToActivity(String emp, String activityName) {
-        
-        Activity act = new Activity(activityName, 20.1, new Week(5, 2026),1);
-        Employee Emp = new Employee(emp);
-        act.addEmployeeToActivity(Emp);
-
-        assert (act.getEmployees().contains(Emp));
+    public void addEmployeeToActivitySuccess(String empInitial, String activityName) {
+        assertNotNull(this.activity);
+        assertTrue(this.activity.getEmployees().stream()
+                .anyMatch(e -> e.getEmployeeName().equalsIgnoreCase(empInitial)));
     }
 
     @And("medarbejder {string} allerede er tildelt aktivitet med navn {string}")
-    public void medarbejderAlleredeTildelt(String emp, String activityName) {
+    public void medarbejderAlleredeTildelt(String empInitial, String activityName) {
+        // Initialize employee if not already set
+        if (this.employee == null || !this.employee.getEmployeeName().equalsIgnoreCase(empInitial)) {
+            this.employee = RuntimeContext.getEmployees().stream()
+                    .filter(e -> e.getEmployeeName().equalsIgnoreCase(empInitial))
+                    .findFirst().orElseGet(() -> {
+                        Employee newEmp = new Employee(empInitial);
+                        RuntimeContext.getEmployees().add(newEmp);
+                        return newEmp;
+                    });
+        }
 
-        Activity act = new Activity(activityName,20.1, new Week(5, 2026),1);
-        Employee Emp = new Employee(emp);
-        act.addEmployeeToActivity(Emp);
-        act.addEmployeeToActivity(Emp);
-    }
+        // Initialize activity if not already set
+        if (this.activity == null || !this.activity.getActivityName().equals(activityName)) {
+            if (this.project != null) {
+                this.activity = this.project.getActivityMap().keySet().stream()
+                        .filter(a -> a.getActivityName().equalsIgnoreCase(activityName))
+                        .findFirst().orElse(null);
+            }
+        }
 
-    @Then("handling fejler med fejlbesked: 'Medarbejder er allerede tildelt til denne aktivitet'")
-    public void handlingFejler(String aktivitetsnavn) {
-
-        System.out.println(errorMessageEmployeeAlrAdd);
+        if (this.activity != null && this.employee != null) {
+            if (!this.activity.getEmployees().contains(this.employee)) {
+                this.activity.addEmployeeToActivity(this.employee);
+            }
+        }
     }
 }
