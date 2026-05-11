@@ -80,18 +80,18 @@ public class Main {
                         System.out.println("\n--- Eksisterende Projekter ---");
                         for (Project p : allprojects) {
                             System.out.println(
-                                    "- Projektnummer: " + p.getProjectNr() + " (Navn: " + p.getProjectName() + ")");
+                                    "- Projektnummer: " + p.getProjectNr() + " (Navn: " + p.getName() + ")");
                         }
                     }
                     break;
 
                 case "2":
                     System.out.print("Indtast navn på det nye projekt: ");
-                    String projektNavn = scanner.nextLine().trim();
+                    String projectname = commandInput.nextLine().trim();
 
                     boolean exists = false;
                     for (Project p : allprojects) {
-                        if (p.getProjectName() != null && p.getProjectName().equalsIgnoreCase(projektNavn)) {
+                        if (p.getName() != null && p.getName().equalsIgnoreCase(projectname)) {
                             exists = true;
                             break;
                         }
@@ -99,10 +99,10 @@ public class Main {
                     if (exists) {
                         System.out.println("Fejl: Et projekt med dette navn findes allerede.");
                     } else {
-                        Project nytProjekt = new Project(projektNavn);
+                        Project nytProjekt = new Project(projectname);
                         nytProjekt.setProjectNr(String.valueOf(1000 + allprojects.size()));
                         allprojects.add(nytProjekt);
-                        System.out.println("Projekt '" + projektNavn + "' oprettet med succes!");
+                        System.out.println("Projekt '" + projectname + "' oprettet med succes!");
                     }
                     break;
 
