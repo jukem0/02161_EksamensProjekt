@@ -1,8 +1,8 @@
 package stepdefinitions;
 
-import static org.junit.Assert.assertEquals;
-
 import java.time.Year;
+
+import static org.junit.Assert.assertEquals;
 
 import com.projectmanager.model.Employee;
 import com.projectmanager.model.Project;
