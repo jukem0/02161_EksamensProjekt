@@ -11,13 +11,4 @@ public class ProjectsFunctions implements IProjectFunctions {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'MakeRepport'");
     }
-    
-
-    @Override
-    public List<Project> allProjects() {
-        // TODO Auto-generated method stub
-        
-        throw new UnsupportedOperationException("Unimplemented method 'allProjects'");
-    }
-    
 }
