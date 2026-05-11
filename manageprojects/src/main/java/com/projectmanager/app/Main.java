@@ -45,7 +45,7 @@ public class Main {
                 }
             }
             if (loggedInUser != null) {
-                System.out.println("Login succesfuldt! Velkommen til systemet, " + loggedInUser.getName() + ".");
+                System.out.println("Login succesfuldt! Velkommen til systemet, " + loggedInUser.getEmployeeName() + ".");
             } else {
                 System.out.println("Fejl: Brugernavnet '" + inputName + "' findes ikke i systemet. Prøv igen.");
             }
@@ -112,7 +112,7 @@ public class Main {
                         System.out.println("Ingen medarbejdere i systemet.");
                     } else {
                         for (Employee m : systemMedarbejdere) {
-                            System.out.println("- " + m.getName() + " (Ledig)");
+                            System.out.println("- " + m.getEmployeeName() + " (Ledig)");
                         }
                     }
                     break;
