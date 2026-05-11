@@ -7,37 +7,47 @@ import com.projectmanager.model.Employee;
 import com.projectmanager.model.Project;
 
 public class RuntimeContext {
-    private ArrayList<Employee> employees = new ArrayList<>();
-    private ArrayList<Project> projects = new ArrayList<>();
-    private ArrayList<Activity> activities = new ArrayList<>();
+    private static ArrayList<Employee> employees = new ArrayList<>();
+    private static ArrayList<Project> projects = new ArrayList<>();
+    private static ArrayList<Activity> activities = new ArrayList<>();
+
+    private static RuntimeContext context_instance = null;
+
+    public static synchronized RuntimeContext getInstance(){
+        if (context_instance == null) {
+            context_instance = new RuntimeContext();
+        }
+
+        return context_instance;
+    }
     
-    public ArrayList<Employee> getEmployees(){
+    public static ArrayList<Employee> getEmployees(){
         return employees;
     }
 
-    public void setEmployees(ArrayList<Employee> employees){
-        for (Employee e : employees) {
-            this.employees.add(e);
+    public static void setEmployees(ArrayList<Employee> inputEmployees){
+        for (Employee e : inputEmployees) {
+            employees.add(e);
         }
     }
     
-    public ArrayList<Project> getProjects(){
+    public static ArrayList<Project> getProjects(){
         return projects;
     }
 
-    public void setProjects(ArrayList<Project> projects){
-        for (Project p : projects) {
-            this.projects.add(p);
+    public static void setProjects(ArrayList<Project> inputProjects){
+        for (Project p : inputProjects) {
+            projects.add(p);
         }
     }
 
-    public ArrayList<Activity> getActivities(){
+    public static ArrayList<Activity> getActivities(){
         return activities;
     }
 
-    public void setActivities(ArrayList<Activity> activities){
-        for (Activity a : activities) {
-            this.activities.add(a);
+    public static void setActivities(ArrayList<Activity> inputActivities){
+        for (Activity a : inputActivities) {
+            activities.add(a);
         }
     }
 }

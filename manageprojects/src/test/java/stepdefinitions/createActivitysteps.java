@@ -6,6 +6,7 @@ import java.util.List;
 import com.projectmanager.model.Activity;
 import com.projectmanager.model.Employee;
 import com.projectmanager.model.Project;
+import com.projectmanager.model.Week;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
@@ -51,10 +52,17 @@ public class createActivitysteps {
         }
         // vise hvilke projekter er i systemet.
     }
-    
-    // @Given("en {string} findes i systemet")
-    // public void getmedarbejder(String medarbejder) {
-    // }
+
+    @Given("projektet{string} har en projektleder{string}, eller en ledig medarbejder")
+    public void projektet_har_en_projektleder_eller_en_ledig_medarbejder(String projectName, String empName) {
+        Project pro = new Project(projectName);
+        Employee emp = new Employee(empName);
+
+        
+        pro.addActivity("smt",200, new Week(2, 2026),3);
+        pro.getActivity(0).addEmployeeToActivity(emp);
+    }
+
  
     @And("et projekt {string} har en projektleder eller en ledig medarbejder")
     public void getProjektAnsvarlig(String projectname) {
@@ -90,6 +98,8 @@ public class createActivitysteps {
 
     @Given("der findes et projekt med navn {string}")
     public void getprojekt(String projectname) {
+
+        projectlist.add( new Project(projectname));
         project = projectlist.stream().filter(p -> p.getName().equalsIgnoreCase(projectname)).findFirst().orElse(null);
         assert(project.getName().equalsIgnoreCase(projectname)): "Projektet blev ikke fundet";
 

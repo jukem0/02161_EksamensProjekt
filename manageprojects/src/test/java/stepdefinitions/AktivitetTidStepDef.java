@@ -14,6 +14,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+//lavet af Gustav
+
 public class AktivitetTidStepDef {
     Week endWeek;
     int weekAmount;
@@ -34,7 +36,11 @@ public class AktivitetTidStepDef {
         this.activity = new Activity(string);
     }
 
+<<<<<<< HEAD
     @When("{string} bestemmer slutdato, {int}, {int}, og {int} for aktiviteten {string}")
+=======
+    @When("{string} bestemmer slutdato, {int},{int}, og {int} for aktiviteten {string}")
+>>>>>>> 0e3ed8a6abeae0aaf3a1d7b8ef0f87152203e997
     public void bestem_start_og_slut(String employee, String activity, int endWeek, int endYear, int weekAmount) {
         String[] inputToParse = {endWeek+"", endYear+""};
         this.weekAmount = weekAmount;
