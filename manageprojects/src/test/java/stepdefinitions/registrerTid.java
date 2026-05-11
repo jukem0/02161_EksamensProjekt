@@ -17,6 +17,7 @@ public class registrerTid {
     private Employee emp;
     private Activity act;
     private String fejlbesked;
+    private Activity actName;
 
     @When("en {string} indtaster deres tid brugt på en {string} i et {string} som decimaltal eller heltal {double}")
     public void en_indtaster_deres_tid(String medarbejder, String activityName, String projectName, double timer) {
@@ -25,6 +26,8 @@ public class registrerTid {
         act = new Activity(activityName, 20.1, new Week(5, 2026),1);
         pro = new Project(projectName);
         EmployeesFunctions empfun = new EmployeesFunctions();
+
+        actName = new Activity(activityName);
 
         try {
             empfun.addEmployeeToActivity(emp, act, pro);
@@ -36,10 +39,12 @@ public class registrerTid {
     }
 
     @Then("Under {string} findes {double} brugt af {string} rundet op til nærmeste halve")
-    public void under_aktivitet_findes_tiden(String aktivitetNavn, double timer, String  medarbejderNavn) throws Exception {
-        if(pro.getTimeSpendPerPersonActivity(act, emp) == timer) {
+    public boolean under_aktivitet_findes_tiden(String aktivitetNavn, double timer, String  medarbejderNavn) throws Exception {
+        double timeSpend = pro.getTimeSpendPerPersonActivity(actName, emp);
 
-            pro.getTimeSpendPerPersonActivity(act, emp);
+        if(Math.abs(timeSpend - timer) < 0.0001) {
+
+            return true;
             
         } else {
             errorMessageActAlrExist = "Time not found";
