@@ -18,19 +18,18 @@ public class Activity implements IActivity {
     }
 
     public Activity(String activityName, double budgetTime, Week endWeek, int weekAmount) {
+        if (budgetTime < 0) {
+            this.budgetTime = 0;
+        } else {
+            this.budgetTime = Math.round(budgetTime*2)/2.0;
+        }
+
         this.actName = activityName;
-        this.budgetTime = budgetTime;
         this.timeRemaining = budgetTime;
         this.endWeek = endWeek;
         this.weekAmount = weekAmount;
         this.startWeek = new Week(endWeek.getWeekNum() - weekAmount, endWeek.getYear());
         this.timeSpend = 0;
-
-        if (budgetTime < 0) {
-            budgetTime = 0;
-        } else {
-            budgetTime = Math.round(budgetTime*2)/2.0;
-        }
     }
     
     @Override

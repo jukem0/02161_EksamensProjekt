@@ -146,6 +146,14 @@ public class Project {
         return timeSpend;
     }
 
+    public double getTimeSpendPerPersonActivity(Activity activity, Employee employee) {
+        double timeSpendEmployee = 0.0;
+        
+        timeSpendEmployee = activityMap.get(activity).get(employee);
+        
+        return timeSpendEmployee;
+    }
+
     public String generateReport(int weeknr) {
         String str = "";
         str.concat(projectName + ", " + weeknr + "\n\n\n");

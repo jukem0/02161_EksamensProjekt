@@ -18,16 +18,11 @@ public class EmployeesFunctions implements IEmployeeFunctions {
     public void addEmployeeToActivity(Employee employee, Activity activity, Project project){
         // TODO Auto-generated method stub
 
-        if (project.isActivityInProject(activity.getActivityName())) {
-            activity.addEmployeeToActivity(employee);
-        }
+        Map<Activity, Map<Employee, Double>> activityMap = project.getActivityMap();
 
         activityMap.putIfAbsent(activity, new HashMap<>());
 
-        Map<Employee, Double> employeeRegtime = activityMap.get(activity);
-
-        employeeRegtime.put(employee, null);
-        throw new UnsupportedOperationException("Unimplemented method 'addEmployeeToActivity'");
+        activityMap.get(activity).putIfAbsent(employee, 0.0);
     }
 
     
@@ -40,6 +35,13 @@ public class EmployeesFunctions implements IEmployeeFunctions {
     @Override 
     public void registerTime(Employee emp,Project pro, Activity act, Double hours){
         //employeeRegTime
+
+        Map<Activity, Map<Employee, Double>> activityMap = pro.getActivityMap();
+
+        Double oldVal = activityMap.get(act).get(emp);
+
+        activityMap.get(act).put(emp, oldVal + hours);
+
     }
 
     @Override

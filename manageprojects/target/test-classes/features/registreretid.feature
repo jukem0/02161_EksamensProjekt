@@ -11,14 +11,14 @@ Feature: Registrering af brugt tid
 
     Scenario Outline: Medarbejder skriver deres brugte tid til aktivitet
         Given en <medarbejder> findes i systemet
-        When en <medarbejder> indtaster deres tid brugt på et projekt som decimaltal eller heltal <timer>
-        Then Under <aktivitetsnavn> findes tiden brugt af <medarbejder> rundet op til nærmeste halve
+        When en <medarbejder> indtaster deres tid brugt på en <aktivitetsnavn> i et <projekt> som decimaltal eller heltal <timer>
+        Then Under <aktivitetsnavn> findes <timer> brugt af <medarbejder> rundet op til nærmeste halve
 
         Examples:
-            | medarbejder | aktivitetsnavn  | timer |
-            | "huba"      | "Design"        | 5.0   |
-            | "wilo"      | "Analyse"       | 1.3   |
-            | "anda"      | "Programmering" | 12.2  |
+            | medarbejder | aktivitetsnavn  |  projekt          | timer | 
+            | "huba"      | "Design"        |  "Settings"       | 5.0   |
+            | "wilo"      | "Analyse"       |  "Kowalski"       | 1.3   |
+            | "anda"      | "Programmering" |  "CucumberSad"    | 12.2  |
 
     Scenario Outline: Medarbejder skriver en negativ tid ind
         Given en <medarbejder> findes i systemet
@@ -27,6 +27,6 @@ Feature: Registrering af brugt tid
 
         Examples:
             | medarbejder | aktivitetsnavn  | timer |
-            | "huba"      | "Design"        | -2    |
+            | "huba"      | "Design"        | -2.0  |
             | "wilo"      | "Analyse"       | -3.2  |
             | "anda"      | "Programmering" | -12.1 |

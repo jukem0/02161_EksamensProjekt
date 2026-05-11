@@ -1,5 +1,8 @@
 package stepdefinitions;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.time.Year;
 import java.util.*;
 
@@ -14,45 +17,43 @@ import io.cucumber.java.en.When;
 public class LavRapportStepDef {
 
     private Project curProject;
+    private Project pro;
+    private String outputtet;
 
     @Given("en {string} er tilmeldt projekt {string}")
     public void er_tilmeldt_projekt(String employee, String projektNavn) {
 
         Employee curEmployee = new Employee(employee);
-        Project curProject = new Project(projektNavn);
+        curProject = new Project(projektNavn);
         curProject.addActivity("Gunner rundt om jorden", 100, new Week(23, Year.now().getValue()), 5);
         curProject.getEmployeeMap().put(curEmployee, null);
         // curProject.getActivityMap().put(curProject.getActivityName(projektNr), null);
     }
 
-    @When("en {string} genererer rapport")
-    public void forsøg_generer_rapport(String medarbejder) {
-        curProject.generateReport(1);
+    @When("en medarbejder genererer rapport for uge {int}")
+    public void forsøg_generer_rapport(int weeknr) {
+        outputtet = curProject.generateReport(weeknr);
     }
 
     @When("der ikke er nogle aktivitet i projektet")
     public void projekt_mangler_aktiviteter() {
 
-        Project pro = new Project("idkman");
-        Set keySet = pro.getActivityMap().keySet();
-
-        assert(keySet == null);
+        pro = new Project("idkman");
     }
 
     @Then("generer rapport ved navn {string}-rapport-uge-{int}")
     public void generer_rapport(String projektNavn, int ugenummer) {
-
-        Project pro = new Project(projektNavn);
-        pro.generateReport(ugenummer);
+        assertEquals(outputtet, curProject.generateReport(ugenummer));
+        // Project pro = new Project(projektNavn);
+        // pro.generateReport(ugenummer);
         
     }
 
     @Then("handling fejler med fejlbesked: 'ingen aktiviteter i projekt'")
-    public void handling_fejler() {
+    public void handling_fejler() throws IllegalArgumentException {
         try {
-            projekt_mangler_aktiviteter();
-
-        }catch(Exception e) {
+            pro.generateReport(1);
+        } catch(Exception e) {
             assert(e.getMessage().equalsIgnoreCase("ingen aktiviteter i projekt"));
         }
     }

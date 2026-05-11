@@ -34,7 +34,7 @@ public class AktivitetTidStepDef {
         this.activity = new Activity(string);
     }
 
-    @When("{string} bestemmer slutdato, ({int},{int}), og {int} for aktiviteten {string}")
+    @When("{string} bestemmer slutdato, {int}, {int}, og {int} for aktiviteten {string}")
     public void bestem_start_og_slut(String employee, String activity, int endWeek, int endYear, int weekAmount) {
         String[] inputToParse = {endWeek+"", endYear+""};
         this.weekAmount = weekAmount;
