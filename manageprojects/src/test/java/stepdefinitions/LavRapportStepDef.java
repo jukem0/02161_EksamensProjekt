@@ -1,9 +1,11 @@
 package stepdefinitions;
 
 import java.time.Year;
-import java.util.*;
+import java.util.Set;
 
-import com.projectmanager.model.*;
+import com.projectmanager.model.Employee;
+import com.projectmanager.model.Project;
+import com.projectmanager.model.Week;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -19,7 +21,7 @@ public class LavRapportStepDef {
     public void er_tilmeldt_projekt(String employee, String projektNavn) {
 
         Employee curEmployee = new Employee(employee);
-        Project curProject = new Project(projektNavn);
+        curProject = new Project(projektNavn);
         curProject.addActivity("Gunner rundt om jorden", 100, new Week(23, Year.now().getValue()), 5);
         curProject.getEmployeeMap().put(curEmployee, null);
         // curProject.getActivityMap().put(curProject.getActivityName(projektNr), null);
