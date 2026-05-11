@@ -7,7 +7,7 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-    features = "classpath:features",
+    features = "C:\\Users\\gusta\\Documents\\DTU_eksamensstuff\\02161_EksamensProjekt\\manageprojects\\src\\test\\resources\\features",
     glue = "stepdefinitions",
     plugin = "pretty"
 )

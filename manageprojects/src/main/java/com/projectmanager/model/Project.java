@@ -161,8 +161,6 @@ public class Project {
             str.concat(a.getActivityName() + ":\n");
             str.concat(" -  Time Budget: " + a.getBudgetTime() + "  -  Time Spend: " + a.getTimeSpend() + "  -  Time Remaining: " + a.getRemainingTime() + "\n");
         }
-        
-
         return str;
     }
 

@@ -17,14 +17,17 @@ public class CreateProjectSteps {
     int selectedIndex = 0;
 
     @Given("en {string} findes i systemet")
-    public void medarbejder_findes_i_systemet(String empName) {
+    public void en_medarbejder_findes_i_systemet(String empName) {
+        boolean isInSystem = false;
         for (int i = 0; i < employees.size(); i++) {
-            if (!empName.equals(employees.get(i).getEmployeeName())) {
-                Employee newEmp = new Employee(empName);
-                employees.add(newEmp);
-                selectedIndex = i;
+            if (empName.equals(employees.get(i).getEmployeeName())) {
+                isInSystem = true;
             }
-            assertEquals(empName, employees.get(i).getEmployeeName());
+        }
+
+        if (!isInSystem) {
+            Employee newEmp = new Employee(empName);
+            employees.add(newEmp);
         }
     }
 
@@ -32,6 +35,11 @@ public class CreateProjectSteps {
     public void en_medarbejder_opretter_et_projekt(String projektnavn) {
         projects = new ArrayList<>();
         projects.add(new Project(projektnavn));
+        for (int x = 0; x < projects.size(); x++) {
+            if(projects.get(x).getName().equals(projektnavn)){
+                selectedIndex = x;
+            }
+        }
         assertEquals(1, projects.size());
     }
 

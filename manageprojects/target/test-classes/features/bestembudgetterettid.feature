@@ -8,6 +8,11 @@ Feature: Budgetteret tid for aktivitet
             | "huba"      |
             | "wilo"      |
             | "anda"      |
+        And følgende projekter findes i systemet:
+            | projektnavn |
+            | "Website"   |
+            | "Rapport"   |
+            | "Q1"        |
 
     Scenario Outline: Projektleder bestemmer budgetteret tid
         Given en <medarbejder> findes i systemet

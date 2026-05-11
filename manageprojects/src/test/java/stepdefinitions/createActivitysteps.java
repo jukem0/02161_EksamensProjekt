@@ -17,10 +17,10 @@ import io.cucumber.java.en.When;
 
 
 public class createActivitysteps {
-    private static List<Employee> employeelist = new ArrayList<>();
-    private static List<Project> projectlist = new ArrayList<>();
+    public static List<Employee> employees = new ArrayList<>();
+    public static List<Project> projects = new ArrayList<>();
     private  Project project;
-    private  Employee employee; 
+    private  Employee employee;
     
     @Given("følgende medarbejdere findes i systemet:")
     public void følgendeMedarbejdereFindesISystemet(DataTable table) { // bruger en given liste af medarbejdere for at
@@ -28,29 +28,27 @@ public class createActivitysteps {
         for (String name : employeeNames) {
             //String cleanName = name.replace("\"", ""); // fjerner eventuelle anførselstegn fra navnet
             Employee newEmp = new Employee(name);
-            employeelist.add(newEmp);
+            employees.add(newEmp);
         }
         // vise hvem er i systemet.
     }
 
     @Given("følgende projekter findes i systemet:")
-    public void følgendeProjekterFindesISystemet(DataTable table) { // bruger en given liste af projekter for at
-        System.out.println("DEBUG -> Antal projekter: " + projectlist.size() + " | Antal medarbejdere: " + employeelist.size());
+    public void følgendeProjekterFindesISystemet(DataTable table) {
+        System.out.println("DEBUG -> Antal projekter: " + projects.size() + " | Antal medarbejdere: " + employees.size());
 
         List<String> projectNames = table.asList(String.class);
         for (String name : projectNames) {
-            //String cleanName = name.replace("\"", ""); // fjerner eventuelle anførselstegn fra navnet
-            for (int i = 0; i < employeelist.size(); i++) {
-                if (employeelist.get(i).isAvailable()) {
-                    employeelist.get(i).becomeLeaderOf(name);
-                    break; // Stopper løkken, når en ledig medarbejder er fundet og tildelt som projektleder
+            for (int i = 0; i < employees.size(); i++) {
+                if (employees.get(i).isAvailable()) {
+                    employees.get(i).becomeLeaderOf(name);
+                    Project newProject = new Project(name, employees.get(i));
+                    projects.add(newProject);
+                    break;
                 }
-            Project newProject = new Project(name, employeelist.get(i));
-             // tildeler den første medarbejder som projektleder for alle projekter
-            projectlist.add(newProject);
             }
         }
-        // vise hvilke projekter er i systemet.
+        System.out.println("DEBUG -> Antal projekter efter: " + projects.size());
     }
 
     @Given("projektet{string} har en projektleder{string}, eller en ledig medarbejder")
@@ -66,11 +64,11 @@ public class createActivitysteps {
  
     @And("et projekt {string} har en projektleder eller en ledig medarbejder")
     public void getProjektAnsvarlig(String projectname) {
-        System.out.println("DEBUG -> Antal projekter: " + projectlist.size() + " | Antal medarbejdere: " + employeelist.size());
-        project = projectlist.stream().filter(p -> p.getName().equalsIgnoreCase(projectname)).findFirst().orElse(null);
+        System.out.println("DEBUG -> Antal projekter: " + projects.size() + " | Antal medarbejdere: " + employees.size());
+        project = projects.stream().filter(p -> p.getName().equalsIgnoreCase(projectname)).findFirst().orElse(null);
         assert(project != null): "Projektet blev ikke fundet i systemet";        
-        //this.employee = employeelist.stream().filter(e -> e.isAvailable() || e.leaderOf().equals(project.getProjectNr())).findFirst().orElse(null);
-        this.employee = employeelist.stream()
+        //this.employee = employees.stream().filter(e -> e.isAvailable() || e.leaderOf().equals(project.getProjectNr())).findFirst().orElse(null);
+        this.employee = employees.stream()
         .filter(Employee::isAvailable) // Tjekker kun om de er ledige
         .findFirst().orElse(null);
         assert(employee != null): "Der skal være en projektleder eller en ledig medarbejder for at kunne oprette en aktivitet";
@@ -99,8 +97,8 @@ public class createActivitysteps {
     @Given("der findes et projekt med navn {string}")
     public void getprojekt(String projectname) {
 
-        projectlist.add( new Project(projectname));
-        project = projectlist.stream().filter(p -> p.getName().equalsIgnoreCase(projectname)).findFirst().orElse(null);
+        projects.add( new Project(projectname));
+        project = projects.stream().filter(p -> p.getName().equalsIgnoreCase(projectname)).findFirst().orElse(null);
         assert(project.getName().equalsIgnoreCase(projectname)): "Projektet blev ikke fundet";
 
     }
@@ -110,10 +108,5 @@ public class createActivitysteps {
         assert(project.isActivityInProject(new Activity(actname))): "Aktiviteten blev ikke fundet";
     }
 
-    @Then("handling fejler med fejlbesked: {string}")
-    public void opretAktivitetFailure(String fejlbesked) {
-        fejlbesked = "Aktiviteten findes allerede i projektet";
-        System.out.println(fejlbesked);
-    }
-
 }
+

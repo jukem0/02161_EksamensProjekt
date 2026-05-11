@@ -37,7 +37,7 @@ public class Main {
             System.out.print("\nIndtast dit brugernavn for at logge ind: ");
             String inputName = commandInput.nextLine().trim();
 
-            for (Employee m : curContext.getEmployees()) {
+            for (Employee m : RuntimeContext.getEmployees()) {
                 if (m.getEmployeeName().equalsIgnoreCase(inputName)) {
                     loggedInUser = m;
                     break;

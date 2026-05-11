@@ -96,7 +96,10 @@ public class Activity implements IActivity {
 
         Activity other = (Activity) obj;
 
-        return (getActivityName().equals(other.getActivityName()) && getEmployees().equals(other.getEmployees()) && getStartWeek().equals(other.getStartWeek()) && getEndWeek().equals(other.getEndWeek()));
+        return (getActivityName().equals(other.getActivityName()) 
+            && getEmployees().equals(other.getEmployees()) 
+            && java.util.Objects.equals(getStartWeek(), other.getStartWeek()) 
+            && java.util.Objects.equals(getEndWeek(), other.getEndWeek()));
     }
 
     @Override
