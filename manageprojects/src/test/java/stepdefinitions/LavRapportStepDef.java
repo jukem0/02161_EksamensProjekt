@@ -3,6 +3,8 @@ package stepdefinitions;
 import java.time.Year;
 import java.util.Set;
 
+import static org.junit.Assert.assertEquals;
+
 import com.projectmanager.model.Employee;
 import com.projectmanager.model.Project;
 import com.projectmanager.model.Week;
@@ -38,7 +40,7 @@ public class LavRapportStepDef {
         Project pro = new Project("idkman");
         Set keySet = pro.getActivityMap().keySet();
 
-        assert(keySet == null);
+        assertEquals(0 ,keySet.size() );
     }
 
     @Then("generer rapport ved navn {string}-rapport-uge-{int}")

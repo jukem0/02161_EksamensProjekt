@@ -46,8 +46,14 @@ public class Employee {
         }
 
         Employee other = (Employee) obj;
-
-        return (getEmployeeName().equals(other.getEmployeeName()) && leaderOf().equals(other.leaderOf()));
+        
+        //other.assignProjectleader("2601", other);
+        if (leaderOf != null && other.leaderOf!=null){
+            return (getEmployeeName().equals(other.getEmployeeName()) && leaderOf().equals(other.leaderOf()));
+        }
+        else {
+            return false;
+        }
     }
 
     @Override

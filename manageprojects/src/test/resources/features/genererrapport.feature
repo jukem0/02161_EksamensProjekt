@@ -26,7 +26,7 @@ Feature: Generer rapport
     Scenario Outline: Genererer uge-rapport uden aktiviteter
         Given en <medarbejder> findes i systemet
         And en <medarbejder> er tilmeldt projekt <projektnavn>
-        When der ikke er nogle aktiviteter i projektet
+        When der ikke er nogle aktivitet i projektet
         And en medarbejder genererer rapport
         Then handling fejler med fejlbesked: "ingen aktiviteter i projekt"
 
