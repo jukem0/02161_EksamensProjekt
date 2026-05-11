@@ -23,8 +23,8 @@ Feature: oprettelse af aktivitet
         Examples:
             | medarbejder   | projektnavn   | aktivitetsnavn    |
             | "huba"        | "Website"     | "Design"          |
-            | "ambe"        | "Skylager"    | "Analyse"         |
-            | "joni"        | "Kalender"    | "Programmering"   |
+            | "wilo"        | "Skylager"    | "Analyse"         |
+            | "anda"        | "Kalender"    | "Programmering"   |
 
     Scenario Outline: aktivitet findes allerede
         Given der findes et projekt med navn <projektnavn>
@@ -34,7 +34,7 @@ Feature: oprettelse af aktivitet
         Then handling fejler med fejlbesked: "denne aktivitet findes allerede"
 
         Examples:
-            | medarbejder   | projektnavn     | aktivitetsnavn   |
-            | "joni"        | "Website"     | "Design"         |
-            | "huba"        | "Skylager"    | "Analyse"        |
-            | "ambe"        | "Kalender"    | "Programmering"  |
+            | medarbejder   | projektnavn   | aktivitetsnavn     |
+            | "joni"        | "Website"     | "Design"           |
+            | "wilo"        | "Skylager"    | "Analyse"          |
+            | "anda"        | "Kalender"    | "Programmering"    |

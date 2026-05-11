@@ -1,5 +1,6 @@
 package com.projectmanager.model;
 
+import java.time.Year;
 import java.util.ArrayList;
 
 public class Activity implements IActivity {
@@ -18,7 +19,7 @@ public class Activity implements IActivity {
         if (budgetTime < 0) {
             this.budgetTime = 0;
         } else {
-            this.budgetTime = Math.round(budgetTime*2)/2.0;
+            this.budgetTime = Math.round(budgetTime * 2) / 2.0;
         }
 
         this.actName = activityName;
@@ -28,14 +29,14 @@ public class Activity implements IActivity {
         this.startWeek = new Week(endWeek.getWeekNum() - weekAmount, endWeek.getYear());
         this.timeSpend = 0;
     }
-    
+
     @Override
-    public ArrayList<Employee> getEmployees(){
+    public ArrayList<Employee> getEmployees() {
         return employees;
     }
 
     @Override
-    public void addEmployeeToActivity(Employee employee){
+    public void addEmployeeToActivity(Employee employee) {
     }
 
     @Override
@@ -80,7 +81,7 @@ public class Activity implements IActivity {
     }
 
     @Override
-    public int getWeekAmount(){
+    public int getWeekAmount() {
         return weekAmount;
     }
 
@@ -96,10 +97,8 @@ public class Activity implements IActivity {
 
         Activity other = (Activity) obj;
 
-        return (getActivityName().equals(other.getActivityName()) 
-            && getEmployees().equals(other.getEmployees()) 
-            && java.util.Objects.equals(getStartWeek(), other.getStartWeek()) 
-            && java.util.Objects.equals(getEndWeek(), other.getEndWeek()));
+        return (getActivityName().equals(other.getActivityName()) && getEmployees().equals(other.getEmployees())
+                && getStartWeek().equals(other.getStartWeek()) && getEndWeek().equals(other.getEndWeek()));
     }
 
     @Override
@@ -117,5 +116,9 @@ public class Activity implements IActivity {
 
     public double getTimeSpend() {
         return timeSpend;
+    }
+
+    public void setStartWeek(int weekAmount) {
+        this.startWeek = new Week(this.endWeek.getWeekNum() - weekAmount, Year.now().getValue());
     }
 }
