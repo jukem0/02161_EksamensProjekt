@@ -1,5 +1,6 @@
 package com.projectmanager.commands;
 
+//Gustav har lavet de flest commands
 public abstract class Command {
     private String format;
 

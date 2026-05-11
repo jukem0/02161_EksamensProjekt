@@ -4,6 +4,7 @@ import com.projectmanager.model.Activity;
 import com.projectmanager.model.Employee;
 import com.projectmanager.model.Project;
 
+//Lavet af Alexander
 public interface IEmployeeFunctions {
 
     public void nsaddProject(Project project);

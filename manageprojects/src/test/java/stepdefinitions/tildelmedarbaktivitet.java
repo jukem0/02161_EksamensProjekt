@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 import com.projectmanager.model.Activity;
 import com.projectmanager.model.Employee;
 import com.projectmanager.model.Project;
-import com.projectmanager.model.Week;
 import com.projectmanager.services.RuntimeContext;
 
 import io.cucumber.java.en.And;
@@ -14,7 +13,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-//lavet af sara og fabrizio
+//lavet af fabrizio
 
 public class tildelmedarbaktivitet {
 

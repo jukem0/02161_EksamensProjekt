@@ -6,6 +6,8 @@ import com.projectmanager.model.Activity;
 import com.projectmanager.model.Employee;
 import com.projectmanager.model.Project;
 
+
+//Lavet af Gustav
 public class RuntimeContext {
     private static ArrayList<Employee> employees = new ArrayList<>();
     private static ArrayList<Project> projects = new ArrayList<>();
