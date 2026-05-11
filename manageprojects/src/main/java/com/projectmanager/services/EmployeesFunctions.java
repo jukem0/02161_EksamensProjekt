@@ -35,8 +35,7 @@ public class EmployeesFunctions implements IEmployeeFunctions {
     
     @Override
     public void nsassignProjectleader(Project project, Employee employee){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'assignProjectleader'");
+        Employee.assignProjectleader(project.getProjectNr(), employee);
     }
 
     @Override
@@ -55,12 +54,7 @@ public class EmployeesFunctions implements IEmployeeFunctions {
     }
 
 
-    //Not sure if this one serves a purpose now with RuntimeContext
-    @Override
-    public Employee nsgetEmployee(){
-    // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getEmployee'");
-    }
+    
 
     public static void addActivityToProject(String activityname, Project project, Employee projectLeader) {
         IEmployeeFunctions obj = new EmployeesFunctions();

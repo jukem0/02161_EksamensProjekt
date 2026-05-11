@@ -8,7 +8,7 @@ import com.projectmanager.model.Project;
 
 public class ProjectsFunctions implements IProjectFunctions {
     @Override
-    public String MakeReport(Project project) {
+    public String MakeReport(Project project, int weekNr) {
         StringBuilder sb = new StringBuilder();
         List<Project> projects = RuntimeContext.getProjects();
         Project curProject = projects.get(Integer.parseInt(project.getProjectNr()) - 1);
