@@ -42,14 +42,7 @@ public class LavRapportStepDef {
     @When("der ikke er nogle aktivitet i projektet")
     public void projekt_mangler_aktiviteter() {
 
-<<<<<<< HEAD
         pro = new Project("idkman");
-=======
-        Project pro = new Project("idkman");
-        Set keySet = pro.getActivityMap().keySet();
-
-        assertEquals(0 ,keySet.size() );
->>>>>>> 0e3ed8a6abeae0aaf3a1d7b8ef0f87152203e997
     }
 
     @Then("generer rapport ved navn {string}-rapport-uge-{int}")

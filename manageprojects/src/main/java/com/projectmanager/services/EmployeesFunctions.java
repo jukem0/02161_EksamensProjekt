@@ -41,8 +41,11 @@ public class EmployeesFunctions implements IEmployeeFunctions {
     }
 
     @Override 
-    public void nsregisterTime(Employee emp,Project pro, Activity act, Double hours){
+    public void nsregisterTime(Employee emp,Project pro, Activity act, Double hours) throws Exception{
         //employeeRegTime
+        if (hours >= 0){
+            throw new Exception("Tiden kan ikke indtastes som negativt");
+        }
 
         Map<Activity, Map<Employee, Double>> activityMap = pro.getActivityMap();
 

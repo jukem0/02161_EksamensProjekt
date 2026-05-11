@@ -12,11 +12,7 @@ Feature: Generer rapport
     Scenario Outline: Generer rapport
         Given en <medarbejder> findes i systemet
         And en <medarbejder> er tilmeldt projekt <projektnavn>
-<<<<<<< HEAD
         When en medarbejder genererer rapport for uge <int>
-=======
-        When en <medarbejder> genererer rapport
->>>>>>> 0e3ed8a6abeae0aaf3a1d7b8ef0f87152203e997
         Then generer rapport ved navn <projektnavn>-rapport-uge-<int>
 
         Examples:
