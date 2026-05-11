@@ -34,12 +34,17 @@ public class EmployeesFunctions implements IEmployeeFunctions {
     }
     
     @Override
+<<<<<<< HEAD
     public void nsassignProjectleader(Project project, Employee employee) {
         if (employee.leaderOf() != null) {
             throw new IllegalArgumentException("Medarbejder er allerede projektleder for et andet projekt");
         }
         project.setProjectLeader(employee);
         employee.becomeLeaderOf(project.getProjectNr());
+=======
+    public void nsassignProjectleader(Project project, Employee employee){
+        Employee.assignProjectleader(project.getProjectNr(), employee);
+>>>>>>> 9694e37b5529d4f2d0f7abfd09ad465e1f1d2c6e
     }
 
     @Override
@@ -58,12 +63,7 @@ public class EmployeesFunctions implements IEmployeeFunctions {
     }
 
 
-    //Not sure if this one serves a purpose now with RuntimeContext
-    @Override
-    public Employee nsgetEmployee(){
-    // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getEmployee'");
-    }
+    
 
     public static void addActivityToProject(String activityname, Project project, Employee projectLeader) {
         IEmployeeFunctions obj = new EmployeesFunctions();
