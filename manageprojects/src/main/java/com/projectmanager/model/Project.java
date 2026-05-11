@@ -16,7 +16,7 @@ public class Project {
     private static Map<Employee, Double> employeeRegtime = new HashMap<>();
 
     // Ydre hashmap
-    private static Map<Activity, Map<Employee, Double>> activityMap = new HashMap<>();
+    private Map<Activity, Map<Employee, Double>> activityMap = new HashMap<>();
 
     public Project(String projectName) {
         this.projectName = projectName.replace("\"", "");
@@ -35,10 +35,10 @@ public class Project {
         return getYear() + String.format("%03d", serialNumber);
     }
 
-    public Employee getProjectLeader(){
+    public Employee getProjectLeader() {
         return projectLeader;
     }
-    
+
     public String getActivityName(String activityName) {
         return String.valueOf(activityMap.keySet().stream()
                 .filter(a -> a.getActivityName().equalsIgnoreCase(activityName)).findFirst().orElse(null));
@@ -64,7 +64,7 @@ public class Project {
     public boolean isEmployeeInProject(Map<Employee, Double> employeeRegtime, Employee employee) {
         for (Activity a : activities) {
             Map<Employee, Double> activityInProject = activityMap.get(a);
-            if(activityInProject != null && activityInProject.containsKey(employee)) {
+            if (activityInProject != null && activityInProject.containsKey(employee)) {
                 return true;
             }
         }
@@ -97,16 +97,17 @@ public class Project {
     }
 
     public void addActivity(String actname, Employee projectLeader) {
-        assert(projectLeader != null) : "Ingen medarbejder valgt"; 
-            if (isActivityInProject(new Activity(actname)) == true){
-                throw new IllegalArgumentException("Aktiviteten findes allerede i projektet");
-            } else if (projectLeader.leaderOf() != null && projectLeader.leaderOf().equals(this.getProjectNr()) || projectLeader.isAvailable()) { //isAvailable() er ikke implementeret endnu{
-                activityMap.put(new Activity(actname), null);
-            } else{
-                throw new IllegalArgumentException("Der er ingen projektleder eller ledig medarbejder til at oprette aktiviteten");
-            }
+        assert (projectLeader != null) : "Ingen medarbejder valgt";
+        if (isActivityInProject(new Activity(actname)) == true) {
+            throw new IllegalArgumentException("Aktiviteten findes allerede i projektet");
+        } else if (projectLeader.leaderOf() != null && projectLeader.leaderOf().equals(this.getProjectNr())
+                || projectLeader.isAvailable()) { // isAvailable() er ikke implementeret endnu{
+            activityMap.put(new Activity(actname), null);
+        } else {
+            throw new IllegalArgumentException(
+                    "Der er ingen projektleder eller ledig medarbejder til at oprette aktiviteten");
         }
-        
+    }
 
     public Map<Activity, Map<Employee, Double>> getActivityMap() {
         return activityMap;
@@ -118,29 +119,29 @@ public class Project {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-
-        if (obj.getClass() != this.getClass()) {
-            return false;
-        }
-
         Project other = (Project) obj;
-
-        return (getName().equals(other.getName()) && getActivityMap().equals(other.getActivityMap()));
+        return java.util.Objects.equals(projectName, other.projectName) &&
+                java.util.Objects.equals(projectNr, other.projectNr);
     }
 
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(projectName, activityMap);
+        return java.util.Objects.hash(projectName, projectNr);
     }
 
     public double getTimeSpend() {
         double timeSpend = 0.0;
         for (Map<Employee, Double> employeeRegtime : this.activityMap.values()) {
-            for (double value : employeeRegtime.values()) {
-                timeSpend += value;
+            if (employeeRegtime != null) {
+                for (double value : employeeRegtime.values()) {
+                    timeSpend += value;
+                }
             }
         }
         return timeSpend;
@@ -148,9 +149,15 @@ public class Project {
 
     public double getTimeSpendPerPersonActivity(Activity activity, Employee employee) {
         double timeSpendEmployee = 0.0;
-        
-        timeSpendEmployee = activityMap.get(activity).get(employee);
-        
+
+        Map<Employee, Double> empMap = activityMap.get(activity);
+        if (empMap != null) {
+            Double hours = empMap.get(employee);
+            if (hours != null) {
+                timeSpendEmployee = hours;
+            }
+        }
+
         return timeSpendEmployee;
     }
 
@@ -159,7 +166,8 @@ public class Project {
         str.concat(projectName + ", " + weeknr + "\n\n\n");
         for (Activity a : activities) {
             str.concat(a.getActivityName() + ":\n");
-            str.concat(" -  Time Budget: " + a.getBudgetTime() + "  -  Time Spend: " + a.getTimeSpend() + "  -  Time Remaining: " + a.getRemainingTime() + "\n");
+            str.concat(" -  Time Budget: " + a.getBudgetTime() + "  -  Time Spend: " + a.getTimeSpend()
+                    + "  -  Time Remaining: " + a.getRemainingTime() + "\n");
         }
         return str;
     }

@@ -77,7 +77,9 @@ public class Activity implements IActivity {
     @Override
     public void setWeekAmount(int newWeekAmount) {
         this.weekAmount = newWeekAmount;
-        this.startWeek = new Week(endWeek.getWeekNum() - weekAmount, endWeek.getYear());
+        if (endWeek != null) {
+            this.startWeek = new Week(endWeek.getWeekNum() - weekAmount, endWeek.getYear());
+        }
     }
 
     @Override
@@ -87,23 +89,19 @@ public class Activity implements IActivity {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-
-        if (obj.getClass() != this.getClass()) {
-            return false;
-        }
-
         Activity other = (Activity) obj;
-
-        return (getActivityName().equals(other.getActivityName()) && getEmployees().equals(other.getEmployees())
-                && getStartWeek().equals(other.getStartWeek()) && getEndWeek().equals(other.getEndWeek()));
+        return java.util.Objects.equals(actName, other.actName);
     }
 
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(actName, employees, startWeek, endWeek);
+        return java.util.Objects.hash(actName);
     }
 
     public double getRemainingTime() {
@@ -119,6 +117,8 @@ public class Activity implements IActivity {
     }
 
     public void setStartWeek(int weekAmount) {
-        this.startWeek = new Week(this.endWeek.getWeekNum() - weekAmount, Year.now().getValue());
+        if (this.endWeek != null) {
+            this.startWeek = new Week(this.endWeek.getWeekNum() - weekAmount, Year.now().getValue());
+        }
     }
 }

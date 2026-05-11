@@ -39,19 +39,19 @@ public class EmployeesFunctions implements IEmployeeFunctions {
         throw new UnsupportedOperationException("Unimplemented method 'assignProjectleader'");
     }
 
-    @Override 
-    public void nsregisterTime(Employee emp,Project pro, Activity act, Double hours) throws Exception{
-        //employeeRegTime
-        if (hours >= 0){
+    @Override
+    public void nsregisterTime(Employee emp, Project pro, Activity act, Double hours) throws Exception {
+        if (hours < 0) {
             throw new Exception("Tiden kan ikke indtastes som negativt");
         }
 
         Map<Activity, Map<Employee, Double>> activityMap = pro.getActivityMap();
 
-        Double oldVal = activityMap.get(act).get(emp);
+        activityMap.putIfAbsent(act, new HashMap<>());
+        Map<Employee, Double> empMap = activityMap.get(act);
 
-        activityMap.get(act).put(emp, oldVal + hours);
-
+        Double oldVal = empMap.getOrDefault(emp, 0.0);
+        empMap.put(emp, oldVal + hours);
     }
 
 

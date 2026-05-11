@@ -34,23 +34,15 @@ public class Employee {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-
-        if (obj.getClass() != this.getClass()) {
-            return false;
-        }
-
         Employee other = (Employee) obj;
-        
-        //other.assignProjectleader("2601", other);
-        if (leaderOf != null && other.leaderOf!=null){
-            return (getEmployeeName().equals(other.getEmployeeName()) && leaderOf().equals(other.leaderOf()));
-        }
-        else {
-            return false;
-        }
+        return java.util.Objects.equals(initialer, other.initialer) &&
+               java.util.Objects.equals(leaderOf, other.leaderOf);
     }
 
     @Override
