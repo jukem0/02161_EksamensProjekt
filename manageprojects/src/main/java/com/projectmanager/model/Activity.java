@@ -1,9 +1,6 @@
 package com.projectmanager.model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
-
 
 public class Activity implements IActivity {
     private String actName;
