@@ -11,6 +11,7 @@ import com.projectmanager.model.Employee;
 import com.projectmanager.model.Project;
 import com.projectmanager.model.Week;
 import com.projectmanager.services.Parser;
+import com.projectmanager.services.EmployeesFunctions;
 import com.projectmanager.services.RuntimeContext;
 
 import io.cucumber.java.en.Given;
@@ -34,7 +35,7 @@ public class AktivitetTidStepDef {
                 .filter(e -> e.getEmployeeName().equals(employeeName))
                 .findFirst().orElseGet(() -> {
                     Employee newEmp = new Employee(employeeName);
-                    RuntimeContext.getEmployees().add(newEmp);
+                    EmployeesFunctions.addEmployee(newEmp);
                     return newEmp;
                 });
         
@@ -42,7 +43,7 @@ public class AktivitetTidStepDef {
                 .filter(p -> p.getName().equals(projectName))
                 .findFirst().orElseGet(() -> {
                     Project newProj = new Project(projectName);
-                    RuntimeContext.getProjects().add(newProj);
+                    EmployeesFunctions.addProject(newProj);
                     return newProj;
                 });
         

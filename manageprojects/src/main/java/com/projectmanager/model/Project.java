@@ -36,7 +36,7 @@ public class Project {
 
     private String generateProjectNr() {
         serialNumber++;
-        // Dette giver f.eks. "26" + "001", "26002" osv.
+        // Dette giver f.eks. "26" + "001" = "26001"... "26002" osv.
         return getYear() + String.format("%03d", serialNumber);
     }
 
@@ -112,7 +112,7 @@ public class Project {
         if (isActivityInProject(new Activity(actname)) == true) {
             throw new IllegalArgumentException("denne aktivitet findes allerede");
         } else if (projectLeader.leaderOf() != null && projectLeader.leaderOf().equals(this.getProjectNr())
-                || projectLeader.isAvailable()) { // isAvailable() er ikke implementeret endnu{
+                || projectLeader.isAvailable()) {
             Activity newAct = new Activity(actname);
             activityMap.put(newAct, null);
             activities.add(newAct);

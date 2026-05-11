@@ -11,26 +11,24 @@ public class EmployeesFunctions implements IEmployeeFunctions {
 
     @Override
     public void nsaddActivityToProject(String activityname, Project project, Employee projectLeader) {
-        // TODO Auto-generated method stub
         project.addActivity(activityname, projectLeader);
-        throw new UnsupportedOperationException("Unimplemented method 'addActivityToProject'");
     }
 
     @Override
     public void nsaddEmployeeToActivity(Employee employee, Activity activity, Project project) {
-        // TODO Auto-generated method stub
-
         Map<Activity, Map<Employee, Double>> activityMap = project.getActivityMap();
-
         activityMap.putIfAbsent(activity, new HashMap<>());
-
         activityMap.get(activity).putIfAbsent(employee, 0.0);
     }
 
     @Override
     public void nsaddProject(Project project) {
-        // TODO Auto-generated method stub
+        RuntimeContext.getProjects().add(project);
+    }
 
+    @Override
+    public void nsaddEmployee(Employee employee) {
+        RuntimeContext.getEmployees().add(employee);
     }
 
     @Override
@@ -67,9 +65,14 @@ public class EmployeesFunctions implements IEmployeeFunctions {
         obj.nsaddEmployeeToActivity(employee, activity, project);
     }
 
-    public static void addProject(Project projects) {
+    public static void addEmployee(Employee employee) {
         IEmployeeFunctions obj = new EmployeesFunctions();
-        obj.nsaddProject(projects);
+        obj.nsaddEmployee(employee);
+    }
+
+    public static void addProject(Project project) {
+        IEmployeeFunctions obj = new EmployeesFunctions();
+        obj.nsaddProject(project);
     }
 
     public static void assignProjectleader(Project project, Employee employee) {
@@ -81,11 +84,4 @@ public class EmployeesFunctions implements IEmployeeFunctions {
         IEmployeeFunctions obj = new EmployeesFunctions();
         obj.nsregisterTime(emp, pro, act, hours);
     }
-
-    @Override
-    public Employee nsgetEmployee() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'nsgetEmployee'");
-    }
-
 }

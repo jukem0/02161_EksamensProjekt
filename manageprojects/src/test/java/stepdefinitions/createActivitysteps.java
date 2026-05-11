@@ -13,6 +13,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import com.projectmanager.services.EmployeesFunctions;
 import com.projectmanager.services.RuntimeContext;
 
 
@@ -27,7 +28,7 @@ public class createActivitysteps {
         for (String name : employeeNames) {
             //String cleanName = name.replace("\"", ""); // fjerner eventuelle anførselstegn fra navnet
             Employee newEmp = new Employee(name);
-            RuntimeContext.getEmployees().add(newEmp);
+            EmployeesFunctions.addEmployee(newEmp);
         }
         // vise hvem er i systemet.
     }
@@ -42,7 +43,7 @@ public class createActivitysteps {
                 if (RuntimeContext.getEmployees().get(i).isAvailable()) {
                     RuntimeContext.getEmployees().get(i).becomeLeaderOf(name);
                     Project newProject = new Project(name, RuntimeContext.getEmployees().get(i));
-                    RuntimeContext.getProjects().add(newProject);
+                    com.projectmanager.services.EmployeesFunctions.addProject(newProject);
                     break;
                 }
             }
@@ -56,7 +57,7 @@ public class createActivitysteps {
                 .filter(p -> p.getName().equalsIgnoreCase(projectName))
                 .findFirst().orElseGet(() -> {
                     Project newProj = new Project(projectName);
-                    RuntimeContext.getProjects().add(newProj);
+                    com.projectmanager.services.EmployeesFunctions.addProject(newProj);
                     return newProj;
                 });
         
@@ -64,7 +65,7 @@ public class createActivitysteps {
                 .filter(e -> e.getEmployeeName().equalsIgnoreCase(empName))
                 .findFirst().orElseGet(() -> {
                     Employee newEmp = new Employee(empName);
-                    RuntimeContext.getEmployees().add(newEmp);
+                    EmployeesFunctions.addEmployee(newEmp);
                     return newEmp;
                 });
         
@@ -107,7 +108,7 @@ public class createActivitysteps {
     @Given("der findes et projekt med navn {string}")
     public void getprojekt(String projectname) {
 
-        RuntimeContext.getProjects().add( new Project(projectname));
+        com.projectmanager.services.EmployeesFunctions.addProject(new Project(projectname));
         project = RuntimeContext.getProjects().stream().filter(p -> p.getName().equalsIgnoreCase(projectname)).findFirst().orElse(null);
         assert(project.getName().equalsIgnoreCase(projectname)): "Projektet blev ikke fundet";
 

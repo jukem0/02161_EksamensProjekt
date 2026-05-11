@@ -28,7 +28,7 @@ public class tildelmedarbaktivitet {
                 .filter(p -> p.getName().equalsIgnoreCase(projectName))
                 .findFirst().orElseGet(() -> {
                     Project newProj = new Project(projectName);
-                    RuntimeContext.getProjects().add(newProj);
+                    com.projectmanager.services.EmployeesFunctions.addProject(newProj);
                     return newProj;
                 });
         
@@ -48,7 +48,7 @@ public class tildelmedarbaktivitet {
                 .filter(e -> e.getEmployeeName().equalsIgnoreCase(empInitial))
                 .findFirst().orElseGet(() -> {
                     Employee newEmp = new Employee(empInitial);
-                    RuntimeContext.getEmployees().add(newEmp);
+                    com.projectmanager.services.EmployeesFunctions.addEmployee(newEmp);
                     return newEmp;
                 });
         
@@ -85,7 +85,7 @@ public class tildelmedarbaktivitet {
                     .filter(e -> e.getEmployeeName().equalsIgnoreCase(empInitial))
                     .findFirst().orElseGet(() -> {
                         Employee newEmp = new Employee(empInitial);
-                        RuntimeContext.getEmployees().add(newEmp);
+                        com.projectmanager.services.EmployeesFunctions.addEmployee(newEmp);
                         return newEmp;
                     });
         }

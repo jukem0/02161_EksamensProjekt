@@ -20,7 +20,7 @@ public class tildel_projektleder_steps {
                 .filter(e -> e.getEmployeeName().equals(initials))
                 .findFirst().orElseGet(() -> {
                     Employee newEmp = new Employee(initials);
-                    RuntimeContext.getEmployees().add(newEmp);
+                    EmployeesFunctions.addEmployee(newEmp);
                     return newEmp;
                 });
         assertTrue(emp.isAvailable());
@@ -56,11 +56,11 @@ public class tildel_projektleder_steps {
                 .filter(e -> e.getEmployeeName().equals(medarbejder))
                 .findFirst().orElseGet(() -> {
                     Employee newEmp = new Employee(medarbejder);
-                    RuntimeContext.getEmployees().add(newEmp);
+                    EmployeesFunctions.addEmployee(newEmp);
                     return newEmp;
                 });
         Project otherProject = new Project(otherProjectName);
-        RuntimeContext.getProjects().add(otherProject);
+        EmployeesFunctions.addProject(otherProject);
 
         try {
             EmployeesFunctions.assignProjectleader(otherProject, emp);

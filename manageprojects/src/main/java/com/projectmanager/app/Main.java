@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-
 import com.projectmanager.commands.Command;
 import com.projectmanager.commands.CommandRegistry;
 import com.projectmanager.commands.CreateProjectCommand;
@@ -16,15 +15,14 @@ import com.projectmanager.services.RuntimeContext;
 import com.projectmanager.model.*;
 
 public class Main {
-    
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
         DataAccessLayer data = new DataAccessLayer();
-        RuntimeContext.setEmployees(data.parseToEmployee("manageprojects\\src\\main\\java\\com\\projectmanager\\HR\\Employees.txt"));
+        RuntimeContext.setEmployees(
+                data.parseToEmployee("manageprojects\\src\\main\\java\\com\\projectmanager\\HR\\Employees.txt"));
         CommandRegistry registry = new CommandRegistry(List.of(
-            new HelpCommand(),
-            new CreateProjectCommand()
-        ));
+                new HelpCommand(),
+                new CreateProjectCommand()));
 
         Scanner commandInput = new Scanner(System.in);
 
@@ -44,12 +42,13 @@ public class Main {
                 }
             }
             if (loggedInUser != null) {
-                System.out.println("Login succesfuldt! Velkommen til systemet, " + loggedInUser.getEmployeeName() + ".");
+                System.out
+                        .println("Login succesfuldt! Velkommen til systemet, " + loggedInUser.getEmployeeName() + ".");
             } else {
                 System.out.println("Fejl: Brugernavnet '" + inputName + "' findes ikke i systemet. Prøv igen.");
             }
         }
-        
+
         while (true) {
             String[] commandParts = commandInput.nextLine().split("[s]");
             String commandName = commandParts[0];
@@ -62,14 +61,13 @@ public class Main {
 
             String[] commandArgs = Arrays.copyOfRange(commandParts, 1, commandParts.length);
             command.execute(commandArgs);
-            
+
             System.out.println("\n--- Hovedmenu ---");
             System.out.println("1. Se eksisterende projekter");
             System.out.println("2. Opret projekt");
             System.out.println("3. Se ledige medarbejdere");
             System.out.println("4. Log ud");
             System.out.print("Vælg en mulighed: ");
-
 
             switch (commandName) {
                 case "1":
@@ -126,8 +124,7 @@ public class Main {
                     System.out.println("Ugyldigt valg. Prøv igen.");
             }
         }
-        
-    }
-       
-}   
 
+    }
+
+}
