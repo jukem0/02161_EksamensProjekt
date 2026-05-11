@@ -44,6 +44,7 @@ public class Main {
                 }
             }
             if (loggedInUser != null) {
+                RuntimeContext.setLoggedInEmployye(loggedInUser);
                 System.out.println("Login succesfuldt! Velkommen til systemet, " + loggedInUser.getEmployeeName() + ".");
             } else {
                 System.out.println("Fejl: Brugernavnet '" + inputName + "' findes ikke i systemet. Prøv igen.");

@@ -13,6 +13,8 @@ public class RuntimeContext {
     private static Project lastUsedProject;
     private static String errorMsg = "";
 
+    private static Employee loggedInEmployee;
+
     private static RuntimeContext context_instance = null;
 
     public static synchronized RuntimeContext getInstance(){
@@ -96,5 +98,13 @@ public class RuntimeContext {
         lastCreatedActivity = null;
         lastUsedProject = null;
         errorMsg = "";
+    }
+
+    public static void setLoggedInEmployye(Employee employee){
+        loggedInEmployee = employee;
+    }
+
+    public static Employee getLoggedInEmployee(){
+        return loggedInEmployee;
     }
 }
