@@ -25,13 +25,12 @@ public class registrerTid {
         emp = new Employee(medarbejder);
         act = new Activity(activityName, 20.1, new Week(5, 2026),1);
         pro = new Project(projectName);
-        EmployeesFunctions empfun = new EmployeesFunctions();
 
         actName = new Activity(activityName);
 
         try {
-            empfun.addEmployeeToActivity(emp, act, pro);
-            empfun.registerTime(emp,pro,act,timer);
+            EmployeesFunctions.addEmployeeToActivity(emp, act, pro);
+            EmployeesFunctions.registerTime(emp,pro,act,timer);
             
         } catch (Exception e){
             fejlbesked = e.toString();

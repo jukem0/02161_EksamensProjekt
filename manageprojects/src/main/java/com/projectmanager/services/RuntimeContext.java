@@ -9,7 +9,6 @@ import com.projectmanager.model.Project;
 public class RuntimeContext {
     private static ArrayList<Employee> employees = new ArrayList<>();
     private static ArrayList<Project> projects = new ArrayList<>();
-    private static ArrayList<Activity> activities = new ArrayList<>();
 
     private static RuntimeContext context_instance = null;
 
@@ -41,13 +40,26 @@ public class RuntimeContext {
         }
     }
 
-    public static ArrayList<Activity> getActivities(){
-        return activities;
+    public static ArrayList<Activity> getActivities(Project project){
+        int index = -1;
+        for (int x = 0; x < projects.size() ; x++) {
+            if (projects.get(x).equals(project)) {
+                index = x;
+            }
+        }
+        if (index != -1) {
+            return new ArrayList<Activity>(projects.get(index).getActivityMap().keySet());
+        }
+        return null;
     }
 
-    public static void setActivities(ArrayList<Activity> inputActivities){
-        for (Activity a : inputActivities) {
-            activities.add(a);
+    public static void setActivities(Project project, ArrayList<Activity> inputActivities){
+        for (Project p : projects) {
+            if(p.equals(project)) {
+                for (Activity a : inputActivities) {
+                    p.addActivity(a.getActivityName());
+                }
+            }
         }
     }
 }
