@@ -18,7 +18,7 @@ Feature: tildeling af rollen projektleder
 	Scenario Outline: medarbejder er allerede projektleder i et andet projekt
 		Given der findes et projekt med navn <projektnavn>
 		And en <medarbejder> er projektleder i et andet projekt med navn <projektnavn>
-		When en anden medarbejder udpeger <medarbejder> som projektleder for projektet
+		When en anden medarbejder <medarbejder> udpeger medarbejder <medarbejder> som projektLeder for projekt <projektnavn>
 		Then fejler handling med fejlbesked: "denne medarbejder er allerede projektleder i <projektnavn>"
 
 		Examples:
