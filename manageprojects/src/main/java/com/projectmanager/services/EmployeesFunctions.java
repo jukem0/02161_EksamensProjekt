@@ -82,10 +82,4 @@ public class EmployeesFunctions implements IEmployeeFunctions {
         obj.nsregisterTime(emp, pro, act, hours);
     }
 
-    @Override
-    public Employee nsgetEmployee() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'nsgetEmployee'");
-    }
-
 }
