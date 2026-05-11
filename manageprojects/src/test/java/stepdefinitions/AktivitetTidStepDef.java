@@ -14,6 +14,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+//lavet af Gustav
+
 public class AktivitetTidStepDef {
     Week endWeek;
     int weekAmount;

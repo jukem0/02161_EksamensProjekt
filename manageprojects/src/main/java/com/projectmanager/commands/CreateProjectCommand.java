@@ -5,11 +5,6 @@ import com.projectmanager.services.Parser;
 import com.projectmanager.services.RuntimeContext;
 
 public class CreateProjectCommand extends Command{
-    private RuntimeContext context;
-
-    public CreateProjectCommand(RuntimeContext context){
-        this.context = context;
-    }
 
     @Override
     public String getName() {
@@ -24,7 +19,7 @@ public class CreateProjectCommand extends Command{
             
         } else if (args.length == 2) {
             Employee employee = Parser.stringToEmployee(args[1]);
-            if (context.getEmployees().contains(employee)) {
+            if (RuntimeContext.getEmployees().contains(employee)) {
                 //Call the method
             }
         } 

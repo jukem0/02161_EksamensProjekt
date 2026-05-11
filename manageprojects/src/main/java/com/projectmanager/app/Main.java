@@ -18,11 +18,10 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
         DataAccessLayer data = new DataAccessLayer();
-        RuntimeContext curContext = new RuntimeContext();
-        curContext.setEmployees(data.parseToEmployee("manageprojects\\src\\main\\java\\com\\projectmanager\\HR\\Employees.txt"));
+        RuntimeContext.setEmployees(data.parseToEmployee("manageprojects\\src\\main\\java\\com\\projectmanager\\HR\\Employees.txt"));
         CommandRegistry registry = new CommandRegistry(List.of(
             new HelpCommand(),
-            new CreateProjectCommand(curContext)
+            new CreateProjectCommand()
         ));
 
         Scanner commandInput = new Scanner(System.in);
