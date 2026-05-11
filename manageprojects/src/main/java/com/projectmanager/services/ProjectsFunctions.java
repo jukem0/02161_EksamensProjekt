@@ -11,7 +11,12 @@ public class ProjectsFunctions implements IProjectFunctions {
     public String MakeReport(Project project, int weekNr) {
         StringBuilder sb = new StringBuilder();
         List<Project> projects = RuntimeContext.getProjects();
-        Project curProject = projects.get(Integer.parseInt(project.getProjectNr()) - 1);
+        Project curProject = null;
+        for(Project p : RuntimeContext.getProjects()){
+            if (p.equals(project)) {
+                curProject = p;
+            }
+        }
 
         sb.append("Project report\n").append("Project name: ").append(curProject.getName()).append("\n").
         append("Project number: ").append(curProject.getProjectNr()).append("\n");
@@ -23,6 +28,12 @@ public class ProjectsFunctions implements IProjectFunctions {
             sb.append(" -  Time Budget: ").append(a.getBudgetTime()).append("  -  Time Spend: ").append(a.getTimeSpend()).append("  -  Time Remaining: ").append(a.getRemainingTime()).append("\n");
         }
         
+        System.out.println(sb.toString());
         return sb.toString();
+    }
+
+    public static String makeReport(Project project, int weekNr){
+        ProjectsFunctions obj = new ProjectsFunctions();
+        return obj.MakeReport(project, weekNr);
     }
 }

@@ -2,8 +2,21 @@ package com.projectmanager.commands;
 
 public abstract class Command {
     private String format;
-    public String getName(){
-        return format.split("[ ]")[0];
+
+    protected void setFormat(String format) {
+        this.format = format;
     }
+
+    protected String getFormat() {
+        return format;
+    }
+
+    public String getName(){
+        if (format == null || format.isEmpty()) {
+            throw new IllegalStateException("Command format not set");
+        }
+        return format.split("[\\s]")[0];
+    }
+
     public abstract void execute(String[] args);
 }

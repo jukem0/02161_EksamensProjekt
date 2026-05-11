@@ -53,6 +53,10 @@ public class RuntimeContext {
         }
     }
 
+    public static void addProject(Project project){
+        projects.add(project);
+    }
+
     public static ArrayList<Activity> getActivities(Project project){
         int index = -1;
         for (int x = 0; x < projects.size() ; x++) {

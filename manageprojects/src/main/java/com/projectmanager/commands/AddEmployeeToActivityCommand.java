@@ -10,7 +10,9 @@ import com.projectmanager.services.Parser;
 import com.projectmanager.services.RuntimeContext;
 
 public class AddEmployeeToActivityCommand extends Command{
-    String format = "add_employee_to_activity <employeeName> <activityName> <nameOfProject>";
+    public AddEmployeeToActivityCommand() {
+        setFormat("add_employee_to_activity <employeeName> <activityName> <nameOfProject>");
+    }
 
     @Override
     public void execute(String[] args){
@@ -27,7 +29,7 @@ public class AddEmployeeToActivityCommand extends Command{
                 }
             }
         } else{
-            System.out.println("Expected format: " + format);
+            System.out.println("Expected format: " + getFormat());
         }
     }
 }

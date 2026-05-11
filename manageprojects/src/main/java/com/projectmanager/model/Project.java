@@ -4,6 +4,7 @@ import java.time.Year;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
 import com.projectmanager.services.RuntimeContext;
 
 public class Project {
@@ -100,6 +101,14 @@ public class Project {
         RuntimeContext.setLastCreatedActivity(newAct);
     }
 
+    public void addActivity(String actName, double budgetTime) {
+        Activity newAct = new Activity(actName);
+        newAct.setBudgetTime(budgetTime);
+        activities.add(newAct);
+        activityMap.put(newAct, null);
+        RuntimeContext.setLastCreatedActivity(newAct);
+    }
+
     public void addActivity(String actName, double budgetTime, Week endWeek, int weekAmount) {
         Activity newAct = new Activity(actName, budgetTime, endWeek, weekAmount);
         activities.add(newAct);
@@ -127,6 +136,10 @@ public class Project {
         return activityMap;
     }
 
+    public void setActivityMap(Map<Activity, Map<Employee, Double>> input){
+        activityMap = input;
+    }
+
     public Map<Employee, Double> getEmployeeMap() {
         return employeeRegtime;
     }
@@ -140,13 +153,12 @@ public class Project {
             return false;
         }
         Project other = (Project) obj;
-        return java.util.Objects.equals(projectName, other.projectName) &&
-                java.util.Objects.equals(projectNr, other.projectNr);
+        return java.util.Objects.equals(projectName, other.projectName);
     }
 
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(projectName, projectNr);
+        return java.util.Objects.hash(projectName);
     }
 
     public double getTimeSpend() {

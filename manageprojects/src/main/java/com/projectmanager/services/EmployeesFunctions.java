@@ -13,7 +13,12 @@ public class EmployeesFunctions implements IEmployeeFunctions {
     public void nsaddActivityToProject(String activityname, Project project, Employee projectLeader) {
         // TODO Auto-generated method stub
         project.addActivity(activityname, projectLeader);
-        throw new UnsupportedOperationException("Unimplemented method 'addActivityToProject'");
+        for (int x = 0; x <RuntimeContext.getProjects().size(); x++) {
+            if (RuntimeContext.getProjects().get(x).equals(project)) {
+                RuntimeContext.getProjects().remove(x);
+            }
+        }
+        RuntimeContext.addProject(project);
     }
 
     @Override
@@ -25,12 +30,19 @@ public class EmployeesFunctions implements IEmployeeFunctions {
         activityMap.putIfAbsent(activity, new HashMap<>());
 
         activityMap.get(activity).putIfAbsent(employee, 0.0);
+
+        for (int x = 0; x <RuntimeContext.getProjects().size(); x++) {
+            if (RuntimeContext.getProjects().get(x).equals(project)) {
+                RuntimeContext.getProjects().remove(x);
+            }
+        }
+        RuntimeContext.addProject(project);
+
     }
 
     @Override
     public void nsaddProject(Project project) {
-        // TODO Auto-generated method stub
-
+        RuntimeContext.addProject(project);
     }
 
     @Override
@@ -53,8 +65,18 @@ public class EmployeesFunctions implements IEmployeeFunctions {
         activityMap.putIfAbsent(act, new HashMap<>());
         Map<Employee, Double> empMap = activityMap.get(act);
 
-        Double oldVal = empMap.getOrDefault(emp, 0.0);
+        double oldVal = empMap.getOrDefault(emp, 0.0);
         empMap.put(emp, oldVal + hours);
+
+        activityMap.put(act, empMap);
+        pro.setActivityMap(activityMap);
+
+        for (int x = 0; x <RuntimeContext.getProjects().size(); x++) {
+            if (RuntimeContext.getProjects().get(x).equals(pro)) {
+                RuntimeContext.getProjects().remove(x);
+            }
+        }
+        RuntimeContext.addProject(pro);
     }
 
     public static void addActivityToProject(String activityname, Project project, Employee projectLeader) {

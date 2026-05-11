@@ -6,14 +6,18 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-
+import com.projectmanager.commands.AddEmployeeToActivityCommand;
+import com.projectmanager.commands.AssignProjectLeaderCommand;
 import com.projectmanager.commands.Command;
 import com.projectmanager.commands.CommandRegistry;
+import com.projectmanager.commands.CreateActivityCommand;
 import com.projectmanager.commands.CreateProjectCommand;
+import com.projectmanager.commands.GenerateReportCommand;
 import com.projectmanager.commands.HelpCommand;
+import com.projectmanager.commands.RegisterTimeCommand;
+import com.projectmanager.model.Employee;
 import com.projectmanager.services.DataAccessLayer;
 import com.projectmanager.services.RuntimeContext;
-import com.projectmanager.model.*;
 
 public class Main {
     
@@ -23,8 +27,13 @@ public class Main {
         RuntimeContext.setEmployees(data.parseToEmployee("manageprojects\\src\\main\\java\\com\\projectmanager\\HR\\Employees.txt"));
         CommandRegistry registry = new CommandRegistry(List.of(
             new HelpCommand(),
-            new CreateProjectCommand()
-        ));
+            new CreateProjectCommand(),
+            new AddEmployeeToActivityCommand(),
+            new AssignProjectLeaderCommand(),
+            new CreateActivityCommand(),
+            new RegisterTimeCommand(),
+            new GenerateReportCommand()
+            ));
 
         Scanner commandInput = new Scanner(System.in);
 
@@ -52,7 +61,8 @@ public class Main {
         }
         
         while (true) {
-            String[] commandParts = commandInput.nextLine().split("[s]");
+            String[] commandParts = commandInput.nextLine().split("[\\s]");
+            System.out.println(commandParts[0]);
             String commandName = commandParts[0];
             Command command = registry.findCommand(commandName);
 
@@ -64,6 +74,7 @@ public class Main {
             String[] commandArgs = Arrays.copyOfRange(commandParts, 1, commandParts.length);
             command.execute(commandArgs);
             
+            /*
             System.out.println("\n--- Hovedmenu ---");
             System.out.println("1. Se eksisterende projekter");
             System.out.println("2. Opret projekt");
@@ -71,7 +82,7 @@ public class Main {
             System.out.println("4. Log ud");
             System.out.print("Vælg en mulighed: ");
 
-
+            
             switch (commandName) {
                 case "1":
                     if (allprojects.isEmpty()) {
@@ -125,7 +136,7 @@ public class Main {
 
                 default:
                     System.out.println("Ugyldigt valg. Prøv igen.");
-            }
+            } */
         }
         
     }

@@ -8,7 +8,9 @@ import com.projectmanager.services.RuntimeContext;
 
 public class AssignProjectLeaderCommand extends Command {
 
-    String format = "assign_project_leader <projectName> <employeeName>";
+    public AssignProjectLeaderCommand() {
+        setFormat("assign_project_leader <projectName> <employeeName>");
+    }
 
     @Override
     public void execute(String[] args) {
@@ -27,7 +29,7 @@ public class AssignProjectLeaderCommand extends Command {
                 System.out.println("The employee with name " + args[0] + " could not be found");
             }
         } else {
-            System.out.println("Expected format: " + format);
+            System.out.println("Expected format: " + getFormat());
         }
     }
 
