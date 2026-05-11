@@ -33,7 +33,6 @@ public class EmployeesFunctions implements IEmployeeFunctions {
         
     }
     
-
     @Override
     public void nsassignProjectleader(Project project, Employee employee){
         // TODO Auto-generated method stub
@@ -83,7 +82,7 @@ public class EmployeesFunctions implements IEmployeeFunctions {
         obj.nsassignProjectleader(project, employee);
     }
 
-    public static void registerTime(Employee emp, Project pro, Activity act, Double hours){
+    public static void registerTime(Employee emp, Project pro, Activity act, Double hours) throws Exception{
         IEmployeeFunctions obj = new EmployeesFunctions();
         obj.nsregisterTime(emp, pro, act, hours);
     }
