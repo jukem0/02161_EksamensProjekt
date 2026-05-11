@@ -4,6 +4,9 @@ import com.projectmanager.services.Parser;
 
 public abstract class Command {
     private Parser parser;
-    public abstract String getName();
+    private String format;
+    public String getName(){
+        return format.split("[ ]")[0];
+    }
     public abstract void execute(String[] args);
 }
