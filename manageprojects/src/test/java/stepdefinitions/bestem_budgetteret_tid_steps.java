@@ -29,29 +29,16 @@ public class bestem_budgetteret_tid_steps {
 
     @When("medarbejderen bestemmer {double} til {string} som positivt decimaltal eller heltal, som slutter i {int} og varer {int}")
     public void medarbejderen_bestemmer_budgetteret_tid_til_som_positivt_decimaltal_eller_heltal_som_slutter_i_og_varer(
-<<<<<<< HEAD
             double budgetTime, String aktivitetsNavn, int endWeek, int amountWeek) {
         projects.get(0).addActivity(aktivitetsNavn, budgetTime, new Week(endWeek, Year.now().getValue()), amountWeek);
         System.out.println(projects.get(0).getActivity(0).getActivityName());
-=======
-            double budgetTime, String aktivitetsNavn, Integer endWeek, Integer amountWeek) {
-
-            projects.add(new Project("2601"));
-        projects.get(selectedIndex).addActivity(aktivitetsNavn, budgetTime, new Week(endWeek, Year.now().getValue()), amountWeek);
->>>>>>> 0e3ed8a6abeae0aaf3a1d7b8ef0f87152203e997
 
     }
 
     @When("medarbejderen bestemmer {double} til {string} som negativt decimaltal eller heltal, som slutter i {int} og varer {int}")
     public void medarbejderen_bestemmer_budgetteret_tid_til_som_negativt_decimaltal_eller_heltal_som_slutter_i_og_varer(
-<<<<<<< HEAD
             double budgetTime, String aktivitetsNavn, int endWeek, int amountWeek) {
         projects.get(0).addActivity(aktivitetsNavn, budgetTime, new Week(endWeek, Year.now().getValue()), amountWeek);
-=======
-            double budgetTime, String aktivitetsNavn, Integer endWeek, Integer amountWeek) {
-                projects.add(new Project("2601"));
-        projects.get(selectedIndex).addActivity(aktivitetsNavn, budgetTime, new Week(endWeek, Year.now().getValue()), amountWeek);
->>>>>>> 0e3ed8a6abeae0aaf3a1d7b8ef0f87152203e997
     }
 
     @Then("tildel aktiviteten mængde af budgetteret tid rundet op til nærmeste halve {double}")
